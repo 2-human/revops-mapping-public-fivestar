@@ -97,6 +97,10 @@ ul.clean{margin:0 0 14px;padding-left:20px} ul.clean li{margin-bottom:6px;max-wi
 .classbody ul.inline{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .classbody ul.inline li{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
 .hint{font-size:12.5px;color:var(--ink-3);margin:-8px 0 18px}
+.standing{background:#fff8e6;border:1px solid #f0dda8;border-radius:9px;padding:12px 16px;margin:0 0 26px;font-size:13px;line-height:1.55;color:#5c4a1a}
+.standing strong{color:#3d3009}
+.standing .key{margin-top:8px;padding-top:8px;border-top:1px solid #f0dda8;display:flex;flex-wrap:wrap;gap:14px;font-size:12px}
+.standing .key span.k{color:#6b5a2a}
 @media(max-width:760px){.classhead{grid-template-columns:1fr auto 18px}.classhead .cchange{display:none}}
 .edge{font-family:var(--mono);font-size:12.5px;background:var(--deep);color:#cfe0f0;padding:16px 18px;border-radius:8px;overflow-x:auto;line-height:1.75;margin:0 0 16px}
 .edge .n{color:#f5c451} .edge .e{color:#7fd1a4} .edge .c{color:#7d95ac}
@@ -134,6 +138,15 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <main>
 
+<div class="standing">
+  <strong>What this is based on.</strong> Everything on this page is derived from <strong>externally observable evidence as of 10 August 2026</strong> — page source, DNS records, tracking identifiers, robots.txt and sitemaps, and public professional profiles. <strong>No account, portal or system access was used, and no one at the organisation has been spoken to.</strong> Findings therefore describe what is visible from outside, not what is true inside: absence of evidence here is not evidence of absence, and an internal explanation may exist for anything below. Counts and classifications are proposals against the information available so far, and will move as access widens.
+  <div class="key">
+    <span class="k"><span class="tag t-ok">confirmed</span> direct evidence captured</span>
+    <span class="k"><span class="tag t-warn">unverified</span> single source, untested</span>
+    <span class="k"><span class="tag t-bad">absent / broken</span> not observed where expected</span>
+  </div>
+</div>
+
 <!-- ============ OVERVIEW ============ -->
 <section class="view active" id="v-overview">
   <p class="eyebrow">Draft 1 for review</p>
@@ -148,13 +161,13 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   </div>
 
   <div class="callout bad">
-    <p><strong>The headline.</strong> The member directory is not in HubSpot. It is in <strong>Wild Apricot</strong>, on a vendor subdomain, carrying no HubSpot tracking and one dead Universal Analytics tag. Five of the six membership-group websites, and the flagship conference site, also carry no HubSpot tracking.</p>
-    <p>Membership is the product. It is the least measured thing in the estate.</p>
+    <p><strong>The headline, stated to the limit of the evidence.</strong> The member-facing directory and join flow run on <strong>Wild Apricot</strong>, on a vendor subdomain, carrying no HubSpot tracking and one dead Universal Analytics tag. Five of the six membership-group websites, and the flagship conference site, likewise carry no HubSpot tracking in their page source.</p>
+    <p>What that supports: <strong>member behaviour on those surfaces reaches no analytics and no CRM.</strong> What it does not establish: whether member <em>records</em> nonetheless reach HubSpot by an integration, export or manual upload — a back-channel of that kind would not be visible from outside. On the evidence available, membership appears to be the core product and the least measured part of the estate; confirming that needs a look inside.</p>
   </div>
 
   <h3>The structural observation</h3>
   <p>MortgagePoint — the advertising-monetized media brand — has 7,000 LinkedIn followers to the institute's 4,000, sits on a full company page rather than a showcase page, and is the best-instrumented property in the estate. The membership groups sit on showcase pages with 119–2,000 followers and mostly dark websites.</p>
-  <p><strong>The estate is instrumented in inverse proportion to its commercial importance.</strong> Media, which monetizes through advertising, is measured well. Membership, which monetizes through dues and events, is barely measured at all.</p>
+  <p><strong>On what is observable, the estate is instrumented in inverse proportion to its apparent commercial importance.</strong> Media, which monetizes through advertising, is measured well. Membership, which monetizes through dues and events, is barely measured at all. This is an interpretation of the pattern, not a finding — the underlying counts are in <a href="#matrix">Instrumentation</a>.</p>
 
   <h3>How to review this</h3>
   <p>Click the review button, then click any element to comment on it. The thing I most need argued with is the <a href="#model" data-review-skip style="color:var(--accent)">proposed model</a> — nine node classes and ten edge types. It is far cheaper to change now than after sixty node files exist.</p>
@@ -233,7 +246,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   <h4 style="font-size:14px;margin:26px 0 10px">What it turned up</h4>
 
   <div class="callout bad">
-    <p><strong>1. FORCE's entire member-news content type silently redirects to the homepage.</strong> <code>fivestarforce.com/member-news/update-your-reo-red-book-profile/</code> — a URL Google still indexes and links to — returns <strong>200 OK on the homepage</strong>, with the canonical pointing at <code>fivestarforce.com/</code>. Not a 404, not a 301 to a replacement: a soft-404 catch-all. Every article ever published under that path has had its ranking equity collapsed into the homepage, and any visitor arriving from search lands somewhere unrelated to what they clicked.</p>
+    <p><strong>1. FORCE's entire member-news content type silently redirects to the homepage.</strong> <code>fivestarforce.com/member-news/update-your-reo-red-book-profile/</code> — a URL Google still indexes and links to — returns <strong>200 OK on the homepage</strong>, with the canonical pointing at <code>fivestarforce.com/</code>. Not a 404, not a 301 to a replacement: a soft-404 catch-all. The observable consequence is that a visitor arriving from search lands somewhere unrelated to what they clicked; the likely SEO consequence is that ranking equity for those URLs consolidates into the homepage rather than the intended pages. One URL was tested, so whether the whole content type behaves this way is inferred from the catch-all pattern, not proven across it.</p>
   </div>
 
   <div class="callout bad">
@@ -245,7 +258,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   </div>
 
   <div class="callout bad">
-    <p><strong>4. MortgagePoint is a publisher that is invisible to image search.</strong> <strong>97%</strong> of homepage images have no alt text (37 of 38), 88% on the article, 92% on the podcast hub, 100% on the welcome landing page. That is lost image-search traffic on a media property, and an accessibility exposure on a site that carries advertising.</p>
+    <p><strong>4. MortgagePoint is, on this evidence, largely invisible to image search.</strong> <strong>97%</strong> of homepage images have no alt text (37 of 38), 88% on the article, 92% on the podcast hub, 100% on the welcome landing page. That is lost image-search traffic on a media property, and an accessibility exposure on a site that carries advertising.</p>
   </div>
 
   <div class="callout bad">
@@ -295,7 +308,8 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   </div>
 
   <h3>What this does not tell you</h3>
-  <p>Whether records nonetheless sync from Wild Apricot into HubSpot by some back-channel — an integration, an export, a manual upload. That cannot be seen from outside. But tracking absence means that even if the <em>records</em> are synced, the <em>behaviour</em> is not: no page view, no session, no source attribution on any of those surfaces reaches HubSpot.</p>
+  <p><strong>"Dark" here means one specific, checkable thing:</strong> no HubSpot tracking code was observed in the page source. It does not rule out server-side integrations, scheduled exports, manual uploads, or any other back-channel — none of which is visible from outside.</p>
+  <p>What tracking absence does establish is narrower and still material: even where <em>records</em> may be synced, <em>behaviour</em> is not. No page view, no session and no source attribution from those surfaces reaches HubSpot. A record that arrives with no acquisition history attached cannot be attributed, whatever else is true.</p>
 </section>
 
 <!-- ============ PLATFORMS ============ -->
@@ -603,7 +617,8 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 <section class="view" id="v-defects">
   <p class="eyebrow">Section 8</p>
   <h2>Defects found</h2>
-  <p class="lede">Classified against the asset-layer taxonomy. Every one of these was detectable from outside the organization, which is the point worth holding on to.</p>
+  <p class="lede">Classified against the asset-layer taxonomy. Every one was detectable from outside the organization, which is the point worth holding on to.</p>
+  <p class="muted">These are <strong>externally observable symptoms</strong>, not diagnoses. Each states what was found and where; several may have an internal explanation — a deliberate decision, a migration in flight, a system doing the job another way. Treat the list as the agenda for a conversation, not a verdict.</p>
 
   <div class="tablewrap"><table>
     <thead><tr><th>Defect</th><th>Instances found</th></tr></thead>
