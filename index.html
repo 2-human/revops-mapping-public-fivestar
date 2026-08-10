@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Five Star Institute — Digital Estate Review</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>★</text></svg>">
+<style>
+:root{
+  --ink:#0f1720; --ink-2:#33414f; --ink-3:#6b7a89;
+  --line:#e2e7ec; --line-2:#eef1f4;
+  --bg:#ffffff; --bg-2:#f7f9fb; --bg-3:#eef3f7;
+  --deep:#12263a; --accent:#1f6feb; --accent-soft:#e8f0fe;
+  --ok:#0f7b4f; --ok-bg:#e6f4ee;
+  --warn:#9a6700; --warn-bg:#fff4d6;
+  --bad:#b42318; --bad-bg:#fdeceb;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg-2);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+
+/* ---- sidebar (site chrome; not anchored by the review widget) ---- */
+.sidebar{background:var(--deep);color:#dbe6f0;padding:22px 0 40px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{padding:0 22px 18px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:14px}
+.brand .star{font-size:20px;color:#f5c451}
+.brand h1{font-size:15px;margin:6px 0 2px;font-weight:650;color:#fff;letter-spacing:-.01em}
+.brand p{margin:0;font-size:11.5px;color:#8ba3ba;text-transform:uppercase;letter-spacing:.07em}
+.sidebar nav a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 22px;color:#b9cbdd;text-decoration:none;font-size:13.5px;border-left:3px solid transparent}
+.sidebar nav a:hover{background:rgba(255,255,255,.05);color:#fff}
+.sidebar nav a.active{background:rgba(31,111,235,.18);border-left-color:#5b9dff;color:#fff;font-weight:600}
+.sidebar nav a .n{font-size:11px;color:#7d95ac;font-variant-numeric:tabular-nums}
+.sidebar .meta{padding:18px 22px 0;margin-top:14px;border-top:1px solid rgba(255,255,255,.1);font-size:11.5px;color:#7d95ac;line-height:1.6}
+
+/* ---- content ---- */
+main{padding:34px 44px 90px;max-width:1180px}
+.view{display:none}
+.view.active{display:block}
+.eyebrow{font-size:11.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);font-weight:650;margin:0 0 6px}
+h2{font-size:26px;line-height:1.2;margin:0 0 10px;letter-spacing:-.02em}
+h3{font-size:16px;margin:30px 0 10px;letter-spacing:-.01em}
+p{margin:0 0 12px;max-width:78ch}
+.lede{font-size:16.5px;color:var(--ink-2);max-width:76ch}
+.muted{color:var(--ink-3);font-size:13.5px}
+code{font-family:var(--mono);font-size:12.5px;background:var(--bg-3);padding:1px 5px;border-radius:4px;color:var(--deep)}
+
+.card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 16px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.stat .v{font-size:30px;font-weight:680;letter-spacing:-.03em;line-height:1.05}
+.stat .l{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+.stat.bad .v{color:var(--bad)} .stat.ok .v{color:var(--ok)} .stat.warn .v{color:var(--warn)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{text-align:left;font-weight:640;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);padding:11px 14px;border-bottom:1px solid var(--line);background:var(--bg-2);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--line-2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.dark-row td{background:#fffbfb}
+td.mono,th.mono{font-family:var(--mono);font-size:12px}
+
+.tag{display:inline-block;font-size:11px;font-weight:650;padding:2px 8px;border-radius:20px;white-space:nowrap;letter-spacing:.01em}
+.t-ok{background:var(--ok-bg);color:var(--ok)}
+.t-bad{background:var(--bad-bg);color:var(--bad)}
+.t-warn{background:var(--warn-bg);color:var(--warn)}
+.t-neu{background:var(--bg-3);color:var(--ink-2)}
+
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 8px 8px 0;margin:0 0 18px}
+.callout.bad{border-left-color:var(--bad);background:var(--bad-bg)}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:var(--deep)}
+
+ul.clean{margin:0 0 14px;padding-left:20px} ul.clean li{margin-bottom:6px;max-width:76ch}
+
+.classlist{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);margin:0 0 22px}
+.classrow+.classrow{border-top:1px solid var(--line-2)}
+.classhead{display:grid;grid-template-columns:1fr auto minmax(0,190px) 18px;gap:16px;align-items:center;width:100%;text-align:left;background:none;border:none;font:inherit;padding:13px 16px;cursor:pointer;color:var(--ink)}
+.classhead:hover{background:var(--bg-2)}
+.classhead .cname{font-weight:650;font-size:14.5px}
+.classhead .cname .flag{font-weight:500;font-size:11px;color:var(--bad);margin-left:7px}
+.classhead .cnum{font-variant-numeric:tabular-nums;font-weight:680;font-size:16px;letter-spacing:-.01em}
+.classhead .cnum small{font-weight:500;font-size:11.5px;color:var(--ink-3);margin-left:4px}
+.classhead .cchange{font-size:12.5px;color:var(--ink-3);text-align:right;line-height:1.35}
+.classhead .chev{color:var(--ink-3);font-size:11px;transition:transform .16s ease;justify-self:end}
+.classrow.open .classhead{background:var(--bg-3)}
+.classrow.open .chev{transform:rotate(180deg)}
+.classbody{padding:16px;border-top:1px solid var(--line-2);background:var(--bg-2)}
+.classbody .tablewrap{margin-bottom:10px;background:var(--bg)}
+.classbody table{min-width:700px}
+.classbody>p:last-child{margin-bottom:0}
+.classbody ul.inline{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.classbody ul.inline li{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+.hint{font-size:12.5px;color:var(--ink-3);margin:-8px 0 18px}
+@media(max-width:760px){.classhead{grid-template-columns:1fr auto 18px}.classhead .cchange{display:none}}
+.edge{font-family:var(--mono);font-size:12.5px;background:var(--deep);color:#cfe0f0;padding:16px 18px;border-radius:8px;overflow-x:auto;line-height:1.75;margin:0 0 16px}
+.edge .n{color:#f5c451} .edge .e{color:#7fd1a4} .edge .c{color:#7d95ac}
+
+footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;height:auto}main{padding:24px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="star">★</div>
+    <h1>Five Star Institute</h1>
+    <p>Digital Estate Review</p>
+  </div>
+  <nav id="nav">
+    <a href="#overview" class="active">Overview</a>
+    <a href="#estate">Digital estate <span class="n">19</span></a>
+    <a href="#matrix">Instrumentation <span class="n">11</span></a>
+    <a href="#platforms">Platforms <span class="n">12</span></a>
+    <a href="#social">Social estate <span class="n">12</span></a>
+    <a href="#members">Members <span class="n">23</span></a>
+    <a href="#model">The model <span class="n">10+13</span></a>
+    <a href="#defects">Defects <span class="n">7</span></a>
+    <a href="#gaps">Gaps &amp; next step</a>
+  </nav>
+  <div class="meta">
+    Draft 1 · 10 Aug 2026<br>
+    Public evidence only —<br>no portal access used.<br><br>
+    HubSpot portal <strong style="color:#cfe0f0">8733520</strong>
+  </div>
+</aside>
+
+<main>
+
+<!-- ============ OVERVIEW ============ -->
+<section class="view active" id="v-overview">
+  <p class="eyebrow">Draft 1 for review</p>
+  <h2>Five Star Institute — digital estate &amp; information architecture</h2>
+  <p class="lede">Built entirely from externally observable evidence: HTML source, script hosts, meta generators, tracking IDs, DNS records, and logged-in review of the social estate. No HubSpot access was used to produce any of this.</p>
+
+  <div class="grid g3" style="margin:24px 0 26px">
+    <div class="stat"><div class="v">19</div><div class="l">Digital properties</div></div>
+    <div class="stat"><div class="v">12</div><div class="l">Platforms in play</div></div>
+    <div class="stat bad"><div class="v">6&nbsp;of&nbsp;11</div><div class="l">Key surfaces dark to HubSpot</div></div>
+    <div class="stat bad"><div class="v">7</div><div class="l">Dead analytics tags</div></div>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>The headline.</strong> The member directory is not in HubSpot. It is in <strong>Wild Apricot</strong>, on a vendor subdomain, carrying no HubSpot tracking and one dead Universal Analytics tag. Five of the six membership-group websites, and the flagship conference site, also carry no HubSpot tracking.</p>
+    <p>Membership is the product. It is the least measured thing in the estate.</p>
+  </div>
+
+  <h3>The structural observation</h3>
+  <p>MortgagePoint — the advertising-monetized media brand — has 7,000 LinkedIn followers to the institute's 4,000, sits on a full company page rather than a showcase page, and is the best-instrumented property in the estate. The membership groups sit on showcase pages with 119–2,000 followers and mostly dark websites.</p>
+  <p><strong>The estate is instrumented in inverse proportion to its commercial importance.</strong> Media, which monetizes through advertising, is measured well. Membership, which monetizes through dues and events, is barely measured at all.</p>
+
+  <h3>How to review this</h3>
+  <p>Click the review button, then click any element to comment on it. The thing I most need argued with is the <a href="#model" data-review-skip style="color:var(--accent)">proposed model</a> — nine node classes and ten edge types. It is far cheaper to change now than after sixty node files exist.</p>
+</section>
+
+<!-- ============ ESTATE ============ -->
+<section class="view" id="v-estate">
+  <p class="eyebrow">Section 2</p>
+  <h2>The digital estate</h2>
+  <p class="lede">Nineteen properties across five roles. <span class="tag t-ok">HS</span> marks a property carrying HubSpot portal <code>8733520</code>.</p>
+
+  <h3>Core</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Domain</th><th>Role</th><th>HubSpot</th><th>Stack / notes</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">thefivestar.com</td><td>Corporate hub</td><td><span class="tag t-ok">yes</span></td><td>WordPress; Elementor <em>and</em> WPBakery <em>and</em> Slider Revolution; AIOSEO Pro, Site Kit, WP Rocket</td></tr>
+      <tr class="dark-row"><td class="mono">jobs.thefivestar.com</td><td>Job board</td><td><span class="tag t-neu">n/a</span></td><td>ColdFusion (<code>index.cfm</code>), 403 to non-browser clients — third-party ATS, not owned</td></tr>
+      <tr class="dark-row"><td class="mono">www.fsireferrals.com</td><td>Unknown</td><td><span class="tag t-bad">broken</span></td><td>Unreachable — yet loaded as a <code>&lt;script src&gt;</code> on the corporate homepage</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Membership groups</h3>
+  <p class="muted">Six group sites. One carries HubSpot. Every one carries a dead Universal Analytics property — UA stopped processing data in July 2023.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Domain</th><th>Group</th><th>HubSpot</th><th>Analytics</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">fivestarforce.com</td><td>FORCE</td><td><span class="tag t-ok">yes</span></td><td class="mono">GTM-W5FVHMC · G-HKJYLPW22Z · UA-91526404-1 †</td></tr>
+      <tr class="dark-row"><td class="mono">legalleague100.com</td><td>Legal League</td><td><span class="tag t-bad">no</span></td><td class="mono">UA-130564338-1 † · UA-139260341-7 †</td></tr>
+      <tr class="dark-row"><td class="mono">nationalmortgageservicingassociation.com</td><td>NMSA</td><td><span class="tag t-bad">no</span></td><td class="mono">GTM-KGQXRF4 · UA-116669088-1 †</td></tr>
+      <tr class="dark-row"><td class="mono">themsea.com</td><td>MSEA</td><td><span class="tag t-bad">no</span></td><td><strong>none at all</strong></td></tr>
+      <tr class="dark-row"><td class="mono">propertypresforum.com</td><td>PPEF</td><td><span class="tag t-bad">no</span></td><td class="mono">GTM-TP78NWV · UA-131245705-1 †</td></tr>
+      <tr class="dark-row"><td class="mono">mortgagediversitycouncil.com</td><td>AMDC</td><td><span class="tag t-bad">no</span></td><td class="mono">UA-74669449-1 † — no GTM</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">† Universal Analytics — dead since July 2023. <strong>Five Star Alliance</strong>, named as the entry point in the source IA, has no discoverable site of its own.</p>
+
+  <h3>Media</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Domain</th><th>Role</th><th>HubSpot</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">themortgagepoint.com</td><td>Flagship publication</td><td><span class="tag t-ok">yes</span></td><td>GTM-KT3LMM35 · AW-369864043 · AdSense <code>ca-pub-6753420471152466</code> · Hotjar · Apollo · Simpli.fi</td></tr>
+      <tr><td class="mono">dsnews.com</td><td>Legacy brand</td><td><span class="tag t-neu">301</span></td><td>Redirects to <code>themortgagepoint.com/welcome/</code> — clean consolidation</td></tr>
+      <tr><td class="mono">themreport.com</td><td>Legacy brand</td><td><span class="tag t-neu">301</span></td><td>Redirects to <code>themortgagepoint.com/welcome/</code> — clean consolidation</td></tr>
+      <tr class="dark-row"><td class="mono">reoredbook.com</td><td>REO Red Book</td><td><span class="tag t-warn">301</span></td><td>Redirects to <code>fivestarforce.com/reoredbook/</code> over <strong>insecure HTTP</strong></td></tr>
+      <tr class="dark-row"><td class="mono">dsnewsblackbook.com</td><td>DS News Black Book</td><td><span class="tag t-bad">404</span></td><td>404s via a <strong>February 2023</strong> digital edition — a product the live Media page still promotes</td></tr>
+      <tr class="dark-row"><td class="mono">digital.dsnews.com</td><td>Digital editions</td><td><span class="tag t-bad">dead</span></td><td>CNAME to <code>read.uberflip.com</code>; returns 404 "Non-hub domain" — dangling</td></tr>
+      <tr><td class="mono">podcast.mpaccessshow.com</td><td>MP Access Show</td><td><span class="tag t-neu">n/a</span></td><td>Buzzsprout-hosted</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Events &amp; membership system</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Domain</th><th>Serves</th><th>HubSpot</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="dark-row"><td class="mono">fivestarconference.com</td><td>Five Star Conference &amp; Expo — the flagship</td><td><span class="tag t-bad">no</span></td><td>Swoogo; GA4 <code>G-96G0CR1DHF</code> + Meta pixel. Per-year paths <code>/2025/</code>, <code>/2026/</code></td></tr>
+      <tr><td class="mono">fivestargovernmentforum.com</td><td>Government Forum</td><td><span class="tag t-ok">yes</span></td><td>Swoogo; Google Ads <code>AW-369864043</code></td></tr>
+      <tr><td class="mono">thefivestar.com/events/velocity/</td><td>Velocity</td><td><span class="tag t-ok">yes</span></td><td>A page on the corporate site, not its own domain</td></tr>
+      <tr class="dark-row"><td class="mono">fivestarmemberships.wildapricot.org</td><td><strong>Wild Apricot — join &amp; member directory</strong></td><td><span class="tag t-bad">no</span></td><td>UA-179423801-1 † only. Vendor subdomain, not a branded one</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="seo">On-page SEO</h3>
+  <p class="muted">24 pages fetched 2026-08-10 — one per page type per site, not every article. Extracted from raw HTML: titles, meta, headings, canonicals, JSON-LD, alt text, link graph, robots.txt and sitemaps.</p>
+
+  <div class="callout bad">
+    <p><strong>The estate-level finding.</strong> On-page SEO tracks the same fault line as the instrumentation: the corporate hub and MortgagePoint are competently marked up, and every membership property is not. <strong>11 of 24 pages have no H1. 13 of 24 have no meta description. 6 have no structured data at all.</strong></p>
+  </div>
+
+  <h4 style="font-size:14px;margin:22px 0 8px">Per-site scorecard</h4>
+<div class="tablewrap"><table><thead><tr><th>Site</th><th>Pages</th><th>H1 issues</th><th>No description</th><th>No schema</th><th>No canonical</th><th>Images w/o alt</th><th>Avg words</th><th>Avg internal links</th></tr></thead><tbody><tr class="dark-row"><td><strong>FSI</strong><br><span class="muted">thefivestar.com</span></td><td>7</td><td><span class="tag t-bad">1/7</span></td><td><span class="tag t-bad">4/7</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-warn">35%</span></td><td>712</td><td>52</td></tr><tr class="dark-row"><td><strong>FORCE</strong><br><span class="muted">fivestarforce.com</span></td><td>4</td><td><span class="tag t-bad">3/4</span></td><td><span class="tag t-bad">2/4</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-warn">43%</span></td><td>400</td><td>6</td></tr><tr class="dark-row"><td><strong>Legal League</strong><br><span class="muted">legalleague100.com</span></td><td>1</td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">75%</span></td><td>568</td><td>11</td></tr><tr class="dark-row"><td><strong>NMSA</strong><br><span class="muted">nationalmortgageservicing…</span></td><td>1</td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">75%</span></td><td>186</td><td>9</td></tr><tr class="dark-row"><td><strong>MSEA</strong><br><span class="muted">themsea.com</span></td><td>1</td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">19%</span></td><td>464</td><td>10</td></tr><tr class="dark-row"><td><strong>PPEF</strong><br><span class="muted">propertypresforum.com</span></td><td>1</td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">67%</span></td><td>98</td><td>4</td></tr><tr class="dark-row"><td><strong>AMDC</strong><br><span class="muted">mortgagediversitycouncil.com</span></td><td>1</td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">88%</span></td><td>123</td><td>9</td></tr><tr class="dark-row"><td><strong>MortgagePoint</strong><br><span class="muted">themortgagepoint.com</span></td><td>4</td><td><span class="tag t-bad">1/4</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">94%</span></td><td>875</td><td>81</td></tr><tr class="dark-row"><td><strong>Conference</strong><br><span class="muted">fivestarconference.com</span></td><td>2</td><td><span class="tag t-bad">2/2</span></td><td><span class="tag t-bad">2/2</span></td><td><span class="tag t-bad">2/2</span></td><td><span class="tag t-bad">2/2</span></td><td><span class="tag t-bad">81%</span></td><td>736</td><td>56</td></tr><tr class="dark-row"><td><strong>Gov Forum</strong><br><span class="muted">fivestargovernmentforum.com</span></td><td>1</td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">78%</span></td><td>351</td><td>35</td></tr><tr class="dark-row"><td><strong>Wild Apricot</strong><br><span class="muted">wildapricot.org</span></td><td>1</td><td><span class="tag t-ok">0</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">1/1</span></td><td><span class="tag t-bad">100%</span></td><td>223</td><td>6</td></tr></tbody></table></div>
+
+  <h4 style="font-size:14px;margin:26px 0 8px">Page-level detail</h4>
+
+<div class="tablewrap"><table><thead><tr><th>Page</th><th>Title</th><th>Title len</th><th>Desc len</th><th>H1</th><th>Schema</th><th>Img no-alt</th><th>Words</th><th>Canonical</th></tr></thead><tbody><tr class="dark-row"><td>FSI · home</td><td class="mono">The Five Star - National trade association</td><td><span class="tag t-ok">42</span></td><td><span class="tag t-warn">392</span></td><td>0</td><td>default</td><td>12/23</td><td>1044</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FSI · memberships hub</td><td class="mono">Memberships - The Five Star</td><td><span class="tag t-ok">27</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td>default</td><td>2/15</td><td>477</td><td><span class="tag t-ok">self</span></td></tr><tr><td>FSI · media hub</td><td class="mono">Media - The Five Star</td><td><span class="tag t-bad">21</span></td><td><span class="tag t-warn">428</span></td><td>1</td><td>default</td><td>7/12</td><td>476</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FSI · conferences hub</td><td class="mono">Events - The Five Star</td><td><span class="tag t-bad">22</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td>default</td><td>2/7</td><td>565</td><td><span class="tag t-ok">self</span></td></tr><tr><td>FSI · community page</td><td class="mono">Real Estate Professionals - The Five Star</td><td><span class="tag t-ok">41</span></td><td><span class="tag t-warn">420</span></td><td>1</td><td>default</td><td>2/7</td><td>1248</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FSI · event page</td><td class="mono">Velocity - The Five Star</td><td><span class="tag t-bad">24</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td>default</td><td>2/13</td><td>919</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FSI · careers</td><td class="mono">Careers - The Five Star</td><td><span class="tag t-bad">23</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td>default</td><td>2/6</td><td>257</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FORCE · home</td><td class="mono">Home - The Five Star FORCE</td><td><span class="tag t-ok">26</span></td><td><span class="tag t-warn">357</span></td><td>0</td><td>default</td><td>0/1</td><td>316</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FORCE · benefits</td><td class="mono">Benefits - The Five Star FORCE</td><td><span class="tag t-ok">30</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td>default</td><td>3/4</td><td>902</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FORCE · REO Red Book</td><td class="mono">REO Red Book - The Five Star FORCE</td><td><span class="tag t-ok">34</span></td><td><span class="tag t-bad">none</span></td><td>0</td><td>default</td><td>0/1</td><td>65</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>FORCE · member news article</td><td class="mono">Home - The Five Star FORCE</td><td><span class="tag t-ok">26</span></td><td><span class="tag t-warn">357</span></td><td>0</td><td>default</td><td>0/1</td><td>316</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>Legal League · home</td><td class="mono">Home | Legal League 100</td><td><span class="tag t-bad">23</span></td><td><span class="tag t-bad">none</span></td><td>0</td><td><span class="tag t-bad">none</span></td><td>9/12</td><td>568</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>NMSA · home</td><td class="mono">Home - National Mortgage Servicing Association</td><td><span class="tag t-ok">46</span></td><td><span class="tag t-ok">41</span></td><td>0</td><td>LocalBusiness</td><td>3/4</td><td>186</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>MSEA · home</td><td class="mono">Mortgage Servicing Executive Alliance</td><td><span class="tag t-ok">37</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td><span class="tag t-bad">none</span></td><td>8/42</td><td>464</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>PPEF · home</td><td class="mono">About Us - Property Preservation Executive Forum</td><td><span class="tag t-ok">48</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td>default</td><td>2/3</td><td>98</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>AMDC · home</td><td class="mono">Home - American Mortgage Diversity Council</td><td><span class="tag t-ok">42</span></td><td><span class="tag t-warn">215</span></td><td>0</td><td>default</td><td>7/8</td><td>123</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>MortgagePoint · home</td><td class="mono">Home - MortgagePoint</td><td><span class="tag t-bad">20</span></td><td><span class="tag t-ok">132</span></td><td>3</td><td>default</td><td>37/38</td><td>1076</td><td><span class="tag t-ok">self</span></td></tr><tr><td>MortgagePoint · article</td><td class="mono">Five Star Conference Concludes With Focuses on Asset…</td><td><span class="tag t-bad">99</span></td><td><span class="tag t-warn">204</span></td><td>1</td><td>BlogPosting</td><td>15/17</td><td>1561</td><td><span class="tag t-ok">self</span></td></tr><tr><td>MortgagePoint · podcast hub</td><td class="mono">MP Access Show - The MortgagePoint</td><td><span class="tag t-ok">34</span></td><td><span class="tag t-warn">363</span></td><td>1</td><td>default</td><td>11/12</td><td>588</td><td><span class="tag t-ok">self</span></td></tr><tr><td>MortgagePoint · welcome LP</td><td class="mono">Welcome - The MortgagePoint</td><td><span class="tag t-ok">27</span></td><td><span class="tag t-warn">382</span></td><td>1</td><td>default</td><td>5/5</td><td>274</td><td><span class="tag t-ok">self</span></td></tr><tr class="dark-row"><td>Conference · home (Swoogo)</td><td class="mono">Five Star Conference | 2026</td><td><span class="tag t-ok">27</span></td><td><span class="tag t-bad">none</span></td><td>0</td><td><span class="tag t-bad">none</span></td><td>7/9</td><td>525</td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td>Conference · inner page</td><td class="mono">FIVE STAR INSTITUTE MEMBERSHIPS: Five Star Conferenc…</td><td><span class="tag t-ok">60</span></td><td><span class="tag t-bad">none</span></td><td>0</td><td><span class="tag t-bad">none</span></td><td>10/12</td><td>948</td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td>Gov Forum · home (Swoogo)</td><td class="mono">Government Forum | 2026</td><td><span class="tag t-bad">23</span></td><td><span class="tag t-bad">none</span></td><td>0</td><td><span class="tag t-bad">none</span></td><td>7/9</td><td>351</td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td>Wild Apricot · join</td><td class="mono">Five Star FORCE - Join us</td><td><span class="tag t-ok">25</span></td><td><span class="tag t-bad">none</span></td><td>1</td><td><span class="tag t-bad">none</span></td><td>2/2</td><td>223</td><td><span class="tag t-bad">none</span></td></tr></tbody></table></div>
+
+  <h4 style="font-size:14px;margin:26px 0 10px">What it turned up</h4>
+
+  <div class="callout bad">
+    <p><strong>1. FORCE's entire member-news content type silently redirects to the homepage.</strong> <code>fivestarforce.com/member-news/update-your-reo-red-book-profile/</code> — a URL Google still indexes and links to — returns <strong>200 OK on the homepage</strong>, with the canonical pointing at <code>fivestarforce.com/</code>. Not a 404, not a 301 to a replacement: a soft-404 catch-all. Every article ever published under that path has had its ranking equity collapsed into the homepage, and any visitor arriving from search lands somewhere unrelated to what they clicked.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>2. The corporate site throttles its own crawling.</strong> <code>thefivestar.com/robots.txt</code> sets <code>Crawl-delay: 10</code> — one page per ten seconds for every crawler that honours it (Bing, Yandex; Google ignores it). It also declares <code>news-sitemap.xml</code>, which <strong>404s</strong>. NMSA's declared sitemap 404s too, and <strong>MSEA declares no sitemap at all</strong>.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>3. The AI-crawler posture is split down the middle.</strong> <code>themortgagepoint.com</code> blocks <strong>ten</strong> AI crawlers outright — GPTBot, ClaudeBot, anthropic-ai, CCBot, Google-Extended, Applebot-Extended, Amazonbot, meta-externalagent, Bytespider, ImagesiftBot. <code>thefivestar.com</code> blocks <strong>none</strong>. Blocking is a legitimate publisher choice about uncompensated training; having the two halves of one estate take opposite positions is not a choice, it is drift. Worth deciding deliberately, because it governs whether the industry authority they sell shows up when a buyer asks an AI assistant a mortgage-servicing question.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>4. MortgagePoint is a publisher that is invisible to image search.</strong> <strong>97%</strong> of homepage images have no alt text (37 of 38), 88% on the article, 92% on the podcast hub, 100% on the welcome landing page. That is lost image-search traffic on a media property, and an accessibility exposure on a site that carries advertising.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>5. The flagship conference forfeits event rich results.</strong> Both Swoogo sites carry <strong>no structured data, no canonical, no meta description and no H1</strong>. <code>Event</code> schema is the single highest-value markup a conference can have — it is what produces date, venue and ticket rich results in Google. The estate's biggest revenue event has none of it, and neither does the Wild Apricot join page, which is the membership conversion surface.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>6. NMSA is marked up as a local business with opening hours.</strong> Its JSON-LD emits <code>LocalBusiness</code> + <code>OpeningHoursSpecification</code> for a national trade association — the wrong entity type, telling search engines it is a storefront. AMDC's markup omits an <code>Organization</code> node entirely, so it declares no entity at all. Both are AIOSEO defaults left unconfigured.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>7. Thin content and link isolation on exactly the membership properties.</strong> The <strong>REO Red Book page — a flagship directory product — is 65 words</strong>. PPEF's homepage is 98 words, titled <em>"About Us"</em>, with four internal links and zero external. AMDC 123, NMSA 186. Against that, FSI pages average ~52 internal links and MortgagePoint's homepage carries 130. The membership sites are near-orphaned islands: too little content to rank, too few links to crawl deeply.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>8. Titles waste the most valuable field.</strong> MortgagePoint's homepage title is <code>Home - MortgagePoint</code> — 20 characters on a 7,000-follower publication. Its article title runs 99 characters and truncates in results. Seven pages across the estate are titled <em>"Home - X"</em>. One page is correctly done: the MortgagePoint article carries <code>BlogPosting</code> + <code>Person</code> author markup, and is the best-optimised page found.</p>
+  </div>
+
+
+</section>
+
+<!-- ============ MATRIX ============ -->
+<section class="view" id="v-matrix">
+  <p class="eyebrow">Section 3</p>
+  <h2>The instrumentation matrix</h2>
+  <p class="lede">The single most useful view, and the reason this belongs in a hub rather than a document. Every commercially significant surface, against whether it can pass a visitor into the CRM.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Property</th><th>Class</th><th>HubSpot</th><th>GA4</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">thefivestar.com</td><td>Core</td><td><span class="tag t-ok">yes</span></td><td><span class="tag t-ok">yes</span></td><td>Instrumented</td></tr>
+      <tr><td class="mono">themortgagepoint.com</td><td>Media</td><td><span class="tag t-ok">yes</span></td><td><span class="tag t-ok">yes</span></td><td>Instrumented — best in estate</td></tr>
+      <tr><td class="mono">fivestarforce.com</td><td>Membership</td><td><span class="tag t-ok">yes</span></td><td><span class="tag t-ok">yes</span></td><td>Instrumented</td></tr>
+      <tr><td class="mono">fivestargovernmentforum.com</td><td>Event</td><td><span class="tag t-ok">yes</span></td><td><span class="tag t-warn">—</span></td><td>Partial</td></tr>
+      <tr class="dark-row"><td class="mono">fivestarconference.com</td><td><strong>Event — flagship</strong></td><td><span class="tag t-bad">no</span></td><td><span class="tag t-ok">yes</span></td><td><strong>Dark to CRM</strong></td></tr>
+      <tr class="dark-row"><td class="mono">legalleague100.com</td><td>Membership</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">no</span></td><td><strong>Dark</strong></td></tr>
+      <tr class="dark-row"><td class="mono">nationalmortgageservicingassociation.com</td><td>Membership</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">no</span></td><td><strong>Dark</strong></td></tr>
+      <tr class="dark-row"><td class="mono">propertypresforum.com</td><td>Membership</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">no</span></td><td><strong>Dark</strong></td></tr>
+      <tr class="dark-row"><td class="mono">mortgagediversitycouncil.com</td><td>Membership</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">no</span></td><td><strong>Dark</strong></td></tr>
+      <tr class="dark-row"><td class="mono">themsea.com</td><td>Membership</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">no</span></td><td><strong>Fully uninstrumented</strong></td></tr>
+      <tr class="dark-row"><td class="mono">fivestarmemberships.wildapricot.org</td><td><strong>Membership system of record</strong></td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">no</span></td><td><strong>Dark — and it holds the records</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <p><strong>Read it this way.</strong> Six of eleven commercially significant surfaces cannot pass a visitor to the CRM. Every one of them is either a membership property or the flagship event. Every instrumented surface is either corporate or media.</p>
+  </div>
+
+  <h3>What this does not tell you</h3>
+  <p>Whether records nonetheless sync from Wild Apricot into HubSpot by some back-channel — an integration, an export, a manual upload. That cannot be seen from outside. But tracking absence means that even if the <em>records</em> are synced, the <em>behaviour</em> is not: no page view, no session, no source attribution on any of those surfaces reaches HubSpot.</p>
+</section>
+
+<!-- ============ PLATFORMS ============ -->
+<section class="view" id="v-platforms">
+  <p class="eyebrow">Section 4</p>
+  <h2>Platforms in play</h2>
+  <p class="lede">Twelve systems, only one of which is HubSpot. Each is a candidate node in the relational map, and each boundary between them is a place records can diverge.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Platform</th><th>Holds / does</th><th>Where it appears</th></tr></thead>
+    <tbody>
+      <tr><td><strong>HubSpot</strong> <code>8733520</code></td><td>Marketing, forms, email, <code>hubs.la</code> links</td><td>5 of 19 properties</td></tr>
+      <tr class="dark-row"><td><strong>Wild Apricot</strong></td><td><strong>Membership records + directory</strong></td><td>Member-facing join and directory</td></tr>
+      <tr><td>Swoogo</td><td>Event registration</td><td>Conference, Government Forum</td></tr>
+      <tr><td>Buzzsprout</td><td>Podcast hosting + RSS</td><td>MP Access Show</td></tr>
+      <tr class="dark-row"><td>Uberflip</td><td>Digital magazine editions</td><td>Dead hub — dangling CNAME</td></tr>
+      <tr><td>WordPress</td><td>CMS</td><td>8 properties</td></tr>
+      <tr class="dark-row"><td>Google Tag Manager</td><td>Tag delivery</td><td><strong>4 separate containers</strong>, no unified one</td></tr>
+      <tr class="dark-row"><td>Google Analytics</td><td>Measurement</td><td>GA4 ×4 + <strong>7 dead UA properties</strong></td></tr>
+      <tr class="dark-row"><td>Google Ads / AdSense</td><td>Paid acquisition + monetization</td><td><code>AW-369864043</code>; <strong>two</strong> publisher IDs</td></tr>
+      <tr><td>Apollo.io</td><td>Visitor identification / prospecting</td><td>Corporate + MortgagePoint</td></tr>
+      <tr><td>Simpli.fi</td><td>Programmatic advertising</td><td>Corporate + MortgagePoint</td></tr>
+      <tr><td>Hotjar</td><td>Behaviour analytics</td><td>MortgagePoint only</td></tr>
+      <tr><td>Naylor</td><td>Association media partnership (2024)</td><td>Referenced, not instrumented</td></tr>
+      <tr><td>Meta Pixel · LinkedIn Insight</td><td>Ad audiences</td><td>Partial coverage</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <p><strong>Four GTM containers and two AdSense publisher IDs is the tell.</strong> These are the artefacts of properties built at different times by different owners. Nobody holds a single view of tagging across the estate, which is why the dead UA tags survived three years past sunset.</p>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section class="view" id="v-social">
+  <p class="eyebrow">Section 5</p>
+  <h2>The social estate</h2>
+  <p class="lede">Twelve owned channels. Note the architecture: MortgagePoint holds a full <em>company</em> page; every membership group that has a presence holds a <em>showcase</em> page beneath the institute.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Network</th><th>Handle</th><th>Belongs to</th><th>Followers</th></tr></thead>
+    <tbody>
+      <tr><td>LinkedIn — company</td><td class="mono">/company/themortgagepoint</td><td>MortgagePoint</td><td><strong>7,000</strong></td></tr>
+      <tr><td>LinkedIn — company</td><td class="mono">/company/five-star-institute</td><td>Five Star Institute</td><td>4,000</td></tr>
+      <tr><td>LinkedIn — showcase</td><td class="mono">/showcase/legal-league</td><td>Legal League</td><td>2,000</td></tr>
+      <tr class="dark-row"><td>LinkedIn — showcase</td><td class="mono">/showcase/federation-of-reo-certified-experts</td><td>FORCE</td><td>166</td></tr>
+      <tr class="dark-row"><td>LinkedIn — showcase</td><td class="mono">/showcase/national-mortgage-servicing-association</td><td>NMSA</td><td>119</td></tr>
+      <tr><td>X</td><td class="mono">@FiveStarInst · @FiveStarFORCE · @mortgage_point1</td><td>FSI / FORCE / MP</td><td>—</td></tr>
+      <tr><td>Facebook</td><td class="mono">/thefivestar · /FiveStarFORCE · /mortgagepointmp</td><td>FSI / FORCE / MP</td><td>—</td></tr>
+      <tr class="dark-row"><td>Facebook</td><td class="mono">profile.php?…</td><td>Legal League</td><td><strong>Appears to be a personal profile, not a Page</strong></td></tr>
+      <tr><td>YouTube</td><td class="mono">channel/UCB2VOowQB7zxrxFzYAC60sg</td><td>Five Star Institute</td><td>—</td></tr>
+      <tr><td>Podcast</td><td class="mono">Apple id1709569469 · Spotify 6sg0WMmsoB8yTs4D0u7hZd · Amazon · iHeart · Buzzsprout RSS 2247935</td><td>MP Access Show</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Two things worth noting</h3>
+  <ul class="clean">
+    <li><strong>Social is instrumented even where websites are not.</strong> LinkedIn posts route through <code>hubs.la</code> — HubSpot's own link shortener. So organic social clicks are attributable, while the membership sites those clicks may land on are not.</li>
+    <li><strong>MSEA, PPEF and AMDC have no social presence discoverable from their own sites.</strong> No Instagram or TikTok presence was found for any entity in the estate.</li>
+  </ul>
+</section>
+
+<!-- ============ MEMBERS ============ -->
+<section class="view" id="v-members">
+  <p class="eyebrow">Section 6</p>
+  <h2>People &amp; the member layer</h2>
+  <p class="lede">Captured from LinkedIn on 10 August 2026 using aggregate company People tabs only — no individual profiles were walked, no connection requests or messages sent. Professional role data only.</p>
+  <p class="muted"><strong>Individuals are identified by role, not by name.</strong> Every finding below concerns systems and records, not people, so the names add nothing to it. They are held in the private working file.</p>
+
+  <div class="callout">
+    <p><strong>Read the coverage limit first.</strong> LinkedIn caps employee visibility on the free tier and gates the rest behind Sales Navigator. <strong>10 of 40</strong> associated members were visible for Five Star Institute and <strong>13 of 50</strong> for MortgagePoint. Many profiles are private and surface only as "LinkedIn Member" with a byline. This section is a representative sample, not a roster.</p>
+  </div>
+
+  <h3>Five Star Institute — 40 associated members, 10 visible</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Profile</th><th>Byline</th><th>Entity it maps to</th><th>On a LI page?</th></tr></thead>
+    <tbody>
+      <tr><td><em>Named profile</em></td><td>President and CFO of <strong>Five Star Global</strong></td><td><a href="#estate">Five Star Global — corporate parent</a></td><td><span class="tag t-bad">no page exists</span></td></tr>
+      <tr><td><em>Named profile</em></td><td>Director of Course Development at Five Star Institute</td><td><a href="https://www.linkedin.com/company/five-star-institute/" target="_blank" rel="noopener">FSI — company page</a></td><td><span class="tag t-ok">company</span></td></tr>
+      <tr><td><em>Named profile</em></td><td>Conference Coordinator at The Five Star Institute</td><td><a href="https://www.fivestarconference.com/" target="_blank" rel="noopener">Events — Conference</a></td><td><span class="tag t-ok">company</span></td></tr>
+      <tr><td><em>Named profile</em></td><td>Senior Web Developer</td><td><a href="#estate">Digital estate — 19 properties</a></td><td><span class="tag t-ok">company</span></td></tr>
+      <tr><td><em>Named profile</em></td><td>Reporter/Editor</td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — MortgagePoint</a></td><td><span class="tag t-warn">company, entity unnamed</span></td></tr>
+      <tr><td><em>Named profile</em></td><td>Director of Client Fulfillment, <strong>FORCE</strong></td><td><a href="https://www.linkedin.com/showcase/federation-of-reo-certified-experts" target="_blank" rel="noopener">FORCE — showcase page</a></td><td><span class="tag t-warn">parent only, not showcase</span></td></tr>
+      <tr><td><em>Private profile</em></td><td>National Director for The <strong>FORCE</strong> at Five Star Institute</td><td><a href="https://www.linkedin.com/showcase/federation-of-reo-certified-experts" target="_blank" rel="noopener">FORCE — showcase page</a></td><td><span class="tag t-warn">parent only, not showcase</span></td></tr>
+      <tr><td><em>Private profile</em></td><td>Executive Director</td><td><a href="https://www.linkedin.com/company/five-star-institute/" target="_blank" rel="noopener">FSI — company page</a></td><td><span class="tag t-ok">company</span></td></tr>
+      <tr><td><em>Private profile</em></td><td>Editor at Five Star Institute</td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — MortgagePoint</a></td><td><span class="tag t-ok">company</span></td></tr>
+      <tr class="dark-row"><td><em>Private profile</em></td><td>Director at Five Star Institute/<strong>DS News</strong></td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — retired DS News brand</a></td><td><span class="tag t-bad">names a retired brand</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Function mix across all 40: Business Development 9 · Sales 7 · Community &amp; Social Services 6 · Media &amp; Communication 5 · Marketing 4. Location: 32 US, 26 Texas, 25 DFW, 13 Dallas, <strong>3 India</strong>.</p>
+
+  <h3>MortgagePoint — 50 associated members, 13 visible</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Profile</th><th>Byline</th><th>Entity it maps to</th><th>On a LI page?</th></tr></thead>
+    <tbody>
+      <tr><td><em>Named profile</em></td><td>Director of Video Productions at the Five Star Institute</td><td><a href="https://www.linkedin.com/company/five-star-institute/" target="_blank" rel="noopener">FSI — company page</a></td><td><span class="tag t-warn">on MP page, names FSI</span></td></tr>
+      <tr class="dark-row"><td><em>Private profile</em></td><td>Online Editor at <strong>DSNews.com</strong></td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — retired DS News brand</a></td><td><span class="tag t-bad">names a retired brand</span></td></tr>
+      <tr class="dark-row"><td><em>Private profile</em></td><td>Executive assistant at <strong>DSNews.com</strong></td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — retired DS News brand</a></td><td><span class="tag t-bad">names a retired brand</span></td></tr>
+      <tr class="dark-row"><td><em>Private profile</em></td><td>Event Coordinator at <strong>DSNews.com</strong></td><td><a href="https://www.fivestarconference.com/" target="_blank" rel="noopener">Events — via retired brand</a></td><td><span class="tag t-bad">names a retired brand</span></td></tr>
+      <tr class="dark-row"><td><em>Private profile</em></td><td>BP at <strong>DS News</strong></td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — retired DS News brand</a></td><td><span class="tag t-bad">names a retired brand</span></td></tr>
+      <tr class="dark-row"><td><em>Private profile</em></td><td><strong>DS News</strong> — 客户经理 (account manager)</td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — retired DS News brand</a></td><td><span class="tag t-bad">names a retired brand</span></td></tr>
+      <tr><td><em>Private profile</em></td><td>News</td><td><a href="https://themortgagepoint.com/" target="_blank" rel="noopener">Media — MortgagePoint</a></td><td><span class="tag t-warn">entity unnamed</span></td></tr>
+      <tr><td><em>Private profile</em></td><td>—</td><td>Unknown</td><td><span class="tag t-warn">entity unnamed</span></td></tr>
+      <tr class="dark-row"><td><em>Unrelated profile</em></td><td>E-commerce founder, unrelated sector</td><td>None — unrelated</td><td><span class="tag t-bad">spurious association</span></td></tr>
+      <tr class="dark-row"><td><em>Unrelated profile</em></td><td>Employee of an unrelated manufacturer</td><td>None — unrelated</td><td><span class="tag t-bad">spurious association</span></td></tr>
+      <tr class="dark-row"><td><em>Unrelated profile</em></td><td>University student citing <strong>DS News</strong></td><td>None — unrelated</td><td><span class="tag t-bad">spurious association</span></td></tr>
+      <tr class="dark-row"><td><em>Unrelated profile</em></td><td>Merchant citing <strong>DS News</strong></td><td>None — unrelated</td><td><span class="tag t-bad">spurious association</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Function mix across all 50: Sales 8 · Media &amp; Communication 5 · Administrative 5 · Accounting 3 · Operations 3. Location: 27 US, 20 Texas, 20 DFW, 14 Dallas, <strong>5 India</strong>.</p>
+
+  <h3>Named elsewhere, not confirmed on LinkedIn this session</h3>
+  <p class="muted">One further name was carried in the internal draft on a single unverified search snippet. It is withheld here: asserting an unverified affiliation about a named individual on a public URL is not something evidence of that strength supports.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Profile</th><th>Role</th><th>Entity</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><em>Named profile</em></td><td>VP of Experience, Five Star — host of the MP Access Show</td><td><a href="https://themortgagepoint.com/mp-access-show/" target="_blank" rel="noopener">Media — MP Access Show</a></td><td><span class="tag t-neu">show listing</span></td></tr>
+      
+    </tbody>
+  </table></div>
+
+  <h3>What the member layer shows</h3>
+
+  <div class="callout bad">
+    <p><strong>1. No membership group has a people layer at all.</strong> LinkedIn showcase pages cannot carry employees — only full company pages have a People tab. So Legal League, FORCE, NMSA, MSEA, PPEF and AMDC have <em>no</em> people associated with them anywhere on LinkedIn. The only way a person connects to a membership group is by typing its name into their own byline, which two people have done for FORCE and nobody has done for the other five.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>2. The DS News retirement never propagated to people.</strong> Six of the visible MortgagePoint members still name DS News or DSNews.com in their headline — a brand folded into MortgagePoint. The domains were redirected properly; the humans were not. Anyone enriching a contact record from LinkedIn today still gets "DS News" as the employer.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>3. The associated-member set is polluted.</strong> Four of thirteen visible MortgagePoint "members" are unrelated — an e-commerce founder, a W. L. Gore employee, a university student, a merchant. They are counted because they typed a matching employer string. <strong>Apollo.io is already running on the corporate site and MortgagePoint</strong>, so contact enrichment is in play — and this is exactly the noise that flows into a CRM through it.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>4. The corporate parent is invisible.</strong> "Five Star Global" appears only in its own President/CFO's title. It has no LinkedIn page — a company search returns 744 unrelated results. If the legal parent is Five Star Global, then the entity that owns everything is the one entity with no presence.</p>
+  </div>
+
+  <h3>Why this matters for the HubSpot question</h3>
+  <p>Your model needs <code>holds_role_in</code> to connect a person to a membership group, a community and a media property. The evidence says that edge <strong>does not exist in any system observable from outside</strong>: not on LinkedIn, where showcase pages cannot hold people; and not in HubSpot, whose tracking is absent from five of six membership sites and from Wild Apricot. Wild Apricot is the only remaining candidate — which makes reading its role and status model the single highest-value next action.</p>
+</section>
+
+<!-- ============ MODEL ============ -->
+<section class="view" id="v-model">
+  <p class="eyebrow">Section 7 — the part that needs your argument</p>
+  <h2>The model, populated</h2>
+  <p class="lede">Every class filled with the instances the analysis actually turned up. Populating it is the test: four things the abstract version got wrong only became visible once real instances went in. Those are at the bottom, and they are the decisions to make.</p>
+
+  <h3>Class inventory <button id="expand-all" class="review-btn" type="button" style="float:right;font:600 12px/1 var(--sans);padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;color:var(--ink-2)">Expand all</button></h3>
+  <p class="hint">Click a class to see its instances.</p>
+  <div class="classlist">
+  <div class="classrow" data-class="organization">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Organization</span>
+      <span class="cnum">2<small>instances</small></span>
+      <span class="cchange">Five Star Global surfaced</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Evidence</th><th>Status</th></tr></thead><tbody><tr><td><strong>Five Star Institute</strong></td><td><code>thefivestar.com</code> · LI <code>/company/five-star-institute</code> (id 474871, 4K) · Dallas TX, 1341 W Mockingbird Ln <strong>Suite 3000</strong></td><td><span class="tag t-ok">confirmed</span></td></tr><tr class="dark-row"><td><strong>Five Star Global</strong></td><td>Named only in its own President/CFO’s LinkedIn title (role, not name). No website, no LinkedIn page, absent from the source IA</td><td><span class="tag t-bad">inferred parent</span></td></tr></tbody></table></div><p class="muted">MortgagePoint files at <strong>Suite 900W</strong> and founded <strong>2003</strong>; FSI’s LinkedIn says <strong>2005</strong>. Which is the legal entity is unresolved.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="membership-group">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Membership group</span>
+      <span class="cnum">7<small>instances</small></span>
+      <span class="cchange">1 unverified</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Site</th><th>LinkedIn</th><th>HubSpot</th><th>People</th></tr></thead><tbody><tr><td><strong>FORCE</strong><br><span class="muted">Federation of REO Certified Experts</span></td><td class="mono">fivestarforce.com</td><td>showcase · 166</td><td><span class="tag t-ok">yes</span></td><td>2 by byline</td></tr><tr class="dark-row"><td><strong>Legal League</strong></td><td class="mono">legalleague100.com</td><td>showcase · 2K</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td><strong>NMSA</strong></td><td class="mono">nationalmortgageservicingassociation.com</td><td>showcase · 119</td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td><strong>MSEA</strong></td><td class="mono">themsea.com</td><td><span class="tag t-bad">none found</span></td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td><strong>PPEF</strong></td><td class="mono">propertypresforum.com</td><td><span class="tag t-bad">none found</span></td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td><strong>AMDC</strong></td><td class="mono">mortgagediversitycouncil.com</td><td><span class="tag t-bad">none found</span></td><td><span class="tag t-bad">no</span></td><td><span class="tag t-bad">none</span></td></tr><tr class="dark-row"><td><strong>Five Star Alliance</strong><br><span class="muted">“entry point” in the source IA</span></td><td><span class="tag t-bad">no site found</span></td><td><span class="tag t-bad">none found</span></td><td><span class="tag t-neu">n/a</span></td><td><span class="tag t-bad">none</span></td></tr></tbody></table></div><p class="muted"><strong>One of seven is instrumented and has people.</strong> Five Star Alliance may be a membership <em>tier</em> rather than a group — which would make it an edge attribute, not a node.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="community">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Community</span>
+      <span class="cnum">4<small>instances</small></span>
+      <span class="cchange">3 unverified</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Evidence</th><th>Status</th></tr></thead><tbody><tr><td><strong>Real Estate</strong></td><td><code>thefivestar.com/communities/real-estate-professionals/</code> — URL says “Real Estate Professionals”, the IA says “Real Estate”</td><td><span class="tag t-warn">name mismatch</span></td></tr><tr class="dark-row"><td><strong>Mortgage Finance</strong></td><td>Source IA only — URL not verified</td><td><span class="tag t-warn">unverified</span></td></tr><tr class="dark-row"><td><strong>Financial Services Law</strong></td><td>Source IA only — URL not verified</td><td><span class="tag t-warn">unverified</span></td></tr><tr class="dark-row"><td><strong>Property Preservation</strong></td><td>Source IA only — URL not verified</td><td><span class="tag t-warn">unverified</span></td></tr></tbody></table></div><p class="muted">These map suspiciously closely onto the membership groups — Financial Services Law ↔ Legal League, Property Preservation ↔ PPEF. Whether Community is a distinct class or a public label for a group is open.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="media-property">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Media property</span>
+      <span class="cnum">6<small>instances</small></span>
+      <span class="cchange">2 retired, still in bylines</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Lives at</th><th>Distribution</th><th>Status</th></tr></thead><tbody><tr><td><strong>MortgagePoint</strong></td><td class="mono">themortgagepoint.com</td><td>LI 7K · X <code>@mortgage_point1</code> · FB <code>/mortgagepointmp</code></td><td><span class="tag t-ok">active</span></td></tr><tr><td><strong>MP Access Show</strong></td><td class="mono">podcast.mpaccessshow.com</td><td>Apple <code>id1709569469</code> · Spotify · Amazon · iHeart · RSS <code>2247935</code></td><td><span class="tag t-ok">active</span></td></tr><tr><td><strong>REO Red Book</strong></td><td class="mono">reoredbook.com → fivestarforce.com/reoredbook/</td><td>FORCE directory of REO agents</td><td><span class="tag t-warn">insecure redirect</span></td></tr><tr class="dark-row"><td><strong>DS News Black Book</strong></td><td class="mono">dsnewsblackbook.com</td><td>Directory of financial-services law firms</td><td><span class="tag t-bad">404 — still promoted</span></td></tr><tr class="dark-row"><td><strong>DS News</strong></td><td class="mono">dsnews.com → 301</td><td>Folded into MortgagePoint</td><td><span class="tag t-bad">retired, in 6 bylines</span></td></tr><tr class="dark-row"><td><strong>MReport</strong></td><td class="mono">themreport.com → 301</td><td>Folded into MortgagePoint</td><td><span class="tag t-bad">retired, in LI Specialties</span></td></tr></tbody></table></div><p class="muted">The two retired brands are still instances because people and profile copy keep them alive. A model that deletes a brand on redirect cannot explain what enrichment returns today.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="event">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Event</span>
+      <span class="cnum">7<small>+ webinars</small></span>
+      <span class="cchange">sub-events + REO Connect</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Hosted on</th><th>HubSpot</th><th>Status</th></tr></thead><tbody><tr class="dark-row"><td><strong>Five Star Conference &amp; Expo</strong><br><span class="muted">flagship, 22nd year</span></td><td>Swoogo · <code>fivestarconference.com/2026/</code></td><td><span class="tag t-bad">no</span></td><td><span class="tag t-ok">recurring</span></td></tr><tr><td><strong>Government Forum</strong></td><td>Swoogo · <code>fivestargovernmentforum.com</code></td><td><span class="tag t-ok">yes</span></td><td><span class="tag t-ok">recurring</span></td></tr><tr><td><strong>Velocity</strong></td><td><code>thefivestar.com/events/velocity/</code> — a page, not a domain</td><td><span class="tag t-ok">yes</span></td><td><span class="tag t-ok">recurring</span></td></tr><tr><td><strong>REO Connect</strong></td><td><code>fivestarforce.com/reo-connect-lander/</code> · LI past event, May 2023, <strong>6 attendees</strong></td><td><span class="tag t-neu">via FORCE</span></td><td><span class="tag t-warn">dormant?</span></td></tr><tr><td><strong>Women in Housing Leadership Awards</strong></td><td>Sub-event of FSC2026</td><td><span class="tag t-neu">via parent</span></td><td><span class="tag t-ok">confirmed</span></td></tr><tr><td><strong>Industry Roundtables</strong></td><td>Sub-event of FSC2026</td><td><span class="tag t-neu">via parent</span></td><td><span class="tag t-ok">confirmed</span></td></tr><tr class="dark-row"><td><strong>Legal League Servicer Summit</strong></td><td>Unknown</td><td><span class="tag t-neu">—</span></td><td><span class="tag t-warn">unconfirmed</span></td></tr><tr class="dark-row"><td><strong>Webinars</strong><br><span class="muted">FORCE + MortgagePoint</span></td><td><span class="tag t-bad">platform unidentified</span></td><td><span class="tag t-neu">—</span></td><td><span class="tag t-warn">a class, not an instance</span></td></tr></tbody></table></div><p class="muted">Sub-events are why Event needs a <code>part_of</code> edge to itself. MortgagePoint also appears as a <strong>sponsor</strong> of the Five Star Conference — the organization sponsoring its own event.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="digital-property">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Digital property</span>
+      <span class="cnum">19<small>instances</small></span>
+      <span class="cchange">4 broken or dangling</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<ul class="inline"><li>thefivestar.com</li><li>jobs.thefivestar.com</li><li>fsireferrals.com</li><li>fivestarforce.com</li><li>legalleague100.com</li><li>nationalmortgageservicingassociation.com</li><li>themsea.com</li><li>propertypresforum.com</li><li>mortgagediversitycouncil.com</li><li>themortgagepoint.com</li><li>dsnews.com</li><li>themreport.com</li><li>reoredbook.com</li><li>dsnewsblackbook.com</li><li>digital.dsnews.com</li><li>podcast.mpaccessshow.com</li><li>fivestarconference.com</li><li>fivestargovernmentforum.com</li><li>fivestarmemberships.wildapricot.org</li></ul><p class="muted">Full detail with stacks, tracking IDs and verdicts in <a href="#estate">Digital estate</a>. <strong>4 are broken or dangling</strong>; <strong>6 of 11</strong> significant surfaces are dark to HubSpot.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="platform">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Platform</span>
+      <span class="cnum">14<small>instances</small></span>
+      <span class="cchange">ATS + pixels split out</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<ul class="inline"><li>HubSpot 8733520</li><li>Wild Apricot</li><li>Swoogo</li><li>Buzzsprout</li><li>Uberflip</li><li>WordPress</li><li>Google Tag Manager ×4</li><li>Google Analytics</li><li>Google Ads AW-369864043</li><li>Google AdSense ×2</li><li>Apollo.io</li><li>Simpli.fi</li><li>Hotjar</li><li>Naylor</li><li>Meta Pixel</li><li>LinkedIn Insight</li><li>ColdFusion ATS</li></ul><p class="muted">Full detail in <a href="#platforms">Platforms</a>. Only <strong>one</strong> is HubSpot; <strong>Wild Apricot</strong> holds the membership records.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="social-channel">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Social channel</span>
+      <span class="cnum">13<small>instances</small></span>
+      <span class="cchange">podcast endpoints reclassified</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Network</th><th>Instances</th><th>Belongs to</th></tr></thead><tbody><tr><td>LinkedIn — company</td><td class="mono">/company/five-star-institute (4K) · /company/themortgagepoint (7K)</td><td>FSI · MortgagePoint</td></tr><tr><td>LinkedIn — showcase</td><td class="mono">/showcase/legal-league (2K) · /showcase/federation-of-reo-certified-experts (166) · /showcase/national-mortgage-servicing-association (119)</td><td>Legal League · FORCE · NMSA</td></tr><tr><td>X</td><td class="mono">@FiveStarInst · @FiveStarFORCE · @mortgage_point1</td><td>FSI · FORCE · MP</td></tr><tr><td>Facebook</td><td class="mono">/thefivestar · /FiveStarFORCE · /mortgagepointmp</td><td>FSI · FORCE · MP</td></tr><tr class="dark-row"><td>Facebook</td><td class="mono">profile.php?… — appears to be a personal profile, not a Page</td><td>Legal League</td></tr><tr><td>YouTube</td><td class="mono">channel/UCB2VOowQB7zxrxFzYAC60sg</td><td>FSI</td></tr></tbody></table></div><p class="muted">The 5 podcast endpoints (Apple, Spotify, Amazon, iHeart, Buzzsprout) were <strong>removed from this class</strong> — see refinement 3 below.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="person">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Person<span class="flag">missing</span></span>
+      <span class="cnum">23<small>observed</small></span>
+      <span class="cchange">never declared as a class</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<p class="muted" style="margin-bottom:10px">Used in two of the ten original edges, declared in none of the nine classes. 23 instances had nowhere to live.</p><div class="tablewrap"><table><thead><tr><th>Where</th><th>Named</th><th>Private / partial</th><th>Not visible</th></tr></thead><tbody><tr><td>Five Star Institute</td><td>6</td><td>4</td><td>30 of 40</td></tr><tr><td>MortgagePoint</td><td>2</td><td>11</td><td>37 of 50</td></tr></tbody></table></div><p class="muted">Roles observed: President &amp; CFO · Executive Director · National Director, FORCE · Director of Client Fulfillment, FORCE · Director of Course Development · Conference Coordinator · Director of Video Productions · Senior Web Developer · Reporter/Editor · Editor · Online Editor · Executive Assistant · Event Coordinator · Account Manager · VP of Experience. Full list in <a href="#members">Members</a>.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="status">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Status / role<span class="flag">demote</span></span>
+      <span class="cnum">0<small>nodes</small></span>
+      <span class="cchange">should not be a class</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Evidence</th><th>Status</th></tr></thead><tbody><tr><td><strong>Founding Institutional Partner</strong></td><td>Source IA</td><td><span class="tag t-warn">unverified</span></td></tr><tr class="dark-row"><td><em>All other tiers</em></td><td>The source IA’s own “…” — tiers live inside Wild Apricot</td><td><span class="tag t-bad">not externally visible</span></td></tr></tbody></table></div><p class="muted">Populating produced <strong>zero nodes and two attributes</strong>. That is the evidence for refinement 2 below.</p>
+    </div>
+  </div>
+  </div>
+
+  <h3>The edges</h3>
+  <div class="edge">
+<span class="n">Organization</span>     --operates--&gt;        Membership group, Media property, Event
+<span class="n">Organization</span>     --parent_of--&gt;       Organization      <span class="c">← new: Five Star Global</span>
+<span class="n">Membership group</span> --sorted_into--&gt;     Community
+<span class="n">Membership group</span> --hosted_on--&gt;       Digital property
+<span class="n">Membership group</span> <span class="e">--records_in--&gt;</span>      Platform          <span class="c">← Wild Apricot, answered</span>
+<span class="n">Media property</span>   --published_on--&gt;    Digital property, Platform
+<span class="n">Media property</span>   --distributed_to--&gt;  Social channel, Placement
+<span class="n">Media property</span>   --succeeded_by--&gt;    Media property    <span class="c">← new: DS News, MReport</span>
+<span class="n">Event</span>            --hosted_on--&gt;       Platform (Swoogo)
+<span class="n">Event</span>            --part_of--&gt;         Event             <span class="c">← new: sub-events</span>
+<span class="n">Digital property</span> --instrumented_by--&gt; Platform (HubSpot / GA4 / GTM)
+<span class="n">Person</span>           <span class="e">--holds_status_in--&gt;</span> Membership group  <span class="c">[status: tier]</span>
+<span class="n">Person</span>           <span class="e">--holds_role_in--&gt;</span>   Community, Media property, Organization
+  </div>
+
+  <h3>What populating exposed</h3>
+
+  <div class="callout bad">
+    <p><strong>1. Person was never declared as a class.</strong> It appears in two of the ten original edges and in none of the nine classes. The abstract model was internally inconsistent and nobody noticed until there were twenty-three of them to put somewhere. <strong>Add it — that makes ten classes.</strong></p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>2. "Status / role" is not a class — it is an edge property.</strong> Populating it produced zero nodes and two attributes. "Founding Institutional Partner" is not a thing in the world that exists independently; it is the value on a <code>holds_status_in</code> edge between a person or company and a membership group. Modelling it as a node would create an orphan for every tier. <strong>Demote it to an edge attribute.</strong></p>
+  </div>
+
+  <div class="callout">
+    <p><strong>3. Podcast distribution endpoints are placements, not social channels.</strong> Apple, Spotify, Amazon and iHeart are where one media property is <em>exposed</em> — they are not owned presences that publish. Lumping them into Social channel inflated that class and hid the fact that the asset layer's <strong>placement</strong> concept already covers them exactly. Social channel is 13; the five podcast endpoints belong to the asset model.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>4. Three self-referential edges are missing.</strong> Organizations have parents (Five Star Global), media properties have successors (DS News → MortgagePoint), and events have sub-events (the Awards Luncheon inside FSC2026). Without them, the retired brands and the corporate parent have nowhere to live — which is exactly why they went missing from the source IA in the first place.</p>
+  </div>
+
+  <h3>Confidence</h3>
+  <p>Of roughly 95 instances above, the ones resting on a single source are marked <span class="tag t-warn">unverified</span>: three communities, the Legal League Servicer Summit, Five Star Alliance, and the membership tiers. Everything else has direct evidence — a fetched page, a DNS record, a tracking ID, or a LinkedIn page read this session.</p>
+</section>
+
+<!-- ============ DEFECTS ============ -->
+<section class="view" id="v-defects">
+  <p class="eyebrow">Section 8</p>
+  <h2>Defects found</h2>
+  <p class="lede">Classified against the asset-layer taxonomy. Every one of these was detectable from outside the organization, which is the point worth holding on to.</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th>Defect</th><th>Instances found</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dark placement</strong><br><span class="muted">Live, but carries no instrument</span></td><td>5 of 6 membership sites; the flagship conference site; the Wild Apricot member surface</td></tr>
+      <tr><td><strong>Stale asset</strong><br><span class="muted">Past review-by, still placed</span></td><td>7 dead Universal Analytics properties; LinkedIn Specialties still marketing DS News and MReport years after both were retired into MortgagePoint</td></tr>
+      <tr><td><strong>Broken placement</strong><br><span class="muted">Placed, resolves to nothing</span></td><td><code>dsnewsblackbook.com</code> 404s while the live Media page still promotes it; <code>digital.dsnews.com</code> dangling at Uberflip; <code>fsireferrals.com</code> script tag on the homepage unreachable</td></tr>
+      <tr><td><strong>Claim drift</strong><br><span class="muted">Renditions making different claims</span></td><td>Founded <strong>2003</strong> (MortgagePoint LinkedIn, web) vs <strong>2005</strong> (FSI LinkedIn)</td></tr>
+      <tr><td><strong>NAP inconsistency</strong></td><td>Suite <strong>3000</strong> (FSI) vs Suite <strong>900W</strong> (MortgagePoint) at 1341 W Mockingbird Ln, Dallas</td></tr>
+      <tr><td><strong>Redundant rendition</strong></td><td>Elementor <em>and</em> WPBakery <em>and</em> Slider Revolution running on one corporate site</td></tr>
+      <tr><td><strong>Unowned asset</strong><br><span class="muted">No maintaining owner</span></td><td>4 GTM containers, 2 AdSense publisher IDs, no unified container</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <p><strong>What this proves about the method.</strong> The asset layer is auditable from outside the company. Every defect above was found without a login. The process and system layers are the ones that need to be let in — which makes this class of map a pre-access artefact, not a post-engagement one.</p>
+  </div>
+</section>
+
+<!-- ============ GAPS ============ -->
+<section class="view" id="v-gaps">
+  <p class="eyebrow">Section 9</p>
+  <h2>Gaps &amp; the next step</h2>
+  <p class="lede">What draft 1 does not cover, and what I need in order to produce draft 2.</p>
+
+  <h3>Gaps in this draft</h3>
+  <ul class="clean">
+    <li><strong>Statuses</strong> — the source IA had "…" and "Founding Institutional Partner". Tiers are not externally visible; they will come from Wild Apricot.</li>
+    <li><strong>Communities</strong> — the four are listed on the site, but member-to-community assignment is not public.</li>
+    <li><strong>News &amp; Resources</strong> — not yet crawled.</li>
+    <li><strong>Webinars</strong> — referenced as a media type; no platform identified. Worth checking whether it is a HubSpot-integrated tool.</li>
+    <li><strong>Five Star Alliance</strong> — named as the entry point, but no site found. Is it a tier rather than a group?</li>
+    <li><strong>Legal League Servicer Summit</strong> — unconfirmed as a current event.</li>
+    <li><code>jobs.thefivestar.com</code> and <code>fsireferrals.com</code> need browser verification.</li>
+    <li>Follower counts for X, Facebook and YouTube not captured.</li>
+  </ul>
+
+  <h3>What I need from you</h3>
+  <ul class="clean">
+    <li><strong>Confirm or reject the node classes and edges</strong> in section 6. This is the blocking decision.</li>
+    <li><strong>Tell me what this engagement is</strong> — prospect, client, or specimen. The service records currently assume no live subject, which is now wrong.</li>
+    <li><strong>Say which gaps you can answer</strong> from what you already know, and which need access.</li>
+  </ul>
+
+  <footer class="pagefoot">
+    Draft 1 · captured 10 August 2026 · built from public evidence only · <code>content/specimens/five-star-institute/IA-DRAFT.md</code>
+  </footer>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var views = {}, links = {};
+  document.querySelectorAll('.view').forEach(function(v){ views[v.id.replace('v-','')] = v; });
+  document.querySelectorAll('#nav a').forEach(function(a){ links[a.getAttribute('href').slice(1)] = a; });
+  function show(key){
+    if(!views[key]) key = 'overview';
+    for(var k in views){ views[k].classList.toggle('active', k===key); }
+    for(var k in links){ links[k].classList.toggle('active', k===key); }
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var key = a.getAttribute('href').slice(1);
+      if(views[key]){ e.preventDefault(); history.replaceState(null,'','#'+key); show(key); }
+    });
+  });
+  show((location.hash||'#overview').slice(1));
+
+  // Class accordion — click a class to reveal its instances.
+  document.querySelectorAll('.classhead').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var row = btn.parentElement;
+      var open = !row.classList.contains('open');
+      row.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      row.querySelector('.classbody').hidden = !open;
+    });
+  });
+  var expand = document.getElementById('expand-all');
+  if (expand) expand.addEventListener('click', function(){
+    var rows = Array.from(document.querySelectorAll('.classrow'));
+    var anyClosed = rows.some(function(r){ return !r.classList.contains('open'); });
+    rows.forEach(function(r){
+      r.classList.toggle('open', anyClosed);
+      r.querySelector('.classhead').setAttribute('aria-expanded', anyClosed ? 'true':'false');
+      r.querySelector('.classbody').hidden = !anyClosed;
+    });
+    expand.textContent = anyClosed ? 'Collapse all' : 'Expand all';
+  });
+})();
+</script>
+<script src="hub.config.js"></script>
+<script src="review-bootstrap.js"></script>
+</body>
+</html>

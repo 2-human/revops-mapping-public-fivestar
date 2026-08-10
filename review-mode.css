@@ -1,0 +1,108 @@
+/* review-mode.css — every rule scoped under [data-review-mode="on"] per css-isolation.md.
+   `.review-` prefix on chrome ROOTS only; structural classes live unprefixed inside them.
+   State is carried by classes (.has-comment / .has-applied-comment), not data attributes. */
+
+[data-review-mode="on"] { --rv-red:#b42318; --rv-green:#0f7b4f; --rv-deep:#12263a; --rv-line:#e2e7ec;
+  --rv-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+
+[data-review-mode="on"] body { padding-top:46px; }
+@media (min-width:1280px){ [data-review-mode="on"] body { padding-right:340px; } }
+
+/* ---------- banner ---------- */
+[data-review-mode="on"] .review-banner{
+  position:fixed;top:0;left:0;right:0;height:46px;z-index:2147483000;
+  background:var(--rv-deep);color:#fff;display:flex;align-items:center;gap:14px;
+  padding:0 18px;font:500 13px/1 var(--rv-sans);box-shadow:0 1px 0 rgba(0,0,0,.15)}
+[data-review-mode="on"] .review-banner .title{font-weight:680;letter-spacing:.01em}
+[data-review-mode="on"] .review-banner .hint{color:#9fb6cc;font-size:12.5px}
+[data-review-mode="on"] .review-banner .spacer{flex:1}
+[data-review-mode="on"] .review-banner .who{color:#9fb6cc;font-size:12.5px}
+
+/* ---------- buttons ---------- */
+[data-review-mode="on"] .review-btn{
+  font-family:inherit;font-size:12.5px;font-weight:600;line-height:1;
+  padding:7px 12px;border-radius:7px;border:1px solid var(--rv-line);
+  background:#fff;color:var(--rv-deep);cursor:pointer;margin:0}
+[data-review-mode="on"] .review-btn:hover{background:#f2f5f8}
+[data-review-mode="on"] .review-btn.primary{background:#1f6feb;border-color:#1f6feb;color:#fff}
+[data-review-mode="on"] .review-btn.primary:hover{background:#1a5fd0}
+[data-review-mode="on"] .review-banner .review-btn{background:transparent;color:#dbe6f0;border-color:rgba(255,255,255,.28)}
+[data-review-mode="on"] .review-banner .review-btn:hover{background:rgba(255,255,255,.12)}
+[data-review-mode="on"] .apply-btn:hover{background:#e6f4ee;border-color:var(--rv-green);color:var(--rv-green)}
+[data-review-mode="on"] .archive-btn:hover{background:#f2f5f8}
+[data-review-mode="on"] .restore-btn:hover{background:#e8f0fe;border-color:#1f6feb;color:#1f6feb}
+[data-review-mode="on"] .del-btn:hover{background:#fdeceb;border-color:var(--rv-red);color:var(--rv-red)}
+
+/* ---------- pill (hover affordance) ---------- */
+[data-review-mode="on"] .review-pill{
+  display:none;position:absolute;z-index:2147482000;pointer-events:auto;
+  font:650 10.5px/1 var(--rv-sans);padding:4px 8px;border-radius:999px;
+  background:var(--rv-deep);color:#fff;cursor:pointer;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(15,23,32,.25);border:none}
+[data-review-mode="on"] .review-pill.show{display:block}
+[data-review-mode="on"] [data-comment-id]{position:relative}
+[data-review-mode="on"] [data-comment-id].rv-hover{outline:1px dashed rgba(31,111,235,.55);outline-offset:2px}
+
+/* ---------- persistent status indicators (comment-status-indicators.md) ---------- */
+[data-review-mode="on"] [data-comment-id].has-comment{outline:2px solid var(--rv-red);outline-offset:2px}
+[data-review-mode="on"] [data-comment-id].has-applied-comment{outline:2px solid var(--rv-green);outline-offset:2px}
+[data-review-mode="on"] .rv-dots{position:absolute;top:0;right:-11px;display:flex;flex-direction:column;gap:3px;pointer-events:none}
+[data-review-mode="on"] .rv-dots i{width:7px;height:7px;border-radius:50%;display:block}
+[data-review-mode="on"] .rv-dots i.open{background:var(--rv-red)}
+[data-review-mode="on"] .rv-dots i.done{background:var(--rv-green)}
+/* Outlines clip against border-collapse table cells, and this hub is mostly
+   tables — back the outline with a tint so a commented cell stays legible. */
+[data-review-mode="on"] td[data-comment-id].has-comment,
+[data-review-mode="on"] th[data-comment-id].has-comment{background:rgba(180,35,24,.07)}
+[data-review-mode="on"] td[data-comment-id].has-applied-comment,
+[data-review-mode="on"] th[data-comment-id].has-applied-comment{background:rgba(15,123,79,.08)}
+
+/* ---------- spotlight ---------- */
+@keyframes rvPulse{0%{box-shadow:0 0 0 0 rgba(31,111,235,.45)}70%{box-shadow:0 0 0 12px rgba(31,111,235,0)}100%{box-shadow:0 0 0 0 rgba(31,111,235,0)}}
+[data-review-mode="on"] .rv-spotlight{animation:rvPulse 1.1s ease-out 2}
+
+/* ---------- sidebar ---------- */
+[data-review-mode="on"] .review-sidebar{
+  position:fixed;top:46px;right:0;bottom:0;width:340px;z-index:2147482500;
+  background:#fff;border-left:1px solid var(--rv-line);display:flex;flex-direction:column;
+  font-family:var(--rv-sans);transform:translateX(0);transition:transform .18s ease}
+[data-review-mode="on"] .review-sidebar.hidden{transform:translateX(100%)}
+[data-review-mode="on"] .review-sidebar .head{padding:14px 16px;border-bottom:1px solid var(--rv-line);display:flex;align-items:center;gap:8px}
+[data-review-mode="on"] .review-sidebar .head h4{margin:0;font-size:13.5px;font-weight:680;color:var(--rv-deep)}
+[data-review-mode="on"] .review-sidebar .head .count{font-size:11.5px;color:#6b7a89}
+[data-review-mode="on"] .review-sidebar .list{flex:1;overflow-y:auto;padding:10px 12px}
+[data-review-mode="on"] .review-sidebar .empty{color:#6b7a89;font-size:13px;padding:14px 4px;line-height:1.5}
+[data-review-mode="on"] .review-row{border:1px solid var(--rv-line);border-radius:9px;padding:11px 12px;margin-bottom:9px;background:#fff}
+[data-review-mode="on"] .review-row.applied{background:#f6fbf8;border-color:#cfe7db}
+[data-review-mode="on"] .review-row.archived{opacity:.62}
+[data-review-mode="on"] .review-row .meta{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a89;margin-bottom:5px;display:flex;justify-content:space-between;gap:8px}
+[data-review-mode="on"] .review-row .anchor{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#8a97a4;cursor:pointer}
+[data-review-mode="on"] .review-row .anchor:hover{color:#1f6feb;text-decoration:underline}
+[data-review-mode="on"] .review-row .text{font-size:13px;color:#0f1720;line-height:1.5;margin:0 0 4px;white-space:pre-wrap}
+[data-review-mode="on"] .review-row .repl{font-size:12.5px;color:#0f7b4f;background:#e6f4ee;border-radius:6px;padding:6px 8px;margin:6px 0 0;white-space:pre-wrap}
+[data-review-mode="on"] .review-row .actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+[data-review-mode="on"] .review-row .actions .review-btn{padding:4px 8px;font-size:11px}
+
+/* ---------- sidebar toggle (below breakpoint) ---------- */
+[data-review-mode="on"] .review-toggle{
+  position:fixed;right:16px;bottom:16px;z-index:2147482600;font-family:var(--rv-sans);
+  font-size:12.5px;font-weight:650;padding:10px 14px;border-radius:999px;
+  background:var(--rv-deep);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(15,23,32,.24)}
+@media (min-width:1280px){ [data-review-mode="on"] .review-toggle{display:none} }
+@media (max-width:1279px){ [data-review-mode="on"] .review-sidebar{width:min(340px,88vw)} }
+
+/* ---------- modal ---------- */
+[data-review-mode="on"] .review-modal{position:fixed;inset:0;z-index:2147483500;display:flex;align-items:center;justify-content:center;background:rgba(15,23,32,.42);font-family:var(--rv-sans)}
+[data-review-mode="on"] .review-modal .box{background:#fff;border-radius:12px;width:min(480px,92vw);padding:20px 22px;box-shadow:0 18px 50px rgba(15,23,32,.3)}
+[data-review-mode="on"] .review-modal h4{margin:0 0 4px;font-size:15px;color:var(--rv-deep)}
+[data-review-mode="on"] .review-modal .sel{font-size:12px;color:#6b7a89;margin:0 0 12px;max-height:56px;overflow:hidden}
+[data-review-mode="on"] .review-modal label{display:block;font-size:11.5px;font-weight:650;text-transform:uppercase;letter-spacing:.05em;color:#6b7a89;margin:10px 0 4px}
+[data-review-mode="on"] .review-modal textarea,[data-review-mode="on"] .review-modal input[type=text]{
+  width:100%;font-family:inherit;font-size:13.5px;padding:9px 11px;border:1px solid var(--rv-line);
+  border-radius:8px;color:#0f1720;background:#fff;resize:vertical}
+[data-review-mode="on"] .review-modal textarea:focus,[data-review-mode="on"] .review-modal input:focus{outline:2px solid #1f6feb;outline-offset:-1px;border-color:#1f6feb}
+[data-review-mode="on"] .review-modal .foot{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+
+/* ---------- toast ---------- */
+[data-review-mode="on"] .review-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483600;
+  background:var(--rv-deep);color:#fff;font:600 12.5px/1 var(--rv-sans);padding:11px 16px;border-radius:8px;box-shadow:0 6px 20px rgba(15,23,32,.3)}
