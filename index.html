@@ -97,6 +97,20 @@ ul.clean{margin:0 0 14px;padding-left:20px} ul.clean li{margin-bottom:6px;max-wi
 .classbody ul.inline{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .classbody ul.inline li{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
 .hint{font-size:12.5px;color:var(--ink-3);margin:-8px 0 18px}
+.diagram{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:16px;margin:0 0 8px}
+.diagram svg{display:block;min-width:990px;max-width:100%;height:auto}
+.diagram svg .colhead{font:650 10.5px var(--sans);fill:#6b7a89;letter-spacing:.09em}
+.diagram svg .bx{fill:#fff;stroke:#d7dee5}
+.diagram svg .bx-ok{fill:#f1faf5;stroke:#93cdb3}
+.diagram svg .bx-bad{fill:#fdf3f2;stroke:#e6ada6}
+.diagram svg .bx-key{fill:#fff8e6;stroke:#dbb84e;stroke-width:1.6}
+.diagram svg .t{font:640 12px var(--sans);fill:#0f1720}
+.diagram svg .s{font:400 10px var(--mono);fill:#71808e}
+.diagram svg .v{font:650 10px var(--sans)}
+.diagram svg .fl{stroke:#aab6c2;stroke-width:1.4;fill:none}
+.diagram svg .fl-bad{stroke:#b42318;stroke-width:1.6;fill:none;stroke-dasharray:5 4}
+.diagram svg .fl-ok{stroke:#0f7b4f;stroke-width:1.6;fill:none}
+.diagram svg .grp{fill:none;stroke-width:1.2}
 .standing{background:#fff8e6;border:1px solid #f0dda8;border-radius:9px;padding:12px 16px;margin:0 0 26px;font-size:13px;line-height:1.55;color:#5c4a1a}
 .standing strong{color:#3d3009}
 .standing .key{margin-top:8px;padding-top:8px;border-top:1px solid #f0dda8;display:flex;flex-wrap:wrap;gap:14px;font-size:12px}
@@ -122,6 +136,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     <a href="#overview" class="active">Overview</a>
     <a href="#estate">Digital estate <span class="n">19</span></a>
     <a href="#matrix">Instrumentation <span class="n">11</span></a>
+    <a href="#funnel">Inbound funnel</a>
     <a href="#platforms">Platforms <span class="n">12</span></a>
     <a href="#social">Social estate <span class="n">12</span></a>
     <a href="#members">Members <span class="n">23</span></a>
@@ -312,9 +327,124 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   <p>What tracking absence does establish is narrower and still material: even where <em>records</em> may be synced, <em>behaviour</em> is not. No page view, no session and no source attribution from those surfaces reaches HubSpot. A record that arrives with no acquisition history attached cannot be attributed, whatever else is true.</p>
 </section>
 
+<!-- ============ FUNNEL ============ -->
+<section class="view" id="v-funnel">
+  <p class="eyebrow">Section 4</p>
+  <h2>The inbound funnel</h2>
+  <p class="lede">Every route a visitor can take into the estate, and the three places they can convert. Reconstructed from the observable evidence — entry channels from tracking tags and outbound links, surfaces from page source, conversion points from the systems those surfaces hand off to.</p>
+
+  <div class="diagram"><svg viewBox="0 0 1040 690" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inbound funnel from entry channels through landing surfaces to member conversion points">
+  <defs>
+    <marker id="a1" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#aab6c2"/></marker>
+    <marker id="a2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#b42318"/></marker>
+    <marker id="a3" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#0f7b4f"/></marker>
+  </defs>
+
+  <text class="colhead" x="24" y="18">1 · ENTRY — WHERE A VISITOR ARRIVES FROM</text>
+  <text class="colhead" x="336" y="18">2 · SURFACE — WHERE THEY LAND</text>
+  <text class="colhead" x="690" y="18">3 · CONVERSION — AND WHETHER IT IS ATTRIBUTABLE</text>
+
+  <!-- ENTRY -->
+  <g>
+    <rect class="bx" x="24" y="34" width="250" height="44" rx="7"/><text class="t" x="38" y="53">Organic search</text><text class="s" x="38" y="69">11 sites · membership SEO weakest</text>
+    <rect class="bx" x="24" y="88" width="250" height="44" rx="7"/><text class="t" x="38" y="107">Paid</text><text class="s" x="38" y="123">Google Ads AW-369864043 · Simpli.fi</text>
+    <rect class="bx" x="24" y="142" width="250" height="44" rx="7"/><text class="t" x="38" y="161">Social</text><text class="s" x="38" y="177">LinkedIn · X · FB · YouTube → hubs.la</text>
+    <rect class="bx" x="24" y="196" width="250" height="44" rx="7"/><text class="t" x="38" y="215">Podcast</text><text class="s" x="38" y="231">Apple · Spotify · Amazon · iHeart</text>
+    <rect class="bx" x="24" y="250" width="250" height="44" rx="7"/><text class="t" x="38" y="269">Email</text><text class="s" x="38" y="285">HubSpot 8733520</text>
+    <rect class="bx" x="24" y="304" width="250" height="44" rx="7"/><text class="t" x="38" y="323">Direct / legacy brand</text><text class="s" x="38" y="339">dsnews.com · themreport.com → 301</text>
+    <rect class="bx" x="24" y="358" width="250" height="44" rx="7"/><text class="t" x="38" y="377">Referral / directories</text><text class="s" x="38" y="393">reoredbook.com → FORCE</text>
+  </g>
+
+  <path class="fl" d="M274,56 H300" /><path class="fl" d="M274,110 H300"/><path class="fl" d="M274,164 H300"/>
+  <path class="fl" d="M274,218 H300"/><path class="fl" d="M274,272 H300"/><path class="fl" d="M274,326 H300"/><path class="fl" d="M274,380 H300"/>
+  <path class="fl" d="M300,56 V380"/>
+  <path class="fl" d="M300,132 H336" marker-end="url(#a1)"/>
+  <path class="fl" d="M300,352 H336" marker-end="url(#a1)"/>
+
+  <!-- SURFACES -->
+  <rect class="bx-ok grp" x="336" y="44" width="300" height="176" rx="9"/>
+  <text class="v" x="352" y="66" fill="#0f7b4f">INSTRUMENTED — 4 SURFACES</text>
+  <text class="s" x="352" y="90">thefivestar.com — corporate hub</text>
+  <text class="s" x="352" y="112">themortgagepoint.com — media</text>
+  <text class="s" x="352" y="134">fivestarforce.com — FORCE</text>
+  <text class="s" x="352" y="156">fivestargovernmentforum.com — event</text>
+  <text class="s" x="352" y="186" fill="#0f7b4f">HubSpot tracking observed in page source</text>
+
+  <rect class="bx-bad grp" x="336" y="252" width="300" height="200" rx="9"/>
+  <text class="v" x="352" y="274" fill="#b42318">NO HUBSPOT TRACKING — 6 SURFACES</text>
+  <text class="s" x="352" y="298">Legal League · legalleague100.com</text>
+  <text class="s" x="352" y="318">NMSA · nationalmortgageservicing….com</text>
+  <text class="s" x="352" y="338">MSEA · themsea.com — no analytics at all</text>
+  <text class="s" x="352" y="358">PPEF · propertypresforum.com</text>
+  <text class="s" x="352" y="378">AMDC · mortgagediversitycouncil.com</text>
+  <text class="s" x="352" y="398">Five Star Conference — the flagship event</text>
+  <text class="s" x="352" y="428" fill="#b42318">5 of 6 are membership groups — the product</text>
+
+  <!-- FLOWS TO CONVERSION -->
+  <path class="fl-bad" d="M636,110 H642 V128 H690" marker-end="url(#a2)"/>
+  <path class="fl-bad" d="M636,150 H650 V236 H690" marker-end="url(#a2)"/>
+  <path class="fl-ok"  d="M636,190 H658 V340 H690" marker-end="url(#a3)"/>
+  <path class="fl" d="M636,206 H666 V438 H690" marker-end="url(#a1)"/>
+  <path class="fl-bad" d="M636,300 H646 V142 H690" marker-end="url(#a2)"/>
+  <path class="fl-bad" d="M636,360 H654 V250 H690" marker-end="url(#a2)"/>
+
+  <!-- CONVERSION -->
+  <rect class="bx-key" x="690" y="92" width="330" height="92" rx="9"/>
+  <text class="t" x="704" y="115">Wild Apricot — join &amp; member directory</text>
+  <text class="s" x="704" y="134">fivestarmemberships.wildapricot.org</text>
+  <text class="s" x="704" y="152">Vendor subdomain · no HubSpot · no GA4</text>
+  <text class="v" x="704" y="173" fill="#b42318">✕ THE MEMBER CONVERSION — NOT ATTRIBUTABLE</text>
+
+  <rect class="bx" x="690" y="204" width="330" height="76" rx="9"/>
+  <text class="t" x="704" y="227">Swoogo — event registration</text>
+  <text class="s" x="704" y="246">Conference (no HubSpot) · Gov Forum (HubSpot)</text>
+  <text class="v" x="704" y="269" fill="#9a6700">◐ PARTIAL — FLAGSHIP EVENT UNATTRIBUTED</text>
+
+  <rect class="bx" x="690" y="300" width="330" height="76" rx="9"/>
+  <text class="t" x="704" y="323">HubSpot forms</text>
+  <text class="s" x="704" y="342">js.hscollectedforms.net — instrumented sites only</text>
+  <text class="v" x="704" y="365" fill="#0f7b4f">✓ ATTRIBUTABLE — BUT NOT THE MEMBERSHIP PATH</text>
+
+  <rect class="bx" x="690" y="404" width="330" height="68" rx="9"/>
+  <text class="t" x="704" y="427">Job board (third-party ATS)</text>
+  <text class="s" x="704" y="446">jobs.thefivestar.com — ColdFusion, not owned</text>
+  <text class="v" x="704" y="465" fill="#6b7a89">— NOT A MEMBER PATH</text>
+
+  <!-- LEGEND -->
+  <g transform="translate(24,500)">
+    <path class="fl-ok" d="M0,0 H34" marker-end="url(#a3)"/><text class="s" x="42" y="4">attributable end to end</text>
+    <path class="fl-bad" d="M230,0 H264" marker-end="url(#a2)"/><text class="s" x="272" y="4">reaches no CRM</text>
+    <path class="fl" d="M430,0 H464" marker-end="url(#a1)"/><text class="s" x="472" y="4">out of scope for membership</text>
+  </g>
+</svg></div>
+  <p class="muted" style="margin-bottom:22px">Reconstructed from outside. A server-side integration between any two boxes would not be visible here, and internal paths — a sales conversation, a renewal invoice, an event badge scan — are out of scope entirely.</p>
+
+  <h3>What the shape shows</h3>
+
+  <div class="callout bad">
+    <p><strong>The membership path is dark end to end.</strong> A visitor can arrive through organic search, land on one of the five uninstrumented membership sites, click through to Wild Apricot and become a paying member — and the estate observes none of it. No source, no session, no landing page, no conversion event reaches HubSpot at any step. This is the funnel's primary revenue path.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>Conversion happens on a vendor domain that records nothing externally visible.</strong> Even a visitor arriving through the well-instrumented corporate site or MortgagePoint crosses to <code>fivestarmemberships.wildapricot.org</code> to actually join — a separate origin carrying no HubSpot, no GA4, and one dead Universal Analytics tag. <strong>The single moment of value creation is the least measured point in the estate</strong>, and it is the same for every entry route.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>The flagship event registers into a different dark surface.</strong> <code>fivestarconference.com</code> carries GA4 but no HubSpot, while the smaller Government Forum carries HubSpot. Two events on the same platform, opposite instrumentation — so registrations for the largest one cannot be tied back to CRM contacts, and the two cannot be compared on equal terms.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>What <em>is</em> attributable is the part that does not convert members.</strong> The green path — instrumented surface into a HubSpot form — works correctly. Social is instrumented too: LinkedIn posts route through <code>hubs.la</code>, HubSpot's own shortener, so the click is captured. The measurement is sound right up to the point where money changes hands.</p>
+  </div>
+
+  <h3>The consequence</h3>
+  <p>Attribution is possible for content engagement and lead capture, and impossible for membership acquisition. Any question of the form <em>"which channel brings us members?"</em> cannot be answered from the systems as configured — not because the data is messy, but because it is never collected. That is a configuration gap rather than a reporting one, which is why cleaning the CRM would not fix it.</p>
+  <p class="muted">Three checks would confirm or overturn this from the inside: whether Wild Apricot pushes to HubSpot by integration or export; whether Swoogo does the same; and whether any cross-domain tracking exists that is not visible in page source.</p>
+</section>
+
 <!-- ============ PLATFORMS ============ -->
 <section class="view" id="v-platforms">
-  <p class="eyebrow">Section 4</p>
+  <p class="eyebrow">Section 5</p>
   <h2>Platforms in play</h2>
   <p class="lede">Twelve systems, only one of which is HubSpot. Each is a candidate node in the relational map, and each boundary between them is a place records can diverge.</p>
 
@@ -345,7 +475,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ SOCIAL ============ -->
 <section class="view" id="v-social">
-  <p class="eyebrow">Section 5</p>
+  <p class="eyebrow">Section 6</p>
   <h2>The social estate</h2>
   <p class="lede">Twelve owned channels. Note the architecture: MortgagePoint holds a full <em>company</em> page; every membership group that has a presence holds a <em>showcase</em> page beneath the institute.</p>
 
@@ -374,7 +504,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ MEMBERS ============ -->
 <section class="view" id="v-members">
-  <p class="eyebrow">Section 6</p>
+  <p class="eyebrow">Section 7</p>
   <h2>People &amp; the member layer</h2>
   <p class="lede">Captured from LinkedIn on 10 August 2026 using aggregate company People tabs only — no individual profiles were walked, no connection requests or messages sent. Professional role data only.</p>
   <p class="muted"><strong>Individuals are identified by role, not by name.</strong> Every finding below concerns systems and records, not people, so the names add nothing to it. They are held in the private working file.</p>
@@ -455,7 +585,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ MODEL ============ -->
 <section class="view" id="v-model">
-  <p class="eyebrow">Section 7 — the part that needs your argument</p>
+  <p class="eyebrow">Section 8 — the part that needs your argument</p>
   <h2>The model, populated</h2>
   <p class="lede">Every class filled with the instances the analysis actually turned up. Populating it is the test: four things the abstract version got wrong only became visible once real instances went in. Those are at the bottom, and they are the decisions to make.</p>
 
@@ -615,7 +745,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ DEFECTS ============ -->
 <section class="view" id="v-defects">
-  <p class="eyebrow">Section 8</p>
+  <p class="eyebrow">Section 9</p>
   <h2>Defects found</h2>
   <p class="lede">Classified against the asset-layer taxonomy. Every one was detectable from outside the organization, which is the point worth holding on to.</p>
   <p class="muted">These are <strong>externally observable symptoms</strong>, not diagnoses. Each states what was found and where; several may have an internal explanation — a deliberate decision, a migration in flight, a system doing the job another way. Treat the list as the agenda for a conversation, not a verdict.</p>
@@ -640,7 +770,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ GAPS ============ -->
 <section class="view" id="v-gaps">
-  <p class="eyebrow">Section 9</p>
+  <p class="eyebrow">Section 10</p>
   <h2>What this draft does not cover</h2>
   <p class="lede">Stated plainly rather than left for a reader to discover. Everything below is a known gap in draft 1, not an omission.</p>
 
