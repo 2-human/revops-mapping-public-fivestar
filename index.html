@@ -78,6 +78,60 @@ td.mono,th.mono{font-family:var(--mono);font-size:12px}
 
 ul.clean{margin:0 0 14px;padding-left:20px} ul.clean li{margin-bottom:6px;max-width:76ch}
 
+.tm-legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 0 16px;font-size:12px;color:var(--ink-3)}
+.tm-legend .k{display:flex;align-items:center;gap:6px}
+.tm-sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+.tm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:13px;margin:0 0 20px}
+.tm-cat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;border-top:3px solid var(--line)}
+.tm-cat.mortgage-finance{border-top-color:#1f6feb}.tm-cat.real-estate{border-top-color:#0f7b4f}
+.tm-cat.financial-services-law{border-top-color:#8250df}.tm-cat.property-preservation{border-top-color:#b8730a}
+.tm-cat h4{font-size:14px;margin:0 0 2px;letter-spacing:-.01em}
+.tm-cat .sub{margin:0 0 11px;font-size:11px;color:var(--ink-3)}
+.tm-chips{display:flex;flex-wrap:wrap;gap:6px}
+.tm-chip{font:inherit;font-size:12px;line-height:1.25;cursor:pointer;border:1px solid var(--line);background:var(--bg-2);
+color:var(--ink);border-radius:8px;padding:6px 9px;display:inline-flex;align-items:center;gap:7px;text-align:left}
+.tm-chip:hover{background:var(--bg-3);border-color:#c9d4de}
+.tm-chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tm-chip[aria-expanded="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+.tm-chip[aria-expanded="true"] .n{background:rgba(255,255,255,.2);color:#fff}
+.tm-chip .n{font-variant-numeric:tabular-nums;font-size:10.5px;font-weight:650;background:#e6ecf2;color:var(--ink-2);border-radius:20px;padding:1px 6px}
+.tm-chip.w2 .lab{font-weight:600}.tm-chip.w3 .lab{font-weight:700;font-size:13px}
+.tm-chip.x{background:#fff;border-style:dashed;border-color:#e0b4ae}.tm-chip.x:hover{background:var(--bad-bg)}
+.tm-chip .meta{display:inline-flex;align-items:center;gap:4px}
+i.tm-d{width:6px;height:6px;border-radius:50%;display:inline-block}
+i.tm-d.mortgage-finance{background:#1f6feb}i.tm-d.real-estate{background:#0f7b4f}
+i.tm-d.financial-services-law{background:#8250df}i.tm-d.property-preservation{background:#b8730a}
+.tm-band{background:var(--bg);border:1px solid #e6ada6;border-left:3px solid var(--bad);border-radius:10px;padding:15px 17px;margin:0 0 18px}
+.tm-band h4{font-size:14px;margin:0 0 2px}.tm-band .sub{margin:0 0 11px;font-size:11.5px;color:var(--ink-3)}
+/* evidence pane — non-modal complementary region, outside the view switcher */
+#tmpane{position:fixed;top:0;right:0;bottom:0;width:min(560px,94vw);background:var(--bg);border-left:1px solid var(--line);
+box-shadow:-8px 0 28px rgba(15,23,32,.10);transform:translateX(100%);transition:transform .18s ease;z-index:2147481000;
+display:flex;flex-direction:column;font-family:var(--sans)}
+#tmpane.open{transform:translateX(0)}
+[data-review-mode="on"] #tmpane{top:46px}
+@media(min-width:1280px){[data-review-mode="on"] #tmpane{right:340px}}
+#tmpane .ph{padding:15px 18px;border-bottom:1px solid var(--line);background:var(--bg-2)}
+#tmpane .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+#tmpane h3{font-size:16px;margin:0 0 6px}
+#tmpane .cats{display:flex;flex-wrap:wrap;gap:5px;margin:0}
+.tm-badge{font-size:10px;font-weight:650;padding:2px 8px;border-radius:20px;color:#fff}
+.tm-badge.mortgage-finance{background:#1f6feb}.tm-badge.real-estate{background:#0f7b4f}
+.tm-badge.financial-services-law{background:#8250df}.tm-badge.property-preservation{background:#b8730a}
+#tmpane .why{font-size:12px;color:#8a3a30;background:var(--bad-bg);border-radius:7px;padding:8px 10px;margin:8px 0 0}
+#tmpane .cnt{font-size:11.5px;color:var(--ink-3);margin:8px 0 0}
+#tmpane .list{overflow-y:auto;padding:12px 18px 26px;flex:1}
+.tm-item{border:1px solid var(--line);border-radius:9px;padding:11px 12px;margin:0 0 9px;background:var(--bg)}
+.tm-item h5{font-size:13px;margin:0 0 3px;line-height:1.35;font-weight:650}
+.tm-item h5 a{color:var(--ink);text-decoration:none}.tm-item h5 a:hover{color:var(--accent);text-decoration:underline}
+.tm-item .src{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:0 0 6px;word-break:break-all}
+.tm-item .desc{font-size:12px;color:var(--ink-2);margin:0 0 7px}
+.tm-item .how{font-size:11.5px;color:var(--ink-2);background:var(--bg-2);border-left:2px solid var(--line);padding:6px 8px;border-radius:0 6px 6px 0;margin:0}
+.tm-item .terms{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:4px}
+.tm-term{font-family:var(--mono);font-size:10px;background:var(--bg-3);border-radius:4px;padding:2px 5px;color:var(--ink-2)}
+.tm-close{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 10px;cursor:pointer;flex:none}
+.tm-close:hover{background:var(--bg-2)}
+.tm-scrim{position:fixed;inset:0;z-index:2147480900;display:none}.tm-scrim.on{display:block}
+@media(max-width:640px){#tmpane{width:100vw}}
 .classlist{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);margin:0 0 22px}
 .classrow+.classrow{border-top:1px solid var(--line-2)}
 .classhead{display:grid;grid-template-columns:1fr auto minmax(0,190px) 18px;gap:16px;align-items:center;width:100%;text-align:left;background:none;border:none;font:inherit;padding:13px 16px;cursor:pointer;color:var(--ink)}
@@ -140,6 +194,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     <a href="#platforms">Platforms <span class="n">12</span></a>
     <a href="#social">Social estate <span class="n">12</span></a>
     <a href="#members">Members <span class="n">23</span></a>
+    <a href="#topics">Topical map <span class="n">49</span></a>
     <a href="#model">The model <span class="n">10+13</span></a>
     <a href="#defects">Defects <span class="n">7</span></a>
     <a href="#gaps">Limitations</a>
@@ -583,9 +638,54 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   <p>Your model needs <code>holds_role_in</code> to connect a person to a membership group, a community and a media property. The evidence says that edge <strong>does not exist in any system observable from outside</strong>: not on LinkedIn, where showcase pages cannot hold people; and not in HubSpot, whose tracking is absent from five of six membership sites and from Wild Apricot. Wild Apricot is the only remaining candidate — which makes reading its role and status model the single highest-value next action.</p>
 </section>
 
+<!-- ============ TOPICS ============ -->
+<section class="view" id="v-topics">
+  <p class="eyebrow">Section 8</p>
+  <h2>The topical map</h2>
+  <p class="lede">Every subtopic found in the body text of 1,033 crawled pages, placed against the four communities. Select any subtopic to see the pages it appears on and how it is covered there.</p>
+  <p class="muted" style="margin-bottom:18px">Derived from <strong>page body text</strong>, not from the sites' own tags — a tag is a claim about topic, not evidence of it. Boilerplate was filtered by per-site saturation. Counts are pages within the crawled corpus.</p>
+
+  <div class="tm-legend">
+    <span class="k"><span class="tm-sw" style="background:#1f6feb"></span>Mortgage Finance</span>
+    <span class="k"><span class="tm-sw" style="background:#0f7b4f"></span>Real Estate</span>
+    <span class="k"><span class="tm-sw" style="background:#8250df"></span>Financial Services Law</span>
+    <span class="k"><span class="tm-sw" style="background:#b8730a"></span>Property Preservation</span>
+    <span class="k"><span class="tm-sw" style="background:#fff;border:1px dashed #e0b4ae"></span>cross-cutting</span>
+    <span class="k">number = pages containing it</span>
+  </div>
+
+  <div class="tm-grid"><div class="tm-cat mortgage-finance"><h4>Mortgage Finance</h4>
+      <p class="sub">15 subtopics · 1242 assignments · 13 cross-cutting touch it</p>
+      <div class="tm-chips"><button class="tm-chip w3" type="button" data-topic="loan-origination" aria-expanded="false" aria-controls="tmpane"><span class="lab">Loan origination &amp; underwriting</span><span class="meta"><span class="n">316</span></span></button><button class="tm-chip w3" type="button" data-topic="mortgage-servicing" aria-expanded="false" aria-controls="tmpane"><span class="lab">Mortgage servicing</span><span class="meta"><span class="n">272</span></span></button><button class="tm-chip w2" type="button" data-topic="gse-policy" aria-expanded="false" aria-controls="tmpane"><span class="lab">GSEs — Fannie, Freddie, Ginnie</span><span class="meta"><span class="n">143</span></span></button><button class="tm-chip w2" type="button" data-topic="fha-hud-va-lending" aria-expanded="false" aria-controls="tmpane"><span class="lab">FHA, HUD &amp; VA lending</span><span class="meta"><span class="n">111</span></span></button><button class="tm-chip w2" type="button" data-topic="mortgage-rates" aria-expanded="false" aria-controls="tmpane"><span class="lab">Mortgage rates</span><span class="meta"><span class="n">95</span></span></button><button class="tm-chip w2" type="button" data-topic="housing-finance-policy" aria-expanded="false" aria-controls="tmpane"><span class="lab">Housing finance policy</span><span class="meta"><span class="n">50</span></span></button><button class="tm-chip w1" type="button" data-topic="mortgage-banking" aria-expanded="false" aria-controls="tmpane"><span class="lab">Mortgage banking</span><span class="meta"><span class="n">48</span></span></button><button class="tm-chip w1" type="button" data-topic="forbearance" aria-expanded="false" aria-controls="tmpane"><span class="lab">Forbearance</span><span class="meta"><span class="n">45</span></span></button><button class="tm-chip w1" type="button" data-topic="delinquency" aria-expanded="false" aria-controls="tmpane"><span class="lab">Delinquency &amp; default rates</span><span class="meta"><span class="n">35</span></span></button><button class="tm-chip w1" type="button" data-topic="capital-markets" aria-expanded="false" aria-controls="tmpane"><span class="lab">Capital markets &amp; securitisation</span><span class="meta"><span class="n">32</span></span></button><button class="tm-chip w1" type="button" data-topic="refinancing" aria-expanded="false" aria-controls="tmpane"><span class="lab">Refinancing</span><span class="meta"><span class="n">31</span></span></button><button class="tm-chip w1" type="button" data-topic="reverse-mortgage" aria-expanded="false" aria-controls="tmpane"><span class="lab">Reverse mortgage</span><span class="meta"><span class="n">19</span></span></button><button class="tm-chip w1" type="button" data-topic="credit-risk" aria-expanded="false" aria-controls="tmpane"><span class="lab">Credit &amp; risk</span><span class="meta"><span class="n">19</span></span></button><button class="tm-chip w1" type="button" data-topic="mortgage-insurance" aria-expanded="false" aria-controls="tmpane"><span class="lab">Mortgage insurance</span><span class="meta"><span class="n">14</span></span></button><button class="tm-chip w1" type="button" data-topic="loan-modification" aria-expanded="false" aria-controls="tmpane"><span class="lab">Loan modification</span><span class="meta"><span class="n">12</span></span></button></div></div><div class="tm-cat real-estate"><h4>Real Estate</h4>
+      <p class="sub">8 subtopics · 934 assignments · 16 cross-cutting touch it</p>
+      <div class="tm-chips"><button class="tm-chip w3" type="button" data-topic="homeownership" aria-expanded="false" aria-controls="tmpane"><span class="lab">Homeownership</span><span class="meta"><span class="n">246</span></span></button><button class="tm-chip w3" type="button" data-topic="real-estate-brokerage" aria-expanded="false" aria-controls="tmpane"><span class="lab">Brokerage — agents &amp; brokers</span><span class="meta"><span class="n">219</span></span></button><button class="tm-chip w3" type="button" data-topic="housing-market-trends" aria-expanded="false" aria-controls="tmpane"><span class="lab">Housing market trends</span><span class="meta"><span class="n">172</span></span></button><button class="tm-chip w2" type="button" data-topic="housing-affordability" aria-expanded="false" aria-controls="tmpane"><span class="lab">Housing affordability</span><span class="meta"><span class="n">134</span></span></button><button class="tm-chip w2" type="button" data-topic="single-family-rental" aria-expanded="false" aria-controls="tmpane"><span class="lab">Single-family rental</span><span class="meta"><span class="n">52</span></span></button><button class="tm-chip w1" type="button" data-topic="multifamily-housing" aria-expanded="false" aria-controls="tmpane"><span class="lab">Multifamily housing</span><span class="meta"><span class="n">49</span></span></button><button class="tm-chip w1" type="button" data-topic="property-valuation" aria-expanded="false" aria-controls="tmpane"><span class="lab">Valuation &amp; appraisal</span><span class="meta"><span class="n">42</span></span></button><button class="tm-chip w1" type="button" data-topic="commercial-real-estate" aria-expanded="false" aria-controls="tmpane"><span class="lab">Commercial real estate</span><span class="meta"><span class="n">20</span></span></button></div></div><div class="tm-cat financial-services-law"><h4>Financial Services Law</h4>
+      <p class="sub">5 subtopics · 383 assignments · 10 cross-cutting touch it</p>
+      <div class="tm-chips"><button class="tm-chip w3" type="button" data-topic="attorney-practice" aria-expanded="false" aria-controls="tmpane"><span class="lab">Attorney &amp; firm practice</span><span class="meta"><span class="n">159</span></span></button><button class="tm-chip w2" type="button" data-topic="court-procedure" aria-expanded="false" aria-controls="tmpane"><span class="lab">Courts &amp; procedure</span><span class="meta"><span class="n">78</span></span></button><button class="tm-chip w2" type="button" data-topic="litigation" aria-expanded="false" aria-controls="tmpane"><span class="lab">Litigation</span><span class="meta"><span class="n">73</span></span></button><button class="tm-chip w1" type="button" data-topic="consumer-financial-regulation" aria-expanded="false" aria-controls="tmpane"><span class="lab">Consumer financial regulation</span><span class="meta"><span class="n">42</span></span></button><button class="tm-chip w1" type="button" data-topic="debt-collection-fdcpa" aria-expanded="false" aria-controls="tmpane"><span class="lab">Debt collection &amp; FDCPA</span><span class="meta"><span class="n">31</span></span></button></div></div><div class="tm-cat property-preservation"><h4>Property Preservation</h4>
+      <p class="sub">3 subtopics · 64 assignments · 9 cross-cutting touch it</p>
+      <div class="tm-chips"><button class="tm-chip w1" type="button" data-topic="preservation-vendor-management" aria-expanded="false" aria-controls="tmpane"><span class="lab">Preservation vendor management</span><span class="meta"><span class="n">28</span></span></button><button class="tm-chip w1" type="button" data-topic="field-services-inspections" aria-expanded="false" aria-controls="tmpane"><span class="lab">Field services &amp; inspections</span><span class="meta"><span class="n">18</span></span></button><button class="tm-chip w1" type="button" data-topic="property-maintenance" aria-expanded="false" aria-controls="tmpane"><span class="lab">Property maintenance</span><span class="meta"><span class="n">18</span></span></button></div></div></div>
+
+  <div class="tm-band">
+    <h4>Cross-cutting — 18 subtopics that refused a single category</h4>
+    <p class="sub">They carry <strong>1535 of 4158 assignments (37%)</strong>. Dots show which categories each spans.</p>
+    <div class="tm-chips"><button class="tm-chip w3 x" type="button" data-topic="default-servicing" aria-expanded="false" aria-controls="tmpane"><span class="lab">Default servicing</span><span class="meta"><span class="n">333</span><i class="tm-d mortgage-finance"></i><i class="tm-d financial-services-law"></i><i class="tm-d real-estate"></i><i class="tm-d property-preservation"></i></span></button><button class="tm-chip w3 x" type="button" data-topic="regulatory-compliance" aria-expanded="false" aria-controls="tmpane"><span class="lab">Regulatory compliance</span><span class="meta"><span class="n">185</span><i class="tm-d mortgage-finance"></i><i class="tm-d financial-services-law"></i><i class="tm-d real-estate"></i><i class="tm-d property-preservation"></i></span></button><button class="tm-chip w3 x" type="button" data-topic="title-and-lien" aria-expanded="false" aria-controls="tmpane"><span class="lab">Title &amp; liens</span><span class="meta"><span class="n">170</span><i class="tm-d financial-services-law"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w3 x" type="button" data-topic="foreclosure" aria-expanded="false" aria-controls="tmpane"><span class="lab">Foreclosure</span><span class="meta"><span class="n">151</span><i class="tm-d mortgage-finance"></i><i class="tm-d financial-services-law"></i><i class="tm-d real-estate"></i><i class="tm-d property-preservation"></i></span></button><button class="tm-chip w2 x" type="button" data-topic="reo" aria-expanded="false" aria-controls="tmpane"><span class="lab">REO</span><span class="meta"><span class="n">126</span><i class="tm-d real-estate"></i><i class="tm-d property-preservation"></i><i class="tm-d mortgage-finance"></i></span></button><button class="tm-chip w2 x" type="button" data-topic="insurance" aria-expanded="false" aria-controls="tmpane"><span class="lab">Insurance</span><span class="meta"><span class="n">82</span><i class="tm-d mortgage-finance"></i><i class="tm-d property-preservation"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w2 x" type="button" data-topic="bankruptcy" aria-expanded="false" aria-controls="tmpane"><span class="lab">Bankruptcy</span><span class="meta"><span class="n">77</span><i class="tm-d mortgage-finance"></i><i class="tm-d financial-services-law"></i></span></button><button class="tm-chip w2 x" type="button" data-topic="asset-management" aria-expanded="false" aria-controls="tmpane"><span class="lab">Asset management</span><span class="meta"><span class="n">70</span><i class="tm-d mortgage-finance"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w2 x" type="button" data-topic="diversity-equity-inclusion" aria-expanded="false" aria-controls="tmpane"><span class="lab">Diversity, equity &amp; inclusion</span><span class="meta"><span class="n">64</span><i class="tm-d financial-services-law"></i><i class="tm-d mortgage-finance"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="auction-and-disposition" aria-expanded="false" aria-controls="tmpane"><span class="lab">Auction &amp; disposition</span><span class="meta"><span class="n">46</span><i class="tm-d real-estate"></i><i class="tm-d mortgage-finance"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="loss-mitigation" aria-expanded="false" aria-controls="tmpane"><span class="lab">Loss mitigation</span><span class="meta"><span class="n">46</span><i class="tm-d mortgage-finance"></i><i class="tm-d financial-services-law"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="rehab-and-renovation" aria-expanded="false" aria-controls="tmpane"><span class="lab">Rehab &amp; renovation</span><span class="meta"><span class="n">42</span><i class="tm-d property-preservation"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="fair-housing" aria-expanded="false" aria-controls="tmpane"><span class="lab">Fair housing</span><span class="meta"><span class="n">29</span><i class="tm-d financial-services-law"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="property-tax-and-escrow" aria-expanded="false" aria-controls="tmpane"><span class="lab">Property tax &amp; escrow</span><span class="meta"><span class="n">26</span><i class="tm-d mortgage-finance"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="distressed-property" aria-expanded="false" aria-controls="tmpane"><span class="lab">Distressed property</span><span class="meta"><span class="n">25</span><i class="tm-d real-estate"></i><i class="tm-d property-preservation"></i><i class="tm-d mortgage-finance"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="eviction" aria-expanded="false" aria-controls="tmpane"><span class="lab">Eviction</span><span class="meta"><span class="n">23</span><i class="tm-d financial-services-law"></i><i class="tm-d property-preservation"></i><i class="tm-d real-estate"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="short-sale" aria-expanded="false" aria-controls="tmpane"><span class="lab">Short sale</span><span class="meta"><span class="n">23</span><i class="tm-d real-estate"></i><i class="tm-d mortgage-finance"></i></span></button><button class="tm-chip w1 x" type="button" data-topic="vacant-and-abandoned" aria-expanded="false" aria-controls="tmpane"><span class="lab">Vacant &amp; abandoned property</span><span class="meta"><span class="n">17</span><i class="tm-d property-preservation"></i><i class="tm-d real-estate"></i><i class="tm-d financial-services-law"></i></span></button></div>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>The four communities are not a partition of the subject matter.</strong> The single most-referenced topic in the corpus — <strong>default servicing, 333 pages across 6 sites</strong> — belongs to all four. So do foreclosure and regulatory compliance. A taxonomy forcing one parent per topic breaks precisely where the business is densest.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>One community is nearly empty.</strong> Property Preservation carries <strong>64 assignments across 3 subtopics</strong>, against Mortgage Finance's 1242 across 15. PPEF's entire post archive is three articles published on placeholder <code>test-blog-1/2/3</code> URLs on a single day in October 2020.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>A reading that resolves it.</strong> The four communities behave like <em>audiences</em> (who you are), while these topics are <em>lifecycle stages</em> (what is happening to the loan). Those are different axes, and a topic can sit on both without contradiction — which also explains why the communities map so closely onto the membership groups.</p>
+  </div>
+</section>
+
 <!-- ============ MODEL ============ -->
 <section class="view" id="v-model">
-  <p class="eyebrow">Section 8 — the part that needs your argument</p>
+  <p class="eyebrow">Section 9 — the part that needs your argument</p>
   <h2>The model, populated</h2>
   <p class="lede">Every class filled with the instances the analysis actually turned up. Populating it is the test: four things the abstract version got wrong only became visible once real instances went in. Those are at the bottom, and they are the decisions to make.</p>
 
@@ -745,7 +845,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ DEFECTS ============ -->
 <section class="view" id="v-defects">
-  <p class="eyebrow">Section 9</p>
+  <p class="eyebrow">Section 10</p>
   <h2>Defects found</h2>
   <p class="lede">Classified against the asset-layer taxonomy. Every one was detectable from outside the organization, which is the point worth holding on to.</p>
   <p class="muted">These are <strong>externally observable symptoms</strong>, not diagnoses. Each states what was found and where; several may have an internal explanation — a deliberate decision, a migration in flight, a system doing the job another way. Treat the list as the agenda for a conversation, not a verdict.</p>
@@ -770,7 +870,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ GAPS ============ -->
 <section class="view" id="v-gaps">
-  <p class="eyebrow">Section 10</p>
+  <p class="eyebrow">Section 11</p>
   <h2>What this draft does not cover</h2>
   <p class="lede">Stated plainly rather than left for a reader to discover. Everything below is a known gap in draft 1, not an omission.</p>
 
@@ -838,6 +938,70 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     });
     expand.textContent = anyClosed ? 'Collapse all' : 'Expand all';
   });
+})();
+</script>
+
+<div class="tm-scrim" id="tmscrim"></div>
+<aside id="tmpane" role="complementary" aria-labelledby="tmpane-title" aria-hidden="true">
+  <div class="ph"><div class="row">
+      <div><h3 id="tmpane-title">Subtopic</h3><div class="cats" id="tmpane-cats"></div></div>
+      <button class="tm-close" id="tmpane-close" type="button">Close</button></div>
+    <div id="tmpane-why"></div><p class="cnt" id="tmpane-count"></p></div>
+  <div class="list" id="tmpane-list"><p class="muted">Loading evidence…</p></div>
+</aside>
+<script type="application/json" id="tmmeta">{"loan-origination":{"l":"Loan origination & underwriting","c":["mortgage-finance"],"w":"","n":316,"s":5},"mortgage-rates":{"l":"Mortgage rates","c":["mortgage-finance"],"w":"","n":95,"s":3},"refinancing":{"l":"Refinancing","c":["mortgage-finance"],"w":"","n":31,"s":3},"reverse-mortgage":{"l":"Reverse mortgage","c":["mortgage-finance"],"w":"","n":19,"s":3},"forbearance":{"l":"Forbearance","c":["mortgage-finance"],"w":"","n":45,"s":5},"loan-modification":{"l":"Loan modification","c":["mortgage-finance"],"w":"","n":12,"s":3},"delinquency":{"l":"Delinquency & default rates","c":["mortgage-finance"],"w":"","n":35,"s":5},"mortgage-servicing":{"l":"Mortgage servicing","c":["mortgage-finance"],"w":"","n":272,"s":8},"capital-markets":{"l":"Capital markets & securitisation","c":["mortgage-finance"],"w":"","n":32,"s":3},"credit-risk":{"l":"Credit & risk","c":["mortgage-finance"],"w":"","n":19,"s":3},"mortgage-insurance":{"l":"Mortgage insurance","c":["mortgage-finance"],"w":"","n":14,"s":4},"gse-policy":{"l":"GSEs \u2014 Fannie, Freddie, Ginnie","c":["mortgage-finance"],"w":"","n":143,"s":6},"fha-hud-va-lending":{"l":"FHA, HUD & VA lending","c":["mortgage-finance"],"w":"","n":111,"s":5},"housing-finance-policy":{"l":"Housing finance policy","c":["mortgage-finance"],"w":"","n":50,"s":5},"mortgage-banking":{"l":"Mortgage banking","c":["mortgage-finance"],"w":"","n":48,"s":4},"litigation":{"l":"Litigation","c":["financial-services-law"],"w":"","n":73,"s":4},"attorney-practice":{"l":"Attorney & firm practice","c":["financial-services-law"],"w":"","n":159,"s":7},"court-procedure":{"l":"Courts & procedure","c":["financial-services-law"],"w":"","n":78,"s":5},"debt-collection-fdcpa":{"l":"Debt collection & FDCPA","c":["financial-services-law"],"w":"","n":31,"s":3},"consumer-financial-regulation":{"l":"Consumer financial regulation","c":["financial-services-law"],"w":"","n":42,"s":4},"real-estate-brokerage":{"l":"Brokerage \u2014 agents & brokers","c":["real-estate"],"w":"","n":219,"s":6},"property-valuation":{"l":"Valuation & appraisal","c":["real-estate"],"w":"","n":42,"s":6},"single-family-rental":{"l":"Single-family rental","c":["real-estate"],"w":"","n":52,"s":2},"multifamily-housing":{"l":"Multifamily housing","c":["real-estate"],"w":"","n":49,"s":3},"commercial-real-estate":{"l":"Commercial real estate","c":["real-estate"],"w":"","n":20,"s":4},"housing-affordability":{"l":"Housing affordability","c":["real-estate"],"w":"","n":134,"s":3},"housing-market-trends":{"l":"Housing market trends","c":["real-estate"],"w":"","n":172,"s":6},"homeownership":{"l":"Homeownership","c":["real-estate"],"w":"","n":246,"s":7},"field-services-inspections":{"l":"Field services & inspections","c":["property-preservation"],"w":"","n":18,"s":4},"property-maintenance":{"l":"Property maintenance","c":["property-preservation"],"w":"","n":18,"s":3},"preservation-vendor-management":{"l":"Preservation vendor management","c":["property-preservation"],"w":"","n":28,"s":4},"foreclosure":{"l":"Foreclosure","c":["mortgage-finance","financial-services-law","real-estate","property-preservation"],"w":"A servicing action, a court process, a property disposition and a preservation trigger at once.","n":151,"s":7},"reo":{"l":"REO","c":["real-estate","property-preservation","mortgage-finance"],"w":"Held on a lender balance sheet, maintained as a physical asset, sold as real estate.","n":126,"s":6},"default-servicing":{"l":"Default servicing","c":["mortgage-finance","financial-services-law","real-estate","property-preservation"],"w":"The organisation's centre of gravity; spans all four by definition.","n":333,"s":6},"bankruptcy":{"l":"Bankruptcy","c":["mortgage-finance","financial-services-law"],"w":"A legal proceeding that governs a loan's treatment.","n":77,"s":4},"eviction":{"l":"Eviction","c":["financial-services-law","property-preservation","real-estate"],"w":"A court action with a field-services consequence and an occupancy status.","n":23,"s":4},"regulatory-compliance":{"l":"Regulatory compliance","c":["mortgage-finance","financial-services-law","real-estate","property-preservation"],"w":"Every function is examined; compliance is not owned by one.","n":185,"s":8},"title-and-lien":{"l":"Title & liens","c":["financial-services-law","real-estate"],"w":"A legal instrument and a transactional prerequisite.","n":170,"s":6},"auction-and-disposition":{"l":"Auction & disposition","c":["real-estate","mortgage-finance"],"w":"A sale channel and a loss-severity decision.","n":46,"s":4},"vacant-and-abandoned":{"l":"Vacant & abandoned property","c":["property-preservation","real-estate","financial-services-law"],"w":"A preservation obligation, a market condition and a municipal-code exposure.","n":17,"s":5},"rehab-and-renovation":{"l":"Rehab & renovation","c":["property-preservation","real-estate"],"w":"Preservation scope on one side, value-add on the other.","n":42,"s":6},"short-sale":{"l":"Short sale","c":["real-estate","mortgage-finance"],"w":"A loss-mitigation outcome executed as a real-estate transaction.","n":23,"s":3},"loss-mitigation":{"l":"Loss mitigation","c":["mortgage-finance","financial-services-law"],"w":"A servicing workflow bounded by regulation.","n":46,"s":5},"fair-housing":{"l":"Fair housing","c":["financial-services-law","real-estate"],"w":"A statute enforced against transactional practice.","n":29,"s":3},"asset-management":{"l":"Asset management","c":["mortgage-finance","real-estate"],"w":"Portfolio economics expressed through property decisions.","n":70,"s":5},"distressed-property":{"l":"Distressed property","c":["real-estate","property-preservation","mortgage-finance"],"w":"Defined by loan status, realised as physical condition.","n":25,"s":5},"property-tax-and-escrow":{"l":"Property tax & escrow","c":["mortgage-finance","real-estate"],"w":"A servicing obligation attached to the real asset.","n":26,"s":5},"insurance":{"l":"Insurance","c":["mortgage-finance","property-preservation","real-estate"],"w":"Underwriting requirement, preservation trigger and ownership cost.","n":82,"s":7},"diversity-equity-inclusion":{"l":"Diversity, equity & inclusion","c":["financial-services-law","mortgage-finance","real-estate"],"w":"A supplier-contracting, fair-lending and workforce topic simultaneously.","n":64,"s":5}}</script>
+<script>
+(function(){
+  var META=JSON.parse(document.getElementById('tmmeta').textContent);
+  var CATS={"mortgage-finance": "Mortgage Finance", "financial-services-law": "Financial Services Law", "real-estate": "Real Estate", "property-preservation": "Property Preservation"};
+  var pane=document.getElementById('tmpane'),scrim=document.getElementById('tmscrim'),
+      T=document.getElementById('tmpane-title'),C=document.getElementById('tmpane-cats'),
+      W=document.getElementById('tmpane-why'),N=document.getElementById('tmpane-count'),
+      L=document.getElementById('tmpane-list'),X=document.getElementById('tmpane-close');
+  var EV=null,loading=null,last=null;
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
+  function load(){ if(EV) return Promise.resolve(EV);
+    if(!loading) loading=fetch('topics-evidence.json').then(function(r){
+        if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){EV=j;return j;});
+    return loading; }
+  function close(){
+    pane.classList.remove('open'); scrim.classList.remove('on'); pane.setAttribute('aria-hidden','true');
+    document.querySelectorAll('.tm-chip[aria-expanded="true"]').forEach(function(b){b.setAttribute('aria-expanded','false');});
+    if(last){last.focus(); last=null;}
+  }
+  function render(slug){
+    var d=META[slug], e=(EV||{})[slug];
+    if(!e){ L.innerHTML='<p class="muted">Evidence could not be loaded. The sidecar <code>topics-evidence.json</code> must be served alongside this page.</p>'; N.textContent=''; return; }
+    N.innerHTML = e.r.length < e.t
+      ? 'Showing the <strong>'+e.r.length+'</strong> most relevant of <strong>'+e.t+'</strong> pages · '+d.s+' sites'
+      : '<strong>'+e.t+'</strong> page'+(e.t===1?'':'s')+' · '+d.s+' site'+(d.s===1?'':'s');
+    L.innerHTML = e.r.length ? e.r.map(function(r){
+      return '<article class="tm-item"><h5><a href="'+esc(r.u)+'" target="_blank" rel="noopener">'+esc(r.ti||r.u)+'</a></h5>'
+        +'<p class="src">'+esc(r.h)+' · '+r.w+' words</p>'
+        +(r.d?'<p class="desc">'+esc(r.d)+'</p>':'')
+        +'<p class="how"><strong>How it appears:</strong> '+esc(r.s)+'</p>'
+        +'<p class="terms">'+r.tm.map(function(t){return '<span class="tm-term">'+esc(t)+'</span>';}).join('')+'</p></article>';
+    }).join('') : '<p class="muted">No pages matched this subtopic in the crawled corpus.</p>';
+    L.scrollTop=0;
+  }
+  function open(btn){
+    var slug=btn.dataset.topic, d=META[slug]; if(!d) return;
+    document.querySelectorAll('.tm-chip[aria-expanded="true"]').forEach(function(b){b.setAttribute('aria-expanded','false');});
+    btn.setAttribute('aria-expanded','true'); last=btn;
+    T.textContent=d.l;
+    C.innerHTML=d.c.map(function(c){return '<span class="tm-badge '+c+'">'+esc(CATS[c])+'</span>';}).join('');
+    W.innerHTML=d.w?'<p class="why"><strong>Cannot sit in one category.</strong> '+esc(d.w)+'</p>':'';
+    N.textContent=''; L.innerHTML='<p class="muted">Loading evidence…</p>';
+    pane.setAttribute('aria-hidden','false'); pane.classList.add('open'); scrim.classList.add('on');
+    load().then(function(){ if(last===btn) render(slug); })
+          .catch(function(){ L.innerHTML='<p class="muted">Evidence could not be loaded (<code>topics-evidence.json</code>).</p>'; });
+  }
+  document.querySelectorAll('.tm-chip').forEach(function(b){
+    b.addEventListener('click',function(){ b.getAttribute('aria-expanded')==='true'?close():open(b); });
+  });
+  X.addEventListener('click',close); scrim.addEventListener('click',close);
+  document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'&&pane.classList.contains('open')) close(); });
+  document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){ if(pane.classList.contains('open')) close(); });});
 })();
 </script>
 <script src="hub.config.js"></script>
