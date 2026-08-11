@@ -80,6 +80,10 @@ ul.clean{margin:0 0 14px;padding-left:20px} ul.clean li{margin-bottom:6px;max-wi
 
 .tm-div{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);margin:11px 0 7px;padding-top:9px;border-top:1px dashed var(--line)}
 .tm-chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+/* cross-cutting chips carry .tm-chip.x, equal specificity to the pressed rule, so its
+   white background won and left white text on white. Raise specificity explicitly. */
+.tm-chip.x[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);border-style:solid;color:#fff}
+.tm-chip.x[aria-pressed="true"]:hover{background:#1b3550}
 .tm-chip[aria-pressed="true"] .n{background:rgba(255,255,255,.2);color:#fff}
 .tm-selbar{position:sticky;top:0;z-index:2;background:var(--bg-2);border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:0 0 16px;display:none}
 .tm-selbar.on{display:block}
@@ -149,7 +153,6 @@ display:flex;flex-direction:column;font-family:var(--sans)}
 .tm-term{font-family:var(--mono);font-size:10px;background:var(--bg-3);border-radius:4px;padding:2px 5px;color:var(--ink-2)}
 .tm-close{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 10px;cursor:pointer;flex:none}
 .tm-close:hover{background:var(--bg-2)}
-.tm-scrim{position:fixed;inset:0;z-index:2147480900;display:none}.tm-scrim.on{display:block}
 @media(max-width:640px){#tmpane{width:100vw}}
 .classlist{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);margin:0 0 22px}
 .classrow+.classrow{border-top:1px solid var(--line-2)}
@@ -969,7 +972,6 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 })();
 </script>
 
-<div class="tm-scrim" id="tmscrim"></div>
 <aside id="tmpane" role="complementary" aria-labelledby="tmpane-title" aria-hidden="true">
   <div class="ph"><div class="row">
       <div style="min-width:0"><h3 id="tmpane-title">Subtopic</h3>
@@ -984,7 +986,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 (function(){
   var META=JSON.parse(document.getElementById('tmmeta').textContent);
   var CATS={"mortgage-finance": "Mortgage Finance", "financial-services-law": "Financial Services Law", "real-estate": "Real Estate", "property-preservation": "Property Preservation"};
-  var pane=document.getElementById('tmpane'),scrim=document.getElementById('tmscrim'),
+  var pane=document.getElementById('tmpane'),
       T=document.getElementById('tmpane-title'),C=document.getElementById('tmpane-cats'),
       ST=document.getElementById('tmpane-seltopics'),W=document.getElementById('tmpane-why'),
       N=document.getElementById('tmpane-count'),L=document.getElementById('tmpane-list'),
@@ -1008,7 +1010,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   function close(){
     sel=[]; document.querySelectorAll('.tm-chip[aria-pressed="true"]').forEach(function(b){b.setAttribute('aria-pressed','false');});
     selbar();
-    pane.classList.remove('open'); scrim.classList.remove('on'); pane.setAttribute('aria-hidden','true');
+    pane.classList.remove('open'); pane.setAttribute('aria-hidden','true');
     if(lastChip){lastChip.focus(); lastChip=null;}
   }
 
@@ -1070,7 +1072,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     chipsFor(slug).forEach(function(b){b.setAttribute('aria-pressed', i>-1?'false':'true');});
     selbar();
     if(!sel.length){ close(); return; }
-    pane.setAttribute('aria-hidden','false'); pane.classList.add('open'); scrim.classList.add('on');
+    pane.setAttribute('aria-hidden','false'); pane.classList.add('open');
     render();
     load().then(render).catch(function(){ L.innerHTML='<p class="muted">Evidence could not be loaded (<code>topics-evidence.json</code>).</p>'; });
   }
@@ -1081,7 +1083,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     if(rm){ var b=document.querySelector('.tm-chip[data-topic="'+rm.dataset.rm+'"]'); if(b) toggle(b); return; }
     if(e.target.id==='tm-clearall') close();
   });
-  X.addEventListener('click',close); scrim.addEventListener('click',close);
+  X.addEventListener('click',close);
   document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'&&pane.classList.contains('open')) close(); });
   document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){ if(pane.classList.contains('open')) close(); });});
 })();
