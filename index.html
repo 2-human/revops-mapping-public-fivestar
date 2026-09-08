@@ -222,7 +222,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     <a href="#gaps">Limitations</a>
   </nav>
   <div class="meta">
-    Draft 1 · 10 Aug 2026<br>
+    Draft 1 · captured 10–11 Aug 2026<br>Model revised 8 Sep 2026<br>
     Public evidence only —<br>no portal access used.<br><br>
     HubSpot portal <strong style="color:#cfe0f0">8733520</strong>
   </div>
@@ -718,7 +718,8 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 <section class="view" id="v-model">
   <p class="eyebrow">Section 9 — the part that needs your argument</p>
   <h2>The model, populated</h2>
-  <p class="lede">Every class filled with the instances the analysis actually turned up. Populating it is the test: four things the abstract version got wrong only became visible once real instances went in. Those are at the bottom, and they are the decisions to make.</p>
+  <p class="lede">Every class filled with the instances the analysis actually turned up. Populating it is the test: five things the abstract version got wrong only became visible once real instances went in. All five are now <strong>applied</strong>, so the model below is the current one rather than a proposal. What changed, and why, is at the bottom.</p>
+  <p class="muted" style="margin:-6px 0 22px">Ten classes. <code>Status / role</code> was removed; <code>Person</code> and <code>Placement</code> were added. Revised 8 September 2026.</p>
 
   <h3>Class inventory <button id="expand-all" class="review-btn" type="button" style="float:right;font:600 12px/1 var(--sans);padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;color:var(--ink-2)">Expand all</button></h3>
   <p class="hint">Click a class to see its instances.</p>
@@ -804,33 +805,44 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     <button class="classhead" type="button" aria-expanded="false">
       <span class="cname">Social channel</span>
       <span class="cnum">13<small>instances</small></span>
-      <span class="cchange">podcast endpoints reclassified</span>
+      <span class="cchange">podcast endpoints moved to Placement</span>
       <span class="chev">&#9660;</span>
     </button>
     <div class="classbody" hidden>
-<div class="tablewrap"><table><thead><tr><th>Network</th><th>Instances</th><th>Belongs to</th></tr></thead><tbody><tr><td>LinkedIn — company</td><td class="mono">/company/five-star-institute (4K) · /company/themortgagepoint (7K)</td><td>FSI · MortgagePoint</td></tr><tr><td>LinkedIn — showcase</td><td class="mono">/showcase/legal-league (2K) · /showcase/federation-of-reo-certified-experts (166) · /showcase/national-mortgage-servicing-association (119)</td><td>Legal League · FORCE · NMSA</td></tr><tr><td>X</td><td class="mono">@FiveStarInst · @FiveStarFORCE · @mortgage_point1</td><td>FSI · FORCE · MP</td></tr><tr><td>Facebook</td><td class="mono">/thefivestar · /FiveStarFORCE · /mortgagepointmp</td><td>FSI · FORCE · MP</td></tr><tr class="dark-row"><td>Facebook</td><td class="mono">profile.php?… — appears to be a personal profile, not a Page</td><td>Legal League</td></tr><tr><td>YouTube</td><td class="mono">channel/UCB2VOowQB7zxrxFzYAC60sg</td><td>FSI</td></tr></tbody></table></div><p class="muted">The 5 podcast endpoints (Apple, Spotify, Amazon, iHeart, Buzzsprout) were <strong>removed from this class</strong> — see refinement 3 below.</p>
+<div class="tablewrap"><table><thead><tr><th>Network</th><th>Instances</th><th>Belongs to</th></tr></thead><tbody><tr><td>LinkedIn — company</td><td class="mono">/company/five-star-institute (4K) · /company/themortgagepoint (7K)</td><td>FSI · MortgagePoint</td></tr><tr><td>LinkedIn — showcase</td><td class="mono">/showcase/legal-league (2K) · /showcase/federation-of-reo-certified-experts (166) · /showcase/national-mortgage-servicing-association (119)</td><td>Legal League · FORCE · NMSA</td></tr><tr><td>X</td><td class="mono">@FiveStarInst · @FiveStarFORCE · @mortgage_point1</td><td>FSI · FORCE · MP</td></tr><tr><td>Facebook</td><td class="mono">/thefivestar · /FiveStarFORCE · /mortgagepointmp</td><td>FSI · FORCE · MP</td></tr><tr class="dark-row"><td>Facebook</td><td class="mono">profile.php?… — appears to be a personal profile, not a Page</td><td>Legal League</td></tr><tr><td>YouTube</td><td class="mono">channel/UCB2VOowQB7zxrxFzYAC60sg</td><td>FSI</td></tr></tbody></table></div><p class="muted">The 5 podcast endpoints (Apple, Spotify, Amazon, iHeart, Buzzsprout) were <strong>moved out of this class</strong> into <strong>Placement</strong> — see refinements 3 and 5 below.</p>
     </div>
   </div>
   <div class="classrow" data-class="person">
     <button class="classhead" type="button" aria-expanded="false">
-      <span class="cname">Person<span class="flag">missing</span></span>
+      <span class="cname">Person<span class="flag" style="color:var(--ok)">added</span></span>
       <span class="cnum">23<small>observed</small></span>
-      <span class="cchange">never declared as a class</span>
+      <span class="cchange">now a declared class</span>
       <span class="chev">&#9660;</span>
     </button>
     <div class="classbody" hidden>
-<p class="muted" style="margin-bottom:10px">Used in two of the ten original edges, declared in none of the nine classes. 23 instances had nowhere to live.</p><div class="tablewrap"><table><thead><tr><th>Where</th><th>Named</th><th>Private / partial</th><th>Not visible</th></tr></thead><tbody><tr><td>Five Star Institute</td><td>6</td><td>4</td><td>30 of 40</td></tr><tr><td>MortgagePoint</td><td>2</td><td>11</td><td>37 of 50</td></tr></tbody></table></div><p class="muted">Roles observed: President &amp; CFO · Executive Director · National Director, FORCE · Director of Client Fulfillment, FORCE · Director of Course Development · Conference Coordinator · Director of Video Productions · Senior Web Developer · Reporter/Editor · Editor · Online Editor · Executive Assistant · Event Coordinator · Account Manager · VP of Experience. Full list in <a href="#members">Members</a>.</p>
+<p class="muted" style="margin-bottom:10px">Was used in two of the ten original edges and declared in none of the nine classes. 23 instances had nowhere to live, which is what exposed it. Now declared.</p><div class="tablewrap"><table><thead><tr><th>Where</th><th>Named</th><th>Private / partial</th><th>Not visible</th></tr></thead><tbody><tr><td>Five Star Institute</td><td>6</td><td>4</td><td>30 of 40</td></tr><tr><td>MortgagePoint</td><td>2</td><td>11</td><td>37 of 50</td></tr></tbody></table></div><p class="muted">Roles observed: President &amp; CFO · Executive Director · National Director, FORCE · Director of Client Fulfillment, FORCE · Director of Course Development · Conference Coordinator · Director of Video Productions · Senior Web Developer · Reporter/Editor · Editor · Online Editor · Executive Assistant · Event Coordinator · Account Manager · VP of Experience. Full list in <a href="#members">Members</a>.</p>
+    </div>
+  </div>
+  <div class="classrow" data-class="placement">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Placement<span class="flag" style="color:var(--ok)">added</span></span>
+      <span class="cnum">5<small>instances</small></span>
+      <span class="cchange">used in an edge, declared in no class</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<p class="muted" style="margin-bottom:10px">Where a rendition of a media property is <em>exposed</em>, as distinct from an owned presence that publishes. All five belong to the MP Access Show.</p><div class="tablewrap"><table><thead><tr><th>Placement</th><th>Identifier</th><th>Role</th></tr></thead><tbody><tr><td>Apple Podcasts</td><td class="mono">id1709569469</td><td>syndicated endpoint</td></tr><tr><td>Spotify</td><td class="mono">6sg0WMmsoB8yTs4D0u7hZd</td><td>syndicated endpoint</td></tr><tr><td>Amazon Music</td><td class="mono">&mdash;</td><td>syndicated endpoint</td></tr><tr><td>iHeart</td><td class="mono">&mdash;</td><td>syndicated endpoint</td></tr><tr class="dark-row"><td><strong>Buzzsprout RSS</strong></td><td class="mono">2247935</td><td>the feed the other four syndicate from &mdash; Buzzsprout is also the hosting <strong>platform</strong>, and keeps both roles</td></tr></tbody></table></div><p class="muted">Declaring this class also gives the <a href="#defects">defect matrix</a>&rsquo;s <em>dark placement</em> and <em>broken placement</em> rows a node to attach to. They had none before.</p>
     </div>
   </div>
   <div class="classrow" data-class="status">
     <button class="classhead" type="button" aria-expanded="false">
-      <span class="cname">Status / role<span class="flag">demote</span></span>
+      <span class="cname"><s>Status / role</s><span class="flag">removed</span></span>
       <span class="cnum">0<small>nodes</small></span>
-      <span class="cchange">should not be a class</span>
+      <span class="cchange">now an attribute on holds_status_in</span>
       <span class="chev">&#9660;</span>
     </button>
     <div class="classbody" hidden>
-<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Evidence</th><th>Status</th></tr></thead><tbody><tr><td><strong>Founding Institutional Partner</strong></td><td>Source IA</td><td><span class="tag t-warn">unverified</span></td></tr><tr class="dark-row"><td><em>All other tiers</em></td><td>The source IA’s own “…” — tiers live inside Wild Apricot</td><td><span class="tag t-bad">not externally visible</span></td></tr></tbody></table></div><p class="muted">Populating produced <strong>zero nodes and two attributes</strong>. That is the evidence for refinement 2 below.</p>
+<div class="tablewrap"><table><thead><tr><th>Instance</th><th>Evidence</th><th>Status</th></tr></thead><tbody><tr><td><strong>Founding Institutional Partner</strong></td><td>Source IA</td><td><span class="tag t-warn">unverified</span></td></tr><tr class="dark-row"><td><em>All other tiers</em></td><td>The source IA’s own “…” — tiers live inside Wild Apricot</td><td><span class="tag t-bad">not externally visible</span></td></tr></tbody></table></div><p class="muted">Populating produced <strong>zero nodes and two attributes</strong>. Kept here as the evidence for refinement 2. It is no longer a class: a tier is the <code>status</code> value on a <code>holds_status_in</code> edge, so a tier nobody holds simply does not appear.</p>
     </div>
   </div>
   </div>
@@ -852,22 +864,31 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 <span class="n">Person</span>           <span class="e">--holds_role_in--&gt;</span>   Community, Media property, Organization
   </div>
 
-  <h3>What populating exposed</h3>
+  <h3>What populating exposed, and what changed</h3>
+  <p class="muted" style="margin:-10px 0 18px">All five are applied. The class list above is the revised model.</p>
 
   <div class="callout bad">
-    <p><strong>1. Person was never declared as a class.</strong> It appears in two of the ten original edges and in none of the nine classes. The abstract model was internally inconsistent and nobody noticed until there were twenty-three of them to put somewhere. <strong>Add it — that makes ten classes.</strong></p>
+    <p><strong>1. Person was never declared as a class.</strong> It appears in two of the ten original edges and in none of the nine classes. The abstract model was internally inconsistent and nobody noticed until there were twenty-three of them to put somewhere. <strong>Added.</strong></p>
   </div>
 
   <div class="callout bad">
-    <p><strong>2. "Status / role" is not a class — it is an edge property.</strong> Populating it produced zero nodes and two attributes. "Founding Institutional Partner" is not a thing in the world that exists independently; it is the value on a <code>holds_status_in</code> edge between a person or company and a membership group. Modelling it as a node would create an orphan for every tier. <strong>Demote it to an edge attribute.</strong></p>
+    <p><strong>2. "Status / role" is not a class — it is an edge property.</strong> Populating it produced zero nodes and two attributes. "Founding Institutional Partner" is not a thing in the world that exists independently; it is the value on a <code>holds_status_in</code> edge between a person or company and a membership group. Modelling it as a node would create an orphan for every tier. <strong>Removed as a class; it is now the <code>status</code> attribute on that edge.</strong></p>
   </div>
 
   <div class="callout">
-    <p><strong>3. Podcast distribution endpoints are placements, not social channels.</strong> Apple, Spotify, Amazon and iHeart are where one media property is <em>exposed</em> — they are not owned presences that publish. Lumping them into Social channel inflated that class and hid the fact that the asset layer's <strong>placement</strong> concept already covers them exactly. Social channel is 13; the five podcast endpoints belong to the asset model.</p>
+    <p><strong>3. Podcast distribution endpoints are placements, not social channels.</strong> Apple, Spotify, Amazon and iHeart are where one media property is <em>exposed</em> — they are not owned presences that publish. Lumping them into Social channel inflated that class and hid the fact that the asset layer's <strong>placement</strong> concept already covers them exactly. Social channel is 13; the five podcast endpoints belong to the asset model. <strong>Moved to Placement.</strong></p>
   </div>
 
   <div class="callout">
-    <p><strong>4. Three self-referential edges are missing.</strong> Organizations have parents (Five Star Global), media properties have successors (DS News → MortgagePoint), and events have sub-events (the Awards Luncheon inside FSC2026). Without them, the retired brands and the corporate parent have nowhere to live — which is exactly why they went missing from the source IA in the first place.</p>
+    <p><strong>4. Three self-referential edges were missing.</strong> Organizations have parents (Five Star Global), media properties have successors (DS News → MortgagePoint), and events have sub-events (the Awards Luncheon inside FSC2026). Without them, the retired brands and the corporate parent have nowhere to live — which is exactly why they went missing from the source IA in the first place. <strong>Present in the edge list above.</strong></p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>5. <code>Placement</code> had the same defect as <code>Person</code>, and applying refinement 3 exposed it.</strong> Moving the podcast endpoints out of Social channel meant naming where they went &mdash; and <code>Placement</code> turned out to be referenced by the <code>distributed_to</code> edge while appearing in no class list. Two of the ten classes were undeclared, and both were discoverable only by trying to put something in them. <strong>Declared, with 5 instances.</strong></p>
+  </div>
+
+  <div class="callout">
+    <p><strong>The pattern worth carrying forward.</strong> Both undeclared classes sat in the <em>edge</em> list and not the <em>class</em> list. An IA drafted class-first will keep doing this, because edges get written to describe a relationship without checking that both ends exist. A validation rule that reads every edge and asserts both endpoints are declared classes would have caught <code>Person</code> and <code>Placement</code> before either was populated.</p>
   </div>
 
   <h3>Confidence</h3>
