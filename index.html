@@ -78,6 +78,60 @@ td.mono,th.mono{font-family:var(--mono);font-size:12px}
 
 ul.clean{margin:0 0 14px;padding-left:20px} ul.clean li{margin-bottom:6px;max-width:76ch}
 
+/* ---- forms inventory ---- */
+.pg{border:1px solid var(--line);border-radius:8px;margin:0 0 12px;overflow:hidden;background:var(--bg)}
+.pg-h{padding:10px 14px;background:var(--bg-2);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.pg-h a{font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none;word-break:break-all}
+.pg-h a:hover{text-decoration:underline}
+.pg-t{font-size:12.5px;color:var(--ink-3)}
+.fm{padding:12px 14px;border-top:1px solid var(--line-2)}
+.fm:first-of-type{border-top:none}
+.fm-h{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:0 0 8px}
+.fm-t{font-size:11.5px;font-weight:680;text-transform:uppercase;letter-spacing:.05em;color:var(--ok)}
+.fm.nohs .fm-t{color:var(--bad)}
+.fm-l{font-size:12px;color:var(--accent);text-decoration:none;font-weight:600}
+.fm-l:hover{text-decoration:underline}
+.fm-w{font-size:12.5px;color:var(--bad);background:var(--bad-bg);border-radius:6px;padding:7px 10px;margin:0 0 10px;max-width:none}
+.fm-o{font-size:11.5px;color:var(--ink-2);line-height:1.5}
+.fm .req{color:var(--bad);font-weight:700}
+.fm td.sug{color:var(--warn);font-style:italic}
+.fm table{font-size:12.5px}
+.fm td{vertical-align:top}
+
+/* ---- form clusters ---- */
+.cl-sig{font-family:var(--mono);font-size:12px;color:var(--ink-2);background:var(--bg-3);border-radius:6px;padding:8px 11px;margin:0 0 10px;max-width:none;line-height:1.6}
+.cl-list{list-style:none;margin:0;padding:0}
+.cl-list li{padding:7px 0;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.cl-list li:last-child{border-bottom:none}
+.cl-list a{font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none;word-break:break-all}
+.cl-list a:hover{text-decoration:underline}
+.cl-n{font-size:11.5px}
+.vm td.y{color:var(--ok);font-weight:700;text-align:center}
+.vm td.n{color:var(--line);text-align:center}
+.vm td.alt{color:var(--warn);font-weight:650;text-align:center;font-size:11.5px}
+
+/* ---- correspondence map ---- */
+.cmap-legend{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 22px;padding:12px 16px;background:var(--bg);border:1px solid var(--line);border-radius:10px;font-size:12.5px;color:var(--ink-2)}
+.cmap-legend .k{display:flex;align-items:center;gap:7px}
+.cmap-legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
+.cmap-band{margin:0 0 26px}
+.cmap-band h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-weight:680;margin:0 0 4px}
+.cmap-band .sub{font-size:13px;color:var(--ink-3);margin:0 0 12px;max-width:70ch}
+.cmap-row{display:grid;grid-template-columns:minmax(150px,1fr) minmax(220px,1.7fr) auto;gap:16px;align-items:start;
+  background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--ink-3);border-radius:8px;padding:13px 16px;margin-bottom:8px}
+.cmap-row.ok{border-left-color:var(--ok)}
+.cmap-row.warn{border-left-color:var(--warn)}
+.cmap-row.bad{border-left-color:var(--bad)}
+.cmap-row .a{font-weight:640;font-size:14px;letter-spacing:-.01em}
+.cmap-row .a small{display:block;font-weight:400;color:var(--ink-3);font-size:12px;margin-top:3px;line-height:1.45}
+.cmap-row .b{font-size:13px;color:var(--ink-2);line-height:1.5}
+.cmap-row .b em{color:var(--ink-3);font-style:normal}
+.cmap-row .c{text-align:right;white-space:nowrap;padding-top:1px}
+@media(max-width:860px){
+  .cmap-row{grid-template-columns:1fr;gap:8px}
+  .cmap-row .c{text-align:left}
+}
+
 .tm-div{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);margin:11px 0 7px;padding-top:9px;border-top:1px dashed var(--line)}
 .tm-chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
 /* cross-cutting chips carry .tm-chip.x, equal specificity to the pressed rule, so its
@@ -210,6 +264,9 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
   </div>
   <nav id="nav">
     <a href="#overview" class="active">Overview</a>
+    <a href="#corr">Correspondence map</a>
+    <a href="#portal">Inside HubSpot <span class="n">8733520</span></a>
+    <a href="#forms">Where the forms are <span class="n">63</span></a>
     <a href="#estate">Digital estate <span class="n">19</span></a>
     <a href="#matrix">Instrumentation <span class="n">11</span></a>
     <a href="#funnel">Inbound funnel</a>
@@ -218,20 +275,26 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     <a href="#members">Members <span class="n">23</span></a>
     <a href="#topics">Topical map <span class="n">49</span></a>
     <a href="#model">The model <span class="n">10+13</span></a>
-    <a href="#defects">Defects <span class="n">7</span></a>
+    <a href="#defects">Defects <span class="n">17</span></a>
     <a href="#gaps">Limitations</a>
   </nav>
   <div class="meta">
-    Draft 1 · captured 10–11 Aug 2026<br>Model revised 8 Sep 2026<br>
-    Public evidence only —<br>no portal access used.<br><br>
-    HubSpot portal <strong style="color:#cfe0f0">8733520</strong>
+    Draft 2 · 8 Sep 2026<br><br>
+    <strong style="color:#cfe0f0">Two evidence bases</strong><br>
+    Outside view — 10–11 Aug<br>
+    Portal read — 8 Sep<br><br>
+    HubSpot portal <strong style="color:#cfe0f0">8733520</strong><br>
+    <span style="opacity:.75">read-only · nothing written</span>
   </div>
 </aside>
 
 <main>
 
 <div class="standing">
-  <strong>What this is based on.</strong> Everything on this page is derived from <strong>externally observable evidence as of 10 August 2026</strong> — page source, DNS records, tracking identifiers, robots.txt and sitemaps, and public professional profiles. <strong>No account, portal or system access was used, and no one at the organisation has been spoken to.</strong> Findings therefore describe what is visible from outside, not what is true inside: absence of evidence here is not evidence of absence, and an internal explanation may exist for anything below. Counts and classifications are proposals against the information available so far, and will move as access widens.
+  <strong>What this is based on — two separate evidence bases, kept apart on purpose.</strong>
+  <strong>The outside view (10–11 August 2026)</strong> is derived from externally observable evidence only: page source, DNS records, tracking identifiers, robots.txt and sitemaps, and public professional profiles. No account or system access was used for it. That is every section from <a href="#estate">Digital estate</a> onward.
+  <strong>The portal read (8 September 2026)</strong> is a read-only inspection of HubSpot portal 8733520 through an authenticated connector: schema, property definitions and aggregate queries. <strong>Nothing was written to the portal.</strong> That is the <a href="#corr">Correspondence map</a> and <a href="#portal">Inside HubSpot</a>.
+  Where the two disagree, the portal wins on what the CRM contains and the outside view wins on what the estate reaches. Neither covers workflows, forms or saved reports, which the connector cannot read. No one at the organisation has been spoken to, so nothing here reflects intent — an internal explanation may exist for anything below.
   <div class="key">
     <span class="k"><span class="tag t-ok">confirmed</span> direct evidence captured</span>
     <span class="k"><span class="tag t-warn">unverified</span> single source, untested</span>
@@ -241,33 +304,648 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ OVERVIEW ============ -->
 <section class="view active" id="v-overview">
-  <p class="eyebrow">Draft 1 for review</p>
-  <h2>Five Star Institute — digital estate &amp; information architecture</h2>
-  <p class="lede">Built entirely from externally observable evidence: HTML source, script hosts, meta generators, tracking IDs, DNS records, and logged-in review of the social estate. No HubSpot access was used to produce any of this.</p>
+  <p class="eyebrow">Draft 2 for review · outside view + portal read</p>
+  <h2>Five Star Global — digital estate, and what HubSpot holds of it</h2>
+  <p class="lede">Draft 1 mapped the estate from the outside, with no account access. Draft 2 adds a read-only pass over HubSpot portal 8733520. The two are kept separate throughout, because the outside view's value depends on it having been produced without inside knowledge — and because, on two points, the portal proved it wrong.</p>
 
   <div class="grid g3" style="margin:24px 0 26px">
     <div class="stat"><div class="v">19</div><div class="l">Digital properties</div></div>
-    <div class="stat"><div class="v">12</div><div class="l">Platforms in play</div></div>
     <div class="stat bad"><div class="v">6&nbsp;of&nbsp;11</div><div class="l">Key surfaces dark to HubSpot</div></div>
-    <div class="stat bad"><div class="v">7</div><div class="l">Dead analytics tags</div></div>
+    <div class="stat bad"><div class="v">93.2%</div><div class="l">Contacts with no digital source</div></div>
+    <div class="stat bad"><div class="v">71%</div><div class="l">Deals outside every pipeline</div></div>
   </div>
 
   <div class="callout bad">
-    <p><strong>The headline, stated to the limit of the evidence.</strong> The member-facing directory and join flow run on <strong>Wild Apricot</strong>, on a vendor subdomain, carrying no HubSpot tracking and one dead Universal Analytics tag. Five of the six membership-group websites, and the flagship conference site, likewise carry no HubSpot tracking in their page source.</p>
-    <p>What that supports: <strong>member behaviour on those surfaces reaches no analytics and no CRM.</strong> What it does not establish: whether member <em>records</em> nonetheless reach HubSpot by an integration, export or manual upload — a back-channel of that kind would not be visible from outside. On the evidence available, membership appears to be the core product and the least measured part of the estate; confirming that needs a look inside.</p>
+    <p><strong>The headline.</strong> The member-facing directory and join flow run on <strong>Wild Apricot</strong>, five of six membership-group websites and the flagship conference site carry no HubSpot tracking, and inside the CRM <strong>93.2% of contacts have no digital acquisition source at all</strong>. The question <em>"which channel brings us members?"</em> cannot be answered — not because the data is untidy, but because it was never collected.</p>
+    <p><strong>What the portal changed.</strong> August could not tell whether member <em>records</em> nonetheless reached HubSpot by some route invisible from outside. They do — through custom middleware written for this estate, matching on email address. So the correction is narrower and sharper than the original claim: records cross, <strong>behaviour does not</strong>, and only 2% of contacts carry a membership status at all. Swoogo turned out to be integrated too, writing 3,693 event registrations into the deal object with no pipeline, no stage and no value.</p>
+    <p>The <a href="#corr">correspondence map</a> puts every revenue stream, asset and topic against what the CRM holds of it.</p>
   </div>
 
   <h3>The structural observation</h3>
   <p>MortgagePoint — the advertising-monetized media brand — has 7,000 LinkedIn followers to the institute's 4,000, sits on a full company page rather than a showcase page, and is the best-instrumented property in the estate. The membership groups sit on showcase pages with 119–2,000 followers and mostly dark websites.</p>
-  <p><strong>On what is observable, the estate is instrumented in inverse proportion to its apparent commercial importance.</strong> Media, which monetizes through advertising, is measured well. Membership, which monetizes through dues and events, is barely measured at all. This is an interpretation of the pattern, not a finding — the underlying counts are in <a href="#matrix">Instrumentation</a>.</p>
+  <p><strong>On what is observable, the estate is instrumented in inverse proportion to its apparent commercial importance.</strong> Media, which monetizes through advertising, is measured well. Membership, which monetizes through dues and events, is barely measured at all. The underlying counts are in <a href="#matrix">Instrumentation</a>.</p>
+  <p><strong>The portal read supports this from the inside.</strong> HubSpot records $3.65M of won deals, and effectively all of it is sponsorship and exhibitor sales. Membership dues reach the CRM as a status string and never as revenue; event registration reaches it as 3,693 deals worth $0.00. The system is configured for the business that sells to organisations, not the one that serves members.</p>
 
   <h3>How to review this</h3>
-  <p>Click the review button, then click any element to comment on it. The thing I most need argued with is the <a href="#model" data-review-skip style="color:var(--accent)">proposed model</a> — nine node classes and ten edge types. It is far cheaper to change now than after sixty node files exist.</p>
+  <p>Click the review button, then click any element to comment on it. Two things are most worth arguing with: the <a href="#corr" data-review-skip style="color:var(--accent)">correspondence map</a>, where an internal explanation may exist for any row and would change the reading; and the <a href="#model" data-review-skip style="color:var(--accent)">proposed model</a>, which is cheaper to change now than once node files exist.</p>
+  <p class="muted">Draft 1 said this review listed seven membership groups. The portal shows eight — AM&amp;AA, which is larger than the other seven combined by member count. Sections 4 onward are the August outside view and have not been rewritten around that; they are left as captured, with the correction carried here and in the correspondence map.</p>
+</section>
+
+<!-- ============ CORRESPONDENCE MAP ============ -->
+<section class="view" id="v-corr">
+  <p class="eyebrow">Section 2 · portal read, 8 Sep 2026</p>
+  <h2>Correspondence map</h2>
+  <p class="lede">One question, asked of every part of the business: <strong>is it in HubSpot, and in a form you could report on?</strong> The left column is what exists. The middle is what the CRM actually holds. Nothing here is about tidiness — it is about whether the system can answer a question you would want to ask it.</p>
+
+  <div class="grid g3" style="margin:24px 0 26px">
+    <div class="stat"><div class="v">1<span style="font-size:18px;color:var(--ink-3)"> of 6</span></div><div class="l">Revenue streams fully visible</div></div>
+    <div class="stat ok"><div class="v">$3.65M</div><div class="l">Recorded — all of it sponsorship</div></div>
+    <div class="stat bad"><div class="v">0<span style="font-size:18px;color:var(--ink-3)"> of 49</span></div><div class="l">Topics modelled in the CRM</div></div>
+    <div class="stat bad"><div class="v">2%</div><div class="l">Contacts carrying a membership status</div></div>
+  </div>
+
+  <div class="cmap-legend">
+    <span class="k"><span class="sw" style="background:var(--ok)"></span> <strong>In HubSpot</strong> — present and reportable</span>
+    <span class="k"><span class="sw" style="background:var(--warn)"></span> <strong>Partial</strong> — some of it crosses, some does not</span>
+    <span class="k"><span class="sw" style="background:var(--bad)"></span> <strong>Not in HubSpot</strong> — no object, or present in a form nothing can report on</span>
+  </div>
+
+  <div class="cmap-band">
+    <h4>Revenue streams</h4>
+    <p class="sub">How the organisation makes money, against what the CRM records of it.</p>
+
+    <div class="cmap-row ok" data-comment-target>
+      <div class="a">Sponsorship &amp; exhibitor sales<small>Conference and media sponsorship, both brands</small></div>
+      <div class="b">Two pipelines, <strong>415 won deals, $3,653,091</strong> all time. Deal names read plainly as sponsorship — <em>"Raymond James — annual bronze (SC26 + WC27)"</em>. This is the part of the business HubSpot was configured for, and it works.</div>
+      <div class="c"><span class="tag t-ok">in HubSpot</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">Membership dues<small>4,754 member records across 33 tiers</small></div>
+      <div class="b">Wild Apricot is the system of record. A custom sync writes status, tier, join date and renewal date onto contacts. <strong>No money crosses.</strong> The Membership pipeline holds <strong>$21,085</strong> against the whole member base.</div>
+      <div class="c"><span class="tag t-warn">status only</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Event registration<small>Flagship conference plus chapter events</small></div>
+      <div class="b">Swoogo is integrated and writes <strong>3,693 deals — every one with no pipeline, no stage and amount $0.00</strong> — alongside roughly 2.38M notes reading <em>"Registered for…"</em>. The records cross. The revenue and the stage do not.</div>
+      <div class="c"><span class="tag t-bad">records, no revenue</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Certification &amp; courses<small>CM&amp;AA designation, 1,036 members</small></div>
+      <div class="b">A designation business with its own instructor pipeline. In HubSpot it is <strong>one engagement counter</strong>. The portal's only custom object — <code>p8733520_enrollments</code> — could not be read by this audit and is the likely home of the real records.</div>
+      <div class="c"><span class="tag t-bad">not readable</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">Magazine subscription<small>Digital editions</small></div>
+      <div class="b"><strong>43,242 subscribers</strong> recorded — 21,841 under <strong>DS News</strong> and 21,401 under <strong>M Report</strong>. Both brands were retired into MortgagePoint. The subscriber list is real; the product names on it no longer exist.</div>
+      <div class="c"><span class="tag t-warn">retired brand</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Advertising &amp; programmatic<small>Media monetisation</small></div>
+      <div class="b">Google Ads, AdSense across two publisher IDs and Simpli.fi all run on the media properties. There is <strong>no corresponding object, deal or revenue line anywhere in the CRM</strong>.</div>
+      <div class="c"><span class="tag t-bad">absent</span></div>
+    </div>
+  </div>
+
+  <div class="cmap-band">
+    <h4>Assets</h4>
+    <p class="sub">What carries the message, against whether its use reaches the CRM. Two rows here are <strong>revised by the portal read</strong> — the outside view could not see either mechanism.</p>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">19 digital properties<small>8 WordPress installations and others</small></div>
+      <div class="b">HubSpot tracking found on <strong>5 of 19</strong>; four confirmed fully instrumented. The rest pass no session, no source and no page view to the CRM.</div>
+      <div class="c"><span class="tag t-warn">4 of 19</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">6 membership websites<small>FORCE · Legal League · NMSA · MSEA · PPEF · AMDC</small></div>
+      <div class="b"><strong>One of six</strong> carries HubSpot tracking. These sites sell the product with the largest member base, and five of them are dark to the CRM end to end.</div>
+      <div class="c"><span class="tag t-bad">1 of 6</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Flagship conference site<small>fivestarconference.com</small></div>
+      <div class="b">GA4 present, HubSpot absent. The smaller Government Forum carries HubSpot and the flagship does not, so the two events cannot be compared on equal terms.</div>
+      <div class="c"><span class="tag t-bad">dark to CRM</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">Member directory &amp; join<small>Wild Apricot</small></div>
+      <div class="b"><strong>Revised.</strong> Records <em>do</em> cross — by custom middleware written for this estate, matched on email address. Behaviour does not cross at all: no session, no source, no page view. The August reading that this was fully dark was right about the effect and wrong about the mechanism.</div>
+      <div class="c"><span class="tag t-warn">records only</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">Event registration platform<small>Swoogo</small></div>
+      <div class="b"><strong>Revised.</strong> Confirmed integrated, and the portal's single largest record producer — 3,693 deals and 2,946 contacts. It writes event attendance into the <em>deal</em> object rather than an event object, which is why 71% of all deals sit outside every pipeline.</div>
+      <div class="c"><span class="tag t-warn">wrong object</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Podcast<small>MP Access Show, 5 distribution endpoints</small></div>
+      <div class="b">Apple, Spotify, Amazon, iHeart and the Buzzsprout feed. No representation of any kind in HubSpot.</div>
+      <div class="c"><span class="tag t-bad">absent</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">Social — 13 channels<small>LinkedIn, X, Facebook, YouTube</small></div>
+      <div class="b">LinkedIn posts route through <code>hubs.la</code>, HubSpot's own shortener, so those clicks do land. <strong>581 contacts</strong> carry Organic Social as their original source — 0.2% of the database.</div>
+      <div class="c"><span class="tag t-warn">links only</span></div>
+    </div>
+  </div>
+
+  <div class="cmap-band">
+    <h4>Topics &amp; audience</h4>
+    <p class="sub">What the organisation publishes about and who it serves, against whether the CRM can express any of it.</p>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">49 topics · 842 pages<small>See the <a href="#topics">topical map</a></small></div>
+      <div class="b">The publishing estate is organised by a rich, real topic taxonomy — 4,158 page-topic pairs. <strong>No topic or content-interest model exists on any HubSpot object.</strong> The structure that organises the content has no counterpart in the CRM, so no contact can be described by what they read.</div>
+      <div class="c"><span class="tag t-bad">absent</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">4 communities<small>Real Estate · Mortgage Finance · Financial Services Law · Property Preservation</small></div>
+      <div class="b">The public site sorts members into four communities. <strong>There is no community property in HubSpot.</strong> The CRM cannot express which one a contact belongs to, so the segmentation the website presents cannot be acted on in marketing or sales.</div>
+      <div class="c"><span class="tag t-bad">absent</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">8 membership groups<small>Including AM&amp;AA, absent from draft 1</small></div>
+      <div class="b">Present — and modelled <strong>three times over</strong>: nine per-group status properties, a Wild Apricot status, and a legacy <em>"Membership Status (Old)"</em> still live past its own Q2 2026 archival date. They disagree. Active members read as <strong>1,763</strong> or <strong>2,293</strong> depending which you ask.</div>
+      <div class="c"><span class="tag t-warn">triplicated</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Industry focus<small>Segmentation field</small></div>
+      <div class="b">Populated on <strong>10 of 234,633 contacts</strong>, and the stored values are <em>"Option 2"</em> and <em>"Subservicers (Option 3)"</em> — dropdown placeholders that were never replaced with real labels.</div>
+      <div class="c"><span class="tag t-bad">unconfigured</span></div>
+    </div>
+
+    <div class="cmap-row warn" data-comment-target>
+      <div class="a">Member engagement<small>Six counters</small></div>
+      <div class="b">Event registration, webinars, courses, recognition, renewals and publications each have a counter. Coverage is thin: <strong>21,327 contacts (9.1%)</strong> carry a total events count, <strong>10,024 (4.3%)</strong> an event-registration count.</div>
+      <div class="c"><span class="tag t-warn">9% coverage</span></div>
+    </div>
+
+    <div class="cmap-row bad" data-comment-target>
+      <div class="a">Acquisition source<small>Seven entry channels in the estate</small></div>
+      <div class="b"><strong>93.2% of contacts carry "Offline Sources"</strong> and 87.6% arrived by spreadsheet import. Seven distinct entry channels collapse to a single non-answer for fourteen contacts in every fifteen.</div>
+      <div class="c"><span class="tag t-bad">93% offline</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Read across the three bands and the same shape appears in each.</strong> What HubSpot represents well is the part of the business that sells to <em>organisations</em> — sponsorship, exhibitors, media buys. What it represents poorly or not at all is the part that serves <em>members</em> — dues, events, courses, communities, topics.</p>
+    <p>That is consistent with the pattern the outside view found in the estate, and it is worth stating plainly: <strong>the CRM is configured for the smaller of the two businesses.</strong> Membership is the larger product by headcount and the one the brand is built on, and it is the one the system cannot describe.</p>
+  </div>
+</section>
+
+<!-- ============ INSIDE HUBSPOT ============ -->
+<section class="view" id="v-portal">
+  <p class="eyebrow">Section 3 · portal read, 8 Sep 2026</p>
+  <h2>Inside HubSpot</h2>
+  <p class="lede">Read-only inspection of portal 8733520 through an authenticated connector — schema, property definitions and aggregate queries. <strong>Nothing was written to the portal.</strong> This section answers the two questions the August review could not.</p>
+
+  <div class="grid g3" style="margin:24px 0 26px">
+    <div class="stat"><div class="v">234,633</div><div class="l">Contacts</div></div>
+    <div class="stat"><div class="v">5,110</div><div class="l">Deals</div></div>
+    <div class="stat bad"><div class="v">2.38M</div><div class="l">Notes</div></div>
+    <div class="stat bad"><div class="v">94.8%</div><div class="l">Contacts with no owner</div></div>
+  </div>
+
+  <h3>The two boundary questions, answered</h3>
+
+  <div class="callout">
+    <p><strong>1. Wild Apricot does sync — by custom middleware, not a standard integration.</strong> Five contact properties carry Wild Apricot data and their own descriptions document the mechanism, naming an <em>edge function</em> that matches records on email address. That is bespoke code running outside both vendors, which is exactly why it is invisible from the outside and why the August review could not find it.</p>
+    <p>The August conclusion still stands on the part that matters: <strong>records cross, behaviour does not.</strong> Status, tier, join date and renewal date come across. Not one page view, session or source does.</p>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>2. Swoogo also syncs — into the wrong object.</strong> It is the portal's largest record producer: 3,693 deals and 2,946 contacts. Every Swoogo deal arrives with no pipeline, no stage, no owner and an amount of $0.00.</p>
+    <p>This single mechanism explains why <strong>3,613 of 5,110 deals (71%) sit outside every pipeline</strong>. Any pipeline metric computed portal-wide is being measured over a population that is 71% non-transactions.</p>
+  </div>
+
+  <h3>Three findings the outside view could not reach</h3>
+
+  <p><strong>AM&amp;AA is a second membership business.</strong> The member tier list is dominated by AM&amp;AA and CM&amp;AA levels — roughly <strong>3,500 of 4,754 member records, 74% of the member base</strong> — and AM&amp;AA owns the second-largest pipeline at $1.29M won. Draft 1 of this review listed seven membership groups; there are eight, and the missing one is larger than the other seven combined. It also resolves what <strong>Five Star Global</strong> is: the parent holding both brands. That was previously evidenced only by one executive's job title.</p>
+
+  <p><strong>Membership status is recorded three times and the three disagree.</strong> Nine per-group status properties, a Wild Apricot status that declares itself the source of truth, and a legacy property described in its own configuration as <em>"To be archived Q2 2026"</em> — still live and still populated in September. No precedence is declared anywhere. Asked how many active members there are, the portal returns 1,763 or 2,293 depending which model you read. The per-group picture is starker still: FORCE reads 2,003 lapsed against 227 active.</p>
+
+  <p><strong>The deal object is carrying event attendance.</strong> Alongside the 3,693 Swoogo deals, roughly 2.38M notes record the same fact in prose. 99% of those notes date from a 2020 migration, but the practice continues — a note created during this audit reads <em>"Registered for Under the Microscope: How PE is Buying and Building in Healthcare - Austin Chapter Event"</em>. Event attendance is therefore recorded twice, and neither form can be reported on.</p>
+
+  <h3>Pipelines</h3>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Pipeline</th><th>Deals</th><th>Won</th><th>Recorded value</th><th>State</th></tr></thead>
+    <tbody>
+      <tr class="dark-row"><td><em>none — no pipeline set</em></td><td>3,613</td><td>—</td><td>$0.00</td><td><span class="tag t-bad">Swoogo output, outside every pipeline</span></td></tr>
+      <tr><td>AMAA Sales</td><td>765</td><td>230</td><td>$1,292,245</td><td><span class="tag t-ok">Working — form to deal to task</span></td></tr>
+      <tr><td>FSI Sales</td><td>352</td><td>185</td><td>$2,339,761</td><td><span class="tag t-warn">350 of 352 closed; 2 open</span></td></tr>
+      <tr><td>Membership</td><td>300</td><td>18</td><td>$21,085</td><td><span class="tag t-bad">232 stuck in New; no loss ever recorded</span></td></tr>
+      <tr class="dark-row"><td>Events</td><td>80</td><td>80</td><td>$0.00</td><td><span class="tag t-bad">7 stages configured, 1 used</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">Two pipelines carry a second, earlier generation of deal stages. All historical closed deals sit on the legacy stages while the current generation holds almost nothing, so a stage rename or rebuild appears to have been started and not finished. Stage names also differ in case between generations, which prevents reporting across pipelines.</p>
+
+  <h3>Data health</h3>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Measure</th><th class="mono">Count</th><th class="mono">Share</th></tr></thead>
+    <tbody>
+      <tr><td>Contacts with no owner</td><td class="mono">222,384</td><td class="mono">94.8%</td></tr>
+      <tr><td>Contacts with no lifecycle stage</td><td class="mono">127,013</td><td class="mono">54.1%</td></tr>
+      <tr><td>Deals with no pipeline or stage</td><td class="mono">3,613</td><td class="mono">70.7%</td></tr>
+      <tr><td>Companies with no associated contact</td><td class="mono">27,131</td><td class="mono">24.0%</td></tr>
+      <tr><td>Contacts with no email address</td><td class="mono">10,010</td><td class="mono">4.3%</td></tr>
+      <tr><td>Marketing contacts (the billable tier)</td><td class="mono">86,956</td><td class="mono">37.1%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Two of these compound. Because the Wild Apricot sync matches on <strong>email address</strong>, the 10,010 contacts without one can never be matched to a member record regardless of whether a member record exists for them. And lifecycle stage carries 99 marketing-qualified leads against 56,312 leads, so that transition is effectively not being set at all.</p>
+
+  <h3>What could not be read</h3>
+  <p>Four things are closed to this audit, and they bound every conclusion above:</p>
+  <ul class="clean">
+    <li><strong>Workflows.</strong> Not exposed by the connector at all. Every statement here about automation is inferred from its output, never read directly. This is the largest single gap.</li>
+    <li><strong><code>p8733520_enrollments</code></strong> — the portal's only custom object, and on its name the likely home of membership or course records. Needs reauthorisation.</li>
+    <li><strong>Forms and marketing emails.</strong> 16,021 contacts originate from forms whose definitions cannot be read; the email channel cannot be assessed.</li>
+    <li><strong>Saved reports and dashboards.</strong> Disabled for this portal, so what the organisation currently reports on — and the gap between that and the figures above — is unknown.</li>
+  </ul>
+  <p class="muted">Three of the four close with one reauthorisation and one permission change. Workflows and saved reports need a screen share.</p>
+</section>
+
+<!-- ============ FORMS ============ -->
+<section class="view" id="v-forms">
+  <p class="eyebrow">Section 4 &middot; live crawl, 8 Sep 2026</p>
+  <h2>Where the forms are</h2>
+  <p class="lede">Every reachable page on every property, checked for a working capture form. <strong>Click a site to open its pages.</strong> Search boxes, logins and shop carts are excluded; HubSpot forms render client-side, so embeds are detected as well as raw form markup.</p>
+
+  <div class="grid g3" style="margin:24px 0 26px">
+    <div class="stat"><div class="v">1,079</div><div class="l">Pages crawled</div></div>
+    <div class="stat"><div class="v">63</div><div class="l">Capture forms</div></div>
+    <div class="stat ok"><div class="v">31</div><div class="l">Reach HubSpot</div></div>
+    <div class="stat bad"><div class="v">32</div><div class="l">Do not &mdash; across 5 other systems</div></div>
+    <div class="stat warn"><div class="v">29</div><div class="l">Are duplicates of 11 originals</div></div>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>31 of 63 capture forms reach HubSpot. The other 32 are spread across five separate systems.</strong> Every HubSpot form sits on the corporate hub or MortgagePoint. Everywhere else collects through <strong>Ninja Forms</strong> (email only), <strong>Wild Apricot</strong> (two instances), <strong>Swoogo</strong>, <strong>MemberPress</strong> (WordPress accounts), and &mdash; on Legal League&rsquo;s membership application &mdash; <strong>Zoho CRM</strong>.</p>
+    <p>These are not marginal pages. They include new-member applications, membership-tier registration, mentor and mentee applications, and both conference registration flows &mdash; the moments a stranger becomes a member or an attendee.</p>
+    <p><strong>Legal League alone runs three systems on one site.</strong> Its membership application posts to <code>crm.zoho.com/crm/WebToLeadForm</code>, its tier pages create WordPress accounts through MemberPress, and its members join through a second Wild Apricot instance. None of the three is HubSpot.</p>
+  </div>
+
+  <h3>By cluster <button id="expand-clusters" class="review-btn" type="button" style="float:right;font:600 12px/1 var(--sans);padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;color:var(--ink-2)">Expand all</button></h3>
+  <p class="muted" style="margin:0 0 14px">Forms that are the same form. <strong>Identical</strong> means the same fields in the same order; the weaker matches are labelled for what they are. 29 of the 63 forms on the estate belong to a cluster.</p>
+  <div class="card fm-clusters" style="padding:0;overflow:hidden">
+  <div class="classrow" data-cluster="2022 Event Lander">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">2022 Event Lander <span class="tag t-bad" style="margin-left:8px">identical</span></span>
+      <span class="cnum">3<small>forms</small></span>
+      <span class="cchange">Identical</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">firstname &middot; lastname &middot; email &middot; profession_fsi</p>
+      <ul class="cl-list"><li><a href="https://thefivestar.com/2022-di-symposium-lander/" target="_blank" rel="noopener">thefivestar.com/2022-di-symposium-lander</a> <span class="pg-t">D&amp;I Symposium</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/1248328b-59b4-48ec-8b06-cd8afd0815cf/edit/form" target="_blank" rel="noopener">1248328b &rarr;</a></li><li><a href="https://thefivestar.com/2022-government-forum-lander/" target="_blank" rel="noopener">thefivestar.com/2022-government-forum-lander</a> <span class="pg-t">Government Forum</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/6d8af101-44f4-4aaf-9c7e-95016defddee/edit/form" target="_blank" rel="noopener">6d8af101 &rarr;</a></li><li><a href="https://thefivestar.com/2022-ll100-lander/" target="_blank" rel="noopener">thefivestar.com/2022-ll100-lander</a> <span class="pg-t">LL100</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/2a4ffe70-e2d7-440d-ae19-57c97ae90b52/edit/form" target="_blank" rel="noopener">2a4ffe70 &rarr;</a></li></ul>
+      <p class="muted" style="margin:8px 0 0">Three separate forms for three 2022 events, still live. <strong>Nothing records which event a submission came from</strong> &mdash; no campaign field, no hidden source. One form would do the work of three, and would know the difference.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Standard Contact Us">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Standard Contact Us <span class="tag t-bad" style="margin-left:8px">identical</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Identical</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">firstname &middot; lastname &middot; email &middot; message</p>
+      <ul class="cl-list"><li><a href="https://themortgagepoint.com/contact-us/" target="_blank" rel="noopener">themortgagepoint.com/contact-us</a> <span class="pg-t">MortgagePoint</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/8ac255d5-8649-4645-93ad-87b96b16ef8d/edit/form" target="_blank" rel="noopener">8ac255d5 &rarr;</a></li><li><a href="https://themsea.com/contact-us/" target="_blank" rel="noopener">themsea.com/contact-us</a> <span class="pg-t">MSEA</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/9b8ce575-a356-4213-bb07-3dadfd6959dc/edit/form" target="_blank" rel="noopener">9b8ce575 &rarr;</a></li></ul>
+      <p class="muted" style="margin:8px 0 0">The same form serves <strong>two different brands on two different domains</strong>, with no field recording which. Once submitted, a MortgagePoint enquiry and an MSEA enquiry are indistinguishable.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Brand-Tagged Lander">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Brand-Tagged Lander <span class="tag t-bad" style="margin-left:8px">identical</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Identical</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">firstname &middot; lastname &middot; email &middot; profession_fsi &middot; association</p>
+      <ul class="cl-list"><li><a href="https://thefivestar.com/key_concepts/" target="_blank" rel="noopener">thefivestar.com/key_concepts</a> <span class="pg-t">Realtor Lead Gen</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/611edcb7-f597-43ea-a156-9cfede099247/edit/form" target="_blank" rel="noopener">611edcb7 &rarr;</a></li><li><a href="https://thefivestar.com/velocity/" target="_blank" rel="noopener">thefivestar.com/velocity</a> <span class="pg-t">Velocity</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/56f697bb-3575-4a6a-a6e2-551ac813a031/edit/form" target="_blank" rel="noopener">56f697bb &rarr;</a></li></ul>
+      <p class="muted" style="margin:8px 0 0">Identical field list and order. <code>association</code> records FSI or AMAA, so these two at least know which brand they belong to.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Bare Email Capture">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Bare Email Capture <span class="tag t-warn" style="margin-left:8px">same fields, different order</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Same fields, different order</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">firstname &middot; lastname &middot; email</p>
+      <ul class="cl-list"><li><a href="https://thefivestar.com/velocity-stay-informed-sign-up-for-exclusive-updates-and-offers/" target="_blank" rel="noopener">thefivestar.com/velocity-stay-informed-sign-up-for-exclusive-updates-and-offers</a> <span class="pg-t">Velocity updates</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/49c5db94-0100-4647-b556-f4961769dc8e/edit/form" target="_blank" rel="noopener">49c5db94 &rarr;</a></li><li><a href="https://themortgagepoint.com/playground/" target="_blank" rel="noopener">themortgagepoint.com/playground</a> <span class="pg-t">_playground</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/044f2bf9-b038-48b5-91ff-b77313124421/edit/form" target="_blank" rel="noopener">044f2bf9 &rarr;</a> <span class="cl-n"><span class="tag t-bad">test page, live</span></span></li></ul>
+      <p class="muted" style="margin:8px 0 0">The minimum viable form. One of the two sits on a page named <code>_playground</code> &mdash; live, indexed by the crawl, and collecting real submissions.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Qualified Lead Lander">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Qualified Lead Lander <span class="tag t-warn" style="margin-left:8px">same fields, different order</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Same fields, different order</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">firstname &middot; lastname &middot; email &middot; profession_fsi &middot; association &middot; phone</p>
+      <ul class="cl-list"><li><a href="https://fivestarforce.com/reo-connect-lander/" target="_blank" rel="noopener">fivestarforce.com/reo-connect-lander</a> <span class="pg-t">REO Connect</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/fe06f1d0-f56f-4748-8e8f-40cb73f4fbc4/edit/form" target="_blank" rel="noopener">fe06f1d0 &rarr;</a></li><li><a href="https://thefivestar.com/advertising-lander/" target="_blank" rel="noopener">thefivestar.com/advertising-lander</a> <span class="pg-t">Advertising</span> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/87e5028c-5d41-4b54-b852-182f5a92f2ff/edit/form" target="_blank" rel="noopener">87e5028c &rarr;</a></li></ul>
+      <p class="muted" style="margin:8px 0 0">Same six fields in a different sequence, across two different domains.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Mentorship Application">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Mentorship Application <span class="tag t-warn" style="margin-left:8px">cloned, then diverged</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Cloned, then diverged</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">Ninja Forms &mdash; 10 shared field keys with <strong>identical creation timestamps</strong></p>
+      <ul class="cl-list"><li><a href="https://mortgagediversitycouncil.com/mentor-application/" target="_blank" rel="noopener">mortgagediversitycouncil.com/mentor-application</a> <span class="pg-t">Mentor</span></li><li><a href="https://mortgagediversitycouncil.com/mentee-application/" target="_blank" rel="noopener">mortgagediversitycouncil.com/mentee-application</a> <span class="pg-t">Mentee</span></li></ul>
+      <p class="muted" style="margin:8px 0 0">Provably one form duplicated from the other: <code>first_name_1510179286270</code>, <code>what_time_of_day_works_best_for_you_1515540487340</code> and eight more carry the same generated suffix in both. Mentor has 18 fields, mentee 23. Neither reaches HubSpot.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="AMDC Roster Form">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">AMDC Roster Form <span class="tag t-warn" style="margin-left:8px">shared identity block</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Shared identity block</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">First name &middot; Last name &middot; Title &middot; Company &middot; Email &middot; Phone &middot; <em>+ tail</em></p>
+      <ul class="cl-list"><li><a href="https://mortgagediversitycouncil.com/executive-council-election/" target="_blank" rel="noopener">mortgagediversitycouncil.com/executive-council-election</a> <span class="pg-t">Council election</span></li><li><a href="https://mortgagediversitycouncil.com/meeting-rsvp/" target="_blank" rel="noopener">mortgagediversitycouncil.com/meeting-rsvp</a> <span class="pg-t">Meeting RSVP</span></li></ul>
+      <p class="muted" style="margin:8px 0 0">Same six-field identity block, different tail question. Ninja Forms; submits by email only.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Ninja Contact Us">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Ninja Contact Us <span class="tag t-bad" style="margin-left:8px">same purpose, different tool</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Same purpose, different tool</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">Name &middot; Email &middot; Phone / Organization &middot; Message</p>
+      <ul class="cl-list"><li><a href="https://mortgagediversitycouncil.com/contact-us/" target="_blank" rel="noopener">mortgagediversitycouncil.com/contact-us</a> <span class="pg-t">AMDC</span></li><li><a href="https://nationalmortgageservicingassociation.com/contact-us/" target="_blank" rel="noopener">nationalmortgageservicingassociation.com/contact-us</a> <span class="pg-t">NMSA</span></li></ul>
+      <p class="muted" style="margin:8px 0 0">The same job as <strong>Standard Contact Us</strong> above, built in Ninja Forms instead of HubSpot. Two membership groups take enquiries into an inbox that the CRM never sees.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Wild Apricot Join">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Wild Apricot Join <span class="tag t-bad" style="margin-left:8px">same template, two instances</span></span>
+      <span class="cnum">5<small>forms</small></span>
+      <span class="cchange">Same template, two instances</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">email &middot; password &middot; membershipLevel <em>(radio)</em></p>
+      <ul class="cl-list"><li><a href="https://fivestarmemberships.wildapricot.org/join-us" target="_blank" rel="noopener">fivestarmemberships.wildapricot.org/join-us</a> <span class="pg-t">FORCE join</span></li><li><a href="https://fivestarmemberships.wildapricot.org/" target="_blank" rel="noopener">fivestarmemberships.wildapricot.org</a> <span class="pg-t">FORCE join (root)</span></li><li><a href="https://fivestarmemberships.wildapricot.org/https/fivestarmemberships.wildapricot.org/directory" target="_blank" rel="noopener">fivestarmemberships.wildapricot.org/https/fivestarmemberships.wildapricot.org/directory</a> <span class="pg-t">FORCE directory</span></li><li><a href="https://legalleague100.wildapricot.org/join-us-law-firm" target="_blank" rel="noopener">legalleague100.wildapricot.org/join-us-law-firm</a> <span class="pg-t">Legal League &amp;mdash; Law Firm</span></li><li><a href="https://legalleague100.wildapricot.org/join-us-associate-member" target="_blank" rel="noopener">legalleague100.wildapricot.org/join-us-associate-member</a> <span class="pg-t">Legal League &amp;mdash; Associate</span></li></ul>
+      <p class="muted" style="margin:8px 0 0">Identical template across <strong>two separate Wild Apricot instances</strong>; only the tier list differs &mdash; FORCE tiers on one, Law Firm and Associate on the other. This is the actual join flow, and it is the least instrumented form on the estate.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="MemberPress Tier Signup">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">MemberPress Tier Signup <span class="tag t-bad" style="margin-left:8px">identical but for a coupon field</span></span>
+      <span class="cnum">5<small>forms</small></span>
+      <span class="cchange">Identical but for a coupon field</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">user_first_name &middot; user_last_name &middot; user_login &middot; user_email &middot; password &middot; <em>coupon (4 of 5)</em></p>
+      <ul class="cl-list"><li><a href="https://legalleague100.com/register/ll100-member/" target="_blank" rel="noopener">legalleague100.com/register/ll100-member</a> <span class="pg-t">LL100 Member</span></li><li><a href="https://legalleague100.com/register/executive-level-membership/" target="_blank" rel="noopener">legalleague100.com/register/executive-level-membership</a> <span class="pg-t">Executive</span></li><li><a href="https://legalleague100.com/register/partner-level-membership/" target="_blank" rel="noopener">legalleague100.com/register/partner-level-membership</a> <span class="pg-t">Partner</span></li><li><a href="https://legalleague100.com/register/supporter-level-membership/" target="_blank" rel="noopener">legalleague100.com/register/supporter-level-membership</a> <span class="pg-t">Supporter</span></li><li><a href="https://legalleague100.com/register/test-membership/" target="_blank" rel="noopener">legalleague100.com/register/test-membership</a> <span class="pg-t">Test</span> <span class="cl-n"><span class="tag t-bad">test page, live</span></span></li></ul>
+      <p class="muted" style="margin:8px 0 0">Five Legal League tier pages creating <strong>WordPress user accounts</strong>, not CRM records. Includes a live <code>/register/test-membership/</code>.</p>
+    </div>
+  </div>
+  <div class="classrow" data-cluster="Swoogo Registration">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">Swoogo Registration <span class="tag t-warn" style="margin-left:8px">same platform template</span></span>
+      <span class="cnum">2<small>forms</small></span>
+      <span class="cchange">Same platform template</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+      <p class="cl-sig">email &middot; first_name &middot; last_name &middot; discount_code &middot; reg_type_id <em>(radio, priced)</em></p>
+      <ul class="cl-list"><li><a href="https://www.fivestargovernmentforum.com/2026/register_now" target="_blank" rel="noopener">www.fivestargovernmentforum.com/2026/register_now</a> <span class="pg-t">Government Forum 2026</span></li><li><a href="https://www.fivestarconference.com/2026/registration-closed" target="_blank" rel="noopener">www.fivestarconference.com/2026/registration-closed</a> <span class="pg-t">Five Star Conference 2026</span></li></ul>
+      <p class="muted" style="margin:8px 0 0">Both event sites run the same Swoogo template. The registration type carries the price &mdash; $495 general, $195 FSI member, $95 lender/servicer/government &mdash; and <strong>none of it becomes deal value</strong> in HubSpot.</p>
+    </div>
+  </div>
+  </div>
+
+  <h3>The lander family &mdash; one design, eleven builds</h3>
+  <p>Strict identity understates the duplication. Eleven HubSpot landers share a single design and differ only in which optional fields they carry. Three of the clusters above are subsets of this family.</p>
+  <div class="tablewrap"><table class="vm">
+    <thead><tr><th>Form</th><th>profession</th><th>association</th><th>phone</th><th>message</th></tr></thead>
+    <tbody>
+      <tr><td>2022 landers &times;3</td><td class="y">&#10003;</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
+      <tr><td>key_concepts &middot; velocity</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
+      <tr><td>sponsored-lander</td><td class="y">&#10003;</td><td class="n">&mdash;</td><td class="y">&#10003;</td><td class="n">&mdash;</td></tr>
+      <tr><td>reo-connect &middot; advertising-lander</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="n">&mdash;</td></tr>
+      <tr class="dark-row"><td>advertising-lander <strong>(2nd form, same page)</strong></td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td></tr>
+      <tr><td>fsi-lander-fb</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="alt">mobile</td><td class="n">&mdash;</td></tr>
+      <tr class="dark-row"><td>fsi-lander-google</td><td class="alt">AM&amp;AA</td><td class="y">&#10003;</td><td class="alt">both</td><td class="n">&mdash;</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout bad">
+    <p><strong>Two things fall out of that table.</strong></p>
+    <p><code>/advertising-lander/</code> carries <strong>two forms on one page</strong> &mdash; identical except the second adds <code>message</code>. One of them is presumably abandoned, and a submission cannot say which it came from.</p>
+    <p><code>fsi-lander-fb</code> and <code>fsi-lander-google</code> are <strong>the same ad-channel lander split in two, and they have diverged</strong>. The Facebook variant writes <code>profession_fsi</code>; the Google variant writes <code>profession_am_aa</code> and collects both phone fields. The same campaign concept segments visitors into two incompatible professional taxonomies depending on which ad network they clicked.</p>
+  </div>
+
+  <h3>No cluster &mdash; four forms that are genuinely distinct</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Form</th><th class="mono">Fields</th><th>Why it stands alone</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://fivestarforce.com/velocity-application/" target="_blank" rel="noopener">Velocity Application</a></td><td class="mono">16</td><td>The only real qualification form on the estate &mdash; transaction volume, annual volume, years in business, business offerings, current focus</td></tr>
+      <tr><td><a href="https://thefivestar.com/contact-update/" target="_blank" rel="noopener">Contact Update</a></td><td class="mono">12</td><td>Full profile refresh including postal address and country</td></tr>
+      <tr><td><a href="https://themortgagepoint.com/fscandme2024/" target="_blank" rel="noopener">FSC&amp;Me Testimonial</a></td><td class="mono">12</td><td>Six open-ended conference questions, each stored in its own long-named property</td></tr>
+      <tr><td><a href="https://themortgagepoint.com/award-for-tech-excellence/" target="_blank" rel="noopener">Award Nomination</a></td><td class="mono">10</td><td>The only form writing to the <strong>Company</strong> object, and the only one carrying a <code>payment_link_id</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <p><strong>What the clustering says.</strong> Twenty-two readable HubSpot forms do the work of about <strong>eight distinct designs</strong>. The duplication is not cosmetic &mdash; it is a second cause of the attribution failure. Three identical 2022 landers, one contact form shared across two brands, and an ad lander split by network into two incompatible taxonomies all produce submissions that cannot be told apart afterwards.</p>
+    <p>The source information exists at the moment of submission and is discarded. That is the same failure as the 93.2% offline figure, seen at form level rather than at database level.</p>
+  </div>
+
+  <h3>By site <button id="expand-forms" class="review-btn" type="button" style="float:right;font:600 12px/1 var(--sans);padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;color:var(--ink-2)">Expand all</button></h3>
+  <p class="muted" style="margin:0 0 14px">Each form lists every field, its type, its permitted values, and the object and property it writes to. HubSpot forms link straight to the form editor. For forms outside HubSpot, the last column is a <em>suggested</em> mapping, not an existing one.</p>
+  <div class="card fm-sites" style="padding:0;overflow:hidden">
+  <div class="classrow" data-site="thefivestar.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">thefivestar.com </span>
+      <span class="cnum">20<small>forms</small></span>
+      <span class="cchange">Corporate hub</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://thefivestar.com/2022-di-symposium-lander/" target="_blank" rel="noopener">thefivestar.com/2022-di-symposium-lander</a><span class="pg-t">2022 D&amp;I Symposium Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>1248328b…15cf</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/1248328b-59b4-48ec-8b06-cd8afd0815cf/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession&amp;#xa0; <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Join&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/2022-government-forum-lander/" target="_blank" rel="noopener">thefivestar.com/2022-government-forum-lander</a><span class="pg-t">2022 Government Forum Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>6d8af101…ddee</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/6d8af101-44f4-4aaf-9c7e-95016defddee/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession&amp;#xa0; <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Join&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/2022-ll100-lander/" target="_blank" rel="noopener">thefivestar.com/2022-ll100-lander</a><span class="pg-t">2022 LL100 Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>2a4ffe70…0b52</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/2a4ffe70-e2d7-440d-ae19-57c97ae90b52/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession&amp;#xa0; <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Join&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/advertising-lander/" target="_blank" rel="noopener">thefivestar.com/advertising-lander</a><span class="pg-t">Advertising Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>3e691659…811e</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/3e691659-bded-4115-bbf3-0f2625c0811e/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession</td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>What advertising opportunities interest you?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Find Out More&rdquo; &middot; Redirects to <code>https://thefivestar.com/confirmation/</code></p></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>87e5028c…f2ff</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/87e5028c-5d41-4b54-b852-182f5a92f2ff/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo; &middot; Redirects to <code>https://thefivestar.com/confirmation/</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/certifications/" target="_blank" rel="noopener">thefivestar.com/certifications</a><span class="pg-t">Certifications - The Five Star</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Content filter &mdash; not a capture form</span></div><p class="fm-w">Reclassified. These dropdowns filter a listing; they collect nothing and submit nowhere. Counted as a form by the tag scan, corrected here.</p><div class="tablewrap"><table><thead><tr><th>Control</th><th>Values</th></tr></thead><tbody><tr><td class="mono">wpv-topic</td><td><div class="fm-o">Filter by Topic · Bankruptcy · Commercial · Foreclosure · Legal · Litigation · Regulation · REO · Servicing · Short Sale</div></td></tr><tr><td class="mono">wpv-profession</td><td><div class="fm-o">Filter by Profession · Attorneys · GSEs · Lenders · Real Estate Agents &amp; Brokers · Servicers</div></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/contact-update/" target="_blank" rel="noopener">thefivestar.com/contact-update</a><span class="pg-t">contact update - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>e6c256a5…afe7</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/e6c256a5-3fd2-4142-b680-c7b73b11afe7/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Company name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.company</td></tr><tr><td>Job title <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.jobtitle</td></tr><tr><td>Profession</td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Street address <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.address</td></tr><tr><td>City <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.city</td></tr><tr><td>State/Region <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.state</td></tr><tr><td>Country/Region <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.country</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Mobile phone number <span class="req">*</span></td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.mobilephone</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo; &middot; Redirects to <code>https://thefivestar.com/confirmation/</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/contact/" target="_blank" rel="noopener">thefivestar.com/contact</a><span class="pg-t">Contact - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>fa45ef21…6e18</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/fa45ef21-8727-4499-bc33-fe0f57996e18/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Send Us a Message&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/courses/" target="_blank" rel="noopener">thefivestar.com/courses</a><span class="pg-t">Courses - The Five Star</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Content filter &mdash; not a capture form</span></div><p class="fm-w">Reclassified. These dropdowns filter a listing; they collect nothing and submit nowhere. Counted as a form by the tag scan, corrected here.</p><div class="tablewrap"><table><thead><tr><th>Control</th><th>Values</th></tr></thead><tbody><tr><td class="mono">wpv-topic</td><td><div class="fm-o">Filter by Topic · Alternate Revenue Stream · Bankruptcy · Commercial · Foreclosure · Hedge Funds · Legal · Lending · Litigation · Real Estate · Regulation · Rehab · REO · Servicing · Short Sale</div></td></tr><tr><td class="mono">wpv-profession</td><td><div class="fm-o">Filter by Profession · Attorneys · GSEs · Lenders · Real Estate Agents &amp; Brokers · Servicers</div></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/fscme-2024/" target="_blank" rel="noopener">thefivestar.com/fscme-2024</a><span class="pg-t">FSC&amp;Me 2024 - The Five Star</span></div><p class="muted">HubSpot embed detected; form id not resolvable.</p></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/fsi-lander-fb/" target="_blank" rel="noopener">thefivestar.com/fsi-lander-fb</a><span class="pg-t">FSI Lander FB - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>c9133154…18af</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/c9133154-8fa6-4998-8cc4-c2049e1318af/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Mobile phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.mobilephone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo; &middot; Redirects to <code>https://thefivestar.com/confirmation/</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/fsi-lander-google/" target="_blank" rel="noopener">thefivestar.com/fsi-lander-google</a><span class="pg-t">FSI Lander Google - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>9d195316…090b</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/9d195316-63b3-42ad-a588-60539581090b/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Mobile phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.mobilephone</td></tr><tr><td>Profession <span class="req">*</span></td><td>select</td><td><div class="fm-o">Accountant (Diligence/QofE/Audit) · Attorney · Business Broker · Business Owner · Corporate Acquirer · Corporate Development Executive · Emerging Manager · Family Office Professional · Financial Advisor/Planner · Founder/CEO · Fractional C-Suite Professional · Fund Administrator · Independent Sponsor · Insurance Advisor · Investment Banker · Management Consultant · Mezzanine Lender · Private Credit Professional · Private Equity Professional · Senior Lender/Banker · Valuation Analyst · Other · Accountant/CPA · Corporate Development/M&amp;A · Family Office · Financial Advisor · Investment Banker/M&amp;A Intermediary · Consultant/Management/Value Growth · Private Credit · Private Equity Investor · Lender · Business Valuator</div></td><td class="mono">Contact.profession_am_aa</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Learn More&rdquo; &middot; Redirects to <code>https://www.amaaonline.com/confirmation-page/</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/fsi-lander/" target="_blank" rel="noopener">thefivestar.com/fsi-lander</a><span class="pg-t">FSI Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>3e691659…811e</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/3e691659-bded-4115-bbf3-0f2625c0811e/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession</td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>What advertising opportunities interest you?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Find Out More&rdquo; &middot; Redirects to <code>https://thefivestar.com/confirmation/</code></p></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>87e5028c…f2ff</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/87e5028c-5d41-4b54-b852-182f5a92f2ff/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Profession <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo; &middot; Redirects to <code>https://thefivestar.com/confirmation/</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/join-five-star-access/" target="_blank" rel="noopener">thefivestar.com/join-five-star-access</a><span class="pg-t">Join Five Star Access - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>8c8125c7…7aa3</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/8c8125c7-df81-4e7b-99ae-771360117aa3/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/join-five-star-alliance/" target="_blank" rel="noopener">thefivestar.com/join-five-star-alliance</a><span class="pg-t">Join Five Star Alliance - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>69fd0598…ded6</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/69fd0598-6045-47ed-a1f5-1dee8d60ded6/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/key_concepts/" target="_blank" rel="noopener">thefivestar.com/key_concepts</a><span class="pg-t">Realtor Lead Gen – Key Concepts - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>611edcb7…9247</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/611edcb7-f597-43ea-a156-9cfede099247/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>What kind of company do you work for?</td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Company.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/lander/" target="_blank" rel="noopener">thefivestar.com/lander</a><span class="pg-t">Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>fa45ef21…6e18</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/fa45ef21-8727-4499-bc33-fe0f57996e18/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Send Us a Message&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/seminars/" target="_blank" rel="noopener">thefivestar.com/seminars</a><span class="pg-t">Seminars - The Five Star</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Content filter &mdash; not a capture form</span></div><p class="fm-w">Reclassified. These dropdowns filter a listing; they collect nothing and submit nowhere. Counted as a form by the tag scan, corrected here.</p><div class="tablewrap"><table><thead><tr><th>Control</th><th>Values</th></tr></thead><tbody><tr><td class="mono">wpv-topic</td><td><div class="fm-o">Filter by Topic · Alternate Revenue Stream · DEI · Legal · Lending · Litigation · Real Estate · Regulation · REO · Servicing</div></td></tr><tr><td class="mono">wpv-profession</td><td><div class="fm-o">Filter by Profession · Attorneys · GSEs · Lenders · Real Estate Agents &amp; Brokers · Servicers</div></td></tr><tr><td class="mono">wpv-access</td><td><div class="fm-o">Filter by Access · FORCE Members · Legal League Members · Lenders · Open to All · Open to Realtors · Servicers GSEs</div></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/sponsored-lander/" target="_blank" rel="noopener">thefivestar.com/sponsored-lander</a><span class="pg-t">Sponsored Lander - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>3fa9269e…160b</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/3fa9269e-ee61-46df-9bb5-d30ccfa5160b/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Phone number <span class="req">*</span></td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Industry <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Get More Info&rdquo; &middot; Redirects to <code>https://abstractshop.com/</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/velocity-stay-informed-sign-up-for-exclusive-updates-and-offers/" target="_blank" rel="noopener">thefivestar.com/velocity-stay-informed-sign-up-for-exclusive-updates-and-offers</a><span class="pg-t">Velocity- Stay Informed: Sign Up for Exclusive Updates and Off</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>49c5db94…dc8e</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/49c5db94-0100-4647-b556-f4961769dc8e/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>First Name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last Name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo; &middot; Redirects to <code>https://fivestarglobal.swoogo.com/velocity2025/home</code></p></div></div><div class="pg"><div class="pg-h"><a href="https://thefivestar.com/velocity/" target="_blank" rel="noopener">thefivestar.com/velocity</a><span class="pg-t">Velocity - The Five Star</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>56f697bb…a031</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/56f697bb-3575-4a6a-a6e2-551ac813a031/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>What kind of company do you work for?</td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Company.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Claim Your Code&rdquo;</p></div></div><p class="muted" style="margin:10px 0 0">17 HubSpot forms. Three further pages carry Toolset content filters, reclassified here as not capture forms. &middot; 272 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="themortgagepoint.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">themortgagepoint.com </span>
+      <span class="cnum">10<small>forms</small></span>
+      <span class="cchange">Media flagship</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/award-for-agent-broker-excellence/" target="_blank" rel="noopener">themortgagepoint.com/award-for-agent-broker-excellence</a><span class="pg-t">MortgagePoint Award for Agent &amp; Broker Excellence - The Mortga</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>04ba0301…d4df</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/04ba0301-9609-4a06-abba-ac28e5ced4df/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/award-for-servicing-excellence/" target="_blank" rel="noopener">themortgagepoint.com/award-for-servicing-excellence</a><span class="pg-t">MortgagePoint Award for Mortgage Servicing Excellence - The Mo</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>c0259e3c…702b</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/c0259e3c-5196-4078-bd57-ed28b70d702b/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/award-for-tech-excellence/" target="_blank" rel="noopener">themortgagepoint.com/award-for-tech-excellence</a><span class="pg-t">Nominate the Mortgage Industry’s Top Innovators for the Mortga</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>0b4a26e7…0496</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/0b4a26e7-c889-4eae-832e-e2435bb80496/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>Your First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Your Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Your Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Nominated Company <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Company.nominated_company</td></tr><tr><td>Nominee Website <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Company.nominee_website</td></tr><tr><td>Reason to Nominate <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Company.award_nomination_reason</td></tr><tr><td>Company Contact</td><td>text</td><td>&mdash;</td><td class="mono">Company.company_contact</td></tr><tr><td>Company Contact Email</td><td>text</td><td>&mdash;</td><td class="mono">Company.company_contact_email</td></tr><tr><td>Payment link <span class="req">*</span></td><td>payment_link_radio</td><td><div class="fm-o">8536859</div></td><td class="mono">—.payment_link_id</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Continue to payment&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/contact-us/" target="_blank" rel="noopener">themortgagepoint.com/contact-us</a><span class="pg-t">Contact Us - The MortgagePoint</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>8ac255d5…ef8d</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/8ac255d5-8649-4645-93ad-87b96b16ef8d/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/contribute/" target="_blank" rel="noopener">themortgagepoint.com/contribute</a><span class="pg-t">Contribute - The MortgagePoint</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>e74b41e0…7fb9</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/e74b41e0-8c81-424e-a6b9-8f8f982a7fb9/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/fscandme2024/" target="_blank" rel="noopener">themortgagepoint.com/fscandme2024</a><span class="pg-t">FSC&amp;ME 2024 - Five Star Conference</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>4d5979c9…2588</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/4d5979c9-79d0-41ce-9597-c94025cf2588/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Company name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.company</td></tr><tr><td>Job title</td><td>text</td><td>&mdash;</td><td class="mono">Contact.jobtitle</td></tr><tr><td>How many times have you attended Five Star Conference? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.how_many_times_have_you_attended_five_star_conference_</td></tr><tr><td>What initially attracted you to the Five Star Conference? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.what_initially_attracted_you_to_the_five_star_conference_</td></tr><tr><td>Can you share a specific experience or moment from the conference that had a significant impact on you? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.can_you_share_a_specific_experience_or_moment_from_the_conference_that_had_a_significant_impact_on_</td></tr><tr><td>How has attending the Five Star Conference contributed to your professional growth or career?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.how_has_attending_the_five_star_conference_contributed_to_your_professional_growth_or_career_</td></tr><tr><td>Have you made any meaningful connections or partnerships through the conference? If so, please describe.</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.have_you_made_any_meaningful_connections_or_partnerships_through_the_conference__if_so__please_desc</td></tr><tr><td>What’s your favorite aspect of the Five Star Conference?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.what_s_your_favorite_aspect_of_the_five_star_conference_</td></tr><tr><td>Would you be interested in participating in a video testimonial as well? It should only take 15-30 minutes. </td><td>checkbox</td><td><div class="fm-o">Yes · No</div></td><td class="mono">Contact.would_you_be_interested_in_participating_in_a_video_testimonial_as_well__it_should_only_take_15_30_</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/join-real-estate-community/" target="_blank" rel="noopener">themortgagepoint.com/join-real-estate-community</a><span class="pg-t">Join Our Real Estate Community - The MortgagePoint</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>4532203d…52c3</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/4532203d-12ea-440a-b9d6-ed8674d152c3/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/mediakit/contact-us/" target="_blank" rel="noopener">themortgagepoint.com/mediakit/contact-us</a><span class="pg-t">Contact Us - The MortgagePoint</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>9a3c0491…423a</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/9a3c0491-8dc2-47fa-b438-9023c2e2423a/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Phone number</td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Send Us a Message&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/mp-access/" target="_blank" rel="noopener">themortgagepoint.com/mp-access</a><span class="pg-t">MP Access - The MortgagePoint</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>0626e353…9733</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/0626e353-9856-4c7f-8d5e-191dfcf69733/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><p class="muted" style="margin:6px 0 0">Newer HubSpot form type. Its definition is not exposed publicly and the connector's Forms permission is blocked, so the field&rarr;property mapping could not be read. Rendering the page shows a <strong>multi-step</strong> form beginning First name / Last name / Email / Phone. <strong>Needs the Forms permission to map.</strong></p></div></div><div class="pg"><div class="pg-h"><a href="https://themortgagepoint.com/playground/" target="_blank" rel="noopener">themortgagepoint.com/playground</a><span class="pg-t">_playground - The MortgagePoint</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>044f2bf9…4421</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/044f2bf9-b038-48b5-91ff-b77313124421/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>firstname</td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>lastname</td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><p class="muted" style="margin:10px 0 0">Every form is a HubSpot embed. Six use the newer form type whose mapping cannot be read. &middot; 204 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="legalleague100.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">legalleague100.com <span class="flag">no HubSpot</span></span>
+      <span class="cnum">14<small>forms</small></span>
+      <span class="cchange">Legal League &mdash; membership</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://legalleague100.com/event-type/events/" target="_blank" rel="noopener">legalleague100.com/event-type/events</a><span class="pg-t">Events | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/events/legal-league-spring-servicer-summit-2026/" target="_blank" rel="noopener">legalleague100.com/events/legal-league-spring-servicer-summit-2026</a><span class="pg-t">LEGAL LEAGUE SPRING SERVICER SUMMIT 2026 | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/events/legal-league-spring-servicer-summit/" target="_blank" rel="noopener">legalleague100.com/events/legal-league-spring-servicer-summit</a><span class="pg-t">LEGAL LEAGUE SPRING SERVICER SUMMIT | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/events/servicer-cert-april24/" target="_blank" rel="noopener">legalleague100.com/events/servicer-cert-april24</a><span class="pg-t">DEFAULT SERVICER CERTIFICATIONS LEVEL I &amp;#038; II | Legal Leag</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/events/the-five-star-conference-expo-2026/" target="_blank" rel="noopener">legalleague100.com/events/the-five-star-conference-expo-2026</a><span class="pg-t">THE FIVE STAR CONFERENCE &amp;#038; EXPO | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/form-application/" target="_blank" rel="noopener">legalleague100.com/form-application</a><span class="pg-t">Form Application | Legal League 100</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Zoho CRM Web-to-Lead &mdash; a different CRM entirely</span> </div><p class="fm-w">Posts to <code>crm.zoho.com/crm/WebToLeadForm</code>. Legal League&rsquo;s membership application creates a lead in <strong>Zoho</strong>. Field names are Zoho custom-field codes (<code>LEADCF*</code>), so their meaning is not readable from the page.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Company</td><td>text</td><td>&mdash;</td><td class="mono ">Company.name (+ Contact.company)</td></tr><tr><td>Phone</td><td>text</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr><tr><td>Street</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>City</td><td>text</td><td>&mdash;</td><td class="mono ">Company.city</td></tr><tr><td>State (LEADCF11)</td><td>listselect</td><td><div class="fm-o">all 50 US states</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Zip Code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>LEADCF15</td><td>listselect</td><td><div class="fm-o">Yes · No</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>LEADCF19</td><td>listselect</td><td><div class="fm-o">Yes · No</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>LEADCF17</td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>File upload</td><td>file</td><td>&mdash;</td><td class="mono sug"><em>file &mdash; attach to the record</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/hello/" target="_blank" rel="noopener">legalleague100.com/hello</a><span class="pg-t">Hello Solutions | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/ll-events/" target="_blank" rel="noopener">legalleague100.com/ll-events</a><span class="pg-t">Events | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/member-events/" target="_blank" rel="noopener">legalleague100.com/member-events</a><span class="pg-t">Member Events | Legal League 100</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/register/executive-level-membership/" target="_blank" rel="noopener">legalleague100.com/register/executive-level-membership</a><span class="pg-t">Executive Level Membership | Legal League 100</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">MemberPress (WordPress) &mdash; does not reach HubSpot</span> </div><p class="fm-w">Creates a <strong>WordPress user account</strong>, not a CRM record. This is a fourth membership system, alongside the two Wild Apricot instances.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Username <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Coupon code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/register/ll100-member/" target="_blank" rel="noopener">legalleague100.com/register/ll100-member</a><span class="pg-t">LL100 Member | Legal League 100</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">MemberPress (WordPress) &mdash; does not reach HubSpot</span> </div><p class="fm-w">Creates a <strong>WordPress user account</strong>, not a CRM record. This is a fourth membership system, alongside the two Wild Apricot instances.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Username <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Coupon code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/register/partner-level-membership/" target="_blank" rel="noopener">legalleague100.com/register/partner-level-membership</a><span class="pg-t">Partner Level Membership | Legal League 100</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">MemberPress (WordPress) &mdash; does not reach HubSpot</span> </div><p class="fm-w">Creates a <strong>WordPress user account</strong>, not a CRM record. This is a fourth membership system, alongside the two Wild Apricot instances.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Username <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Coupon code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/register/supporter-level-membership/" target="_blank" rel="noopener">legalleague100.com/register/supporter-level-membership</a><span class="pg-t">Supporter Level Membership | Legal League 100</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">MemberPress (WordPress) &mdash; does not reach HubSpot</span> </div><p class="fm-w">Creates a <strong>WordPress user account</strong>, not a CRM record. This is a fourth membership system, alongside the two Wild Apricot instances.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Username <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Coupon code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.com/register/test-membership/" target="_blank" rel="noopener">legalleague100.com/register/test-membership</a><span class="pg-t">Test Membership | Legal League 100</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">MemberPress (WordPress) &mdash; does not reach HubSpot</span> </div><p class="fm-w">Creates a <strong>WordPress user account</strong>, not a CRM record. This is a fourth membership system, alongside the two Wild Apricot instances.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Username <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Coupon code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr></tbody></table></div></div></div><p class="muted" style="margin:10px 0 0"><strong>Three separate systems on one site</strong>: Zoho CRM, MemberPress and Swoogo widgets. No HubSpot anywhere. &middot; 134 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="mortgagediversitycouncil.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">mortgagediversitycouncil.com <span class="flag">no HubSpot</span></span>
+      <span class="cnum">6<small>forms</small></span>
+      <span class="cchange">AMDC &mdash; membership</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://mortgagediversitycouncil.com/contact-us/" target="_blank" rel="noopener">mortgagediversitycouncil.com/contact-us</a><span class="pg-t">American Mortgage Diversity Council - Contact Us</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.firstname + Contact.lastname</td></tr><tr><td>Organization <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.name</td></tr><tr><td>Job Title <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.jobtitle</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono ">Contact.message</td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://mortgagediversitycouncil.com/executive-council-election/" target="_blank" rel="noopener">mortgagediversitycouncil.com/executive-council-election</a><span class="pg-t">Advisory Council Election - American Mortgage Diversity Counci</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Title <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.jobtitle</td></tr><tr><td>Company Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.name</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Phone <span class="req">*</span></td><td>phone</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr><tr><td>Why do you want to run for the Advisory Council? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Professional Bio <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://mortgagediversitycouncil.com/meeting-rsvp/" target="_blank" rel="noopener">mortgagediversitycouncil.com/meeting-rsvp</a><span class="pg-t">Meeting RSVP - American Mortgage Diversity Council</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>firstname</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>lastname</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Title <span class="req">*</span></td><td>lastname</td><td>&mdash;</td><td class="mono ">Contact.jobtitle</td></tr><tr><td>Company <span class="req">*</span></td><td>lastname</td><td>&mdash;</td><td class="mono ">Company.name (+ Contact.company)</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Phone <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr><tr><td>How many people will be attending? <span class="req">*</span></td><td>listselect</td><td><div class="fm-o">One · Two</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://mortgagediversitycouncil.com/mentee-application/" target="_blank" rel="noopener">mortgagediversitycouncil.com/mentee-application</a><span class="pg-t">Mentee Application - American Mortgage Diversity Council</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Phone <span class="req">*</span></td><td>phone</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr><tr><td>Company <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.name (+ Contact.company)</td></tr><tr><td>Title <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.jobtitle</td></tr><tr><td>Mentorship Category <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Banking · Legal · Human resources · Financial services provider · Mortgage servicing · Other</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>If you selected &quot;Other,&quot; please fill in your category here.</td><td>textbox</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Please select two or three specific goals for participation, this may be an area of skill, ability, or in the area of knowledge or understanding. <span class="req">*</span></td><td>listmultiselect</td><td><div class="fm-o">Development of a new skill · Presentation skills · Complex financial concepts · Career goals and professional progress · Current competencies, alignment with future roles · Interpersonal skills, group dynamics, management skills · Other reason</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>If you selected &quot;Other,&quot; please fill in your answer here.</td><td>textbox</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>How many years have you worked in the financial services industry? <span class="req">*</span></td><td>listselect</td><td><div class="fm-o">1 · 2 · 3 · 4 · 5 · 6 · 7 · 8 · 9 · 10 · 11 · 12 · 13 · 14 · 15 · 15+</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>What led you to pursue a career in the financial services industry? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Describe your career objectives in the financial services industry. <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Please provide a brief summary of your relevant experience in your current profession, ie. education, work experience, specialized skills, etc.  <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Have you ever managed or are you currently managing a team? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Can you commit 30 minutes a month to this program? <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Yes · No</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>What time of day works best for you?  <span class="req">*</span></td><td>listmultiselect</td><td><div class="fm-o">Morning · Afternoon · Evening</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Which days of the week work best for you? <span class="req">*</span></td><td>listmultiselect</td><td><div class="fm-o">Monday · Tuesday · Wednesday · Thursday · Friday</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Why do you want to be a mentee, what specific skills are you looking to obtain? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Paste your professional bio.</td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>LinkedIn Profile URL</td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.hs_linkedin_url</td></tr><tr><td>Please Upload a Copy of Your Resume or Paste Your Bio Above</td><td>file_upload</td><td>&mdash;</td><td class="mono sug"><em>file &mdash; attach to the record</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://mortgagediversitycouncil.com/mentor-application/" target="_blank" rel="noopener">mortgagediversitycouncil.com/mentor-application</a><span class="pg-t">Mentor Application - American Mortgage Diversity Council</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Phone <span class="req">*</span></td><td>phone</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr><tr><td>Company <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.name (+ Contact.company)</td></tr><tr><td>Title <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.jobtitle</td></tr><tr><td>Mentorship Category <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Banking · Legal · Human resources · Financial services provider · Mortgage servicing · Other</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>If you selected &quot;Other,&quot; please fill in your category here.</td><td>textbox</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>How many years have you worked in the financial services industry? <span class="req">*</span></td><td>listselect</td><td><div class="fm-o">1 · 2 · 3 · 4 · 5 · 6 · 7 · 8 · 9 · 10 · 11 · 12 · 13 · 14 · 15 · 15+</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Please provide a brief summary of your relevant experience in your current profession, ie. education, work experience, specialized skills, etc. <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Can you commit 30 minutes a month to this program? <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Yes · No</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>What time of day works best for you?  <span class="req">*</span></td><td>listmultiselect</td><td><div class="fm-o">Morning · Afternoon · Evening</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Which days of the week work best for you? <span class="req">*</span></td><td>listmultiselect</td><td><div class="fm-o">Monday · Tuesday · Wednesday · Thursday · Friday</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Why do you want to be a mentor? <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Paste your professional bio here</td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>LinkedIn Profile URL</td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.hs_linkedin_url</td></tr><tr><td>Please Upload a Copy of Your Resume or Paste Your Bio Above</td><td>file_upload</td><td>&mdash;</td><td class="mono sug"><em>file &mdash; attach to the record</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://mortgagediversitycouncil.com/new-member-application/" target="_blank" rel="noopener">mortgagediversitycouncil.com/new-member-application</a><span class="pg-t">New Member Application - American Mortgage Diversity Council</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><p class="muted" style="margin:10px 0 0">Ninja Forms throughout, submitting by email only. &middot; 103 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="fivestarforce.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">fivestarforce.com </span>
+      <span class="cnum">4<small>forms</small></span>
+      <span class="cchange">FORCE &mdash; membership</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://fivestarforce.com/join-the-force-community/" target="_blank" rel="noopener">fivestarforce.com/join-the-force-community</a><span class="pg-t">Join the FORCE Community - The Five Star FORCE</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>98fe4281…3b29</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/98fe4281-676c-44f7-8d8b-0f86bc983b29/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>Last Name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>First Name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Company name</td><td>text</td><td>&mdash;</td><td class="mono">Contact.company</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://fivestarforce.com/renewal-discount/" target="_blank" rel="noopener">fivestarforce.com/renewal-discount</a><span class="pg-t">Renewal Discount - The Five Star FORCE</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><div class="pg"><div class="pg-h"><a href="https://fivestarforce.com/reo-connect-lander/" target="_blank" rel="noopener">fivestarforce.com/reo-connect-lander</a><span class="pg-t">REO Connect Lander - The Five Star FORCE</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>fe06f1d0…fbc4</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/fe06f1d0-f56f-4748-8e8f-40cb73f4fbc4/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Profession <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Phone number <span class="req">*</span></td><td>phonenumber</td><td>&mdash;</td><td class="mono">Contact.phone</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Join FREE&rdquo;</p></div></div><div class="pg"><div class="pg-h"><a href="https://fivestarforce.com/velocity-application/" target="_blank" rel="noopener">fivestarforce.com/velocity-application</a><span class="pg-t">Velocity Application - The Five Star FORCE</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>15caebcb…576d</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/15caebcb-4561-4dd4-91df-1ea85792576d/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Company name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.company</td></tr><tr><td>City</td><td>text</td><td>&mdash;</td><td class="mono">Contact.city</td></tr><tr><td>State/Region</td><td>text</td><td>&mdash;</td><td class="mono">Contact.state</td></tr><tr><td>Profession - FSI <span class="req">*</span></td><td>select</td><td><div class="fm-o">Asset Manager · Attorney · Government Entity · Government Sponsored Enterprise · Lender · Lender/Servicer · Mortgage Servicer · Property Management · Real Estate Agent/Broker · Real Estate Investor · Title · Service Provider · Other</div></td><td class="mono">Contact.profession_fsi</td></tr><tr><td>Years in Business <span class="req">*</span></td><td>select</td><td><div class="fm-o">Less than 2 years · 2–5 years · 6–10 years · 11–20 years · 20+ years</div></td><td class="mono">Contact.years_in_business</td></tr><tr><td>Business Offerings</td><td>checkbox</td><td><div class="fm-o">REO · Retail/Traditional Listings · Commercial · Investor/Fix &amp; Flip/Rental · Property Management · Other</div></td><td class="mono">Contact.business_offerings</td></tr><tr><td>Current Focus</td><td>checkbox</td><td><div class="fm-o">Actively operating and optimizing results · Scaling operations and teams · Diversifying revenue streams · Repositioning due to market conditions · Exploring new real estate opportunities</div></td><td class="mono">Contact.current_focus</td></tr><tr><td>Transaction Volume</td><td>select</td><td><div class="fm-o">1–10 · 11–25 · 26–50 · 51–100 · 100+</div></td><td class="mono">Contact.transaction_volume</td></tr><tr><td>Annual Volume</td><td>select</td><td><div class="fm-o">Under $5M · $5M–$10M · $10M–$25M · $25M–$50M · $50M+</div></td><td class="mono">Contact.annual_volume</td></tr><tr><td>What do you hope to get out of Velocity?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.what_do_you_hope_to_get_out_of_velocity</td></tr><tr><td>What is the biggest challenge you are facing right now?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.what_is_the_biggest_challenge_you_are_facing_right_now</td></tr><tr><td>How do you see yourself adding value to the Velocity discussions?</td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.how_do_you_see_yourself_adding_value_to_the_velocity_discussions</td></tr><tr><td>Association</td><td>select</td><td><div class="fm-o">FSI · AMAA</div></td><td class="mono">Contact.association</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><p class="muted" style="margin:10px 0 0">Three HubSpot embeds, one client-rendered form. &middot; 26 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="themsea.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">themsea.com </span>
+      <span class="cnum">1<small>form</small></span>
+      <span class="cchange">MSEA &mdash; membership</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://themsea.com/contact-us/" target="_blank" rel="noopener">themsea.com/contact-us</a><span class="pg-t">Contact Us - Mortgage Servicing Executive Alliance</span></div><div class="fm"><div class="fm-h"><span class="fm-t">HubSpot form</span> <code>9b8ce575…59dc</code> <a class="fm-l" href="https://app.hubspot.com/forms/8733520/editor/9b8ce575-a356-4213-bb07-3dadfd6959dc/edit/form" target="_blank" rel="noopener">open in HubSpot &rarr;</a></div><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Maps to</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono">Contact.email</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono">Contact.message</td></tr></tbody></table></div><p class="muted" style="margin:6px 0 0">Submit: &ldquo;Submit&rdquo;</p></div></div><p class="muted" style="margin:10px 0 0">One contact form, HubSpot-embedded. &middot; 12 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="nationalmortgageservicingassociation.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">nationalmortgageservicingassociation.com <span class="flag">no HubSpot</span></span>
+      <span class="cnum">1<small>form</small></span>
+      <span class="cchange">NMSA &mdash; membership</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://nationalmortgageservicingassociation.com/contact-us/" target="_blank" rel="noopener">nationalmortgageservicingassociation.com/contact-us</a><span class="pg-t">Contact Us - National Mortgage Servicing Association</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>First Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Company <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.name (+ Contact.company)</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Phone</td><td>phone</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr><tr><td>Message <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono ">Contact.message</td></tr></tbody></table></div></div></div><p class="muted" style="margin:10px 0 0">One Ninja Form. No HubSpot. &middot; 10 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="propertypresforum.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">propertypresforum.com <span class="flag">no capture form at all</span></span>
+      <span class="cnum">0<small>forms</small></span>
+      <span class="cchange">PPEF &mdash; membership</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<p class="muted" style="padding:4px 2px">No capture form on any of the 9 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="www.fivestarconference.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">www.fivestarconference.com <span class="flag">no HubSpot</span></span>
+      <span class="cnum">1<small>form</small></span>
+      <span class="cchange">Flagship event &mdash; Swoogo</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://www.fivestarconference.com/2026/registration-closed" target="_blank" rel="noopener">www.fivestarconference.com/2026/registration-closed</a><span class="pg-t">Registration Closed: Five Star Conference | 2026</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Swoogo &mdash; event registration</span> </div><p class="fm-w">Swoogo writes into HubSpot as a <strong>Deal with no pipeline, no stage and amount $0.00</strong>. The registration type &mdash; which carries the price &mdash; does not become deal value.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Discount code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Registration type <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">registration closed</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><p class="muted" style="margin:10px 0 0">Registration currently closed. &middot; 149 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="www.fivestargovernmentforum.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">www.fivestargovernmentforum.com <span class="flag">no HubSpot</span></span>
+      <span class="cnum">4<small>forms</small></span>
+      <span class="cchange">Government Forum &mdash; Swoogo</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://safeguardproperties.com/" target="_blank" rel="noopener">safeguardproperties.com</a><span class="pg-t">Mortgage Field Services Industry | Safeguard Properties</span></div><p class="muted">HubSpot embed detected; form id not resolvable.</p></div><div class="pg"><div class="pg-h"><a href="https://www.fivestargovernmentforum.com/2025/registration-closed" target="_blank" rel="noopener">www.fivestargovernmentforum.com/2025/registration-closed</a><span class="pg-t">Registration Closed: Government Forum | 2025</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Swoogo &mdash; event registration</span> </div><p class="fm-w">Swoogo writes into HubSpot as a <strong>Deal with no pipeline, no stage and amount $0.00</strong>. The registration type &mdash; which carries the price &mdash; does not become deal value.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Discount code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Registration type <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Event Sponsor · Event Staff · General Admission - $495.00 · FSI Member - $195.00 · Lender, Servicer, Government - $95.00 · Event Speaker · Event VIP - Complimentary · Event Transfer / Credit</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://www.fivestargovernmentforum.com/2026/register_now" target="_blank" rel="noopener">www.fivestargovernmentforum.com/2026/register_now</a><span class="pg-t">Registration: Government Forum | 2026</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Swoogo &mdash; event registration</span> </div><p class="fm-w">Swoogo writes into HubSpot as a <strong>Deal with no pipeline, no stage and amount $0.00</strong>. The registration type &mdash; which carries the price &mdash; does not become deal value.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>First name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last name <span class="req">*</span></td><td>text</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Discount code</td><td>text</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Registration type <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Event Sponsor · Event Staff · General Admission - $495.00 · FSI Member - $195.00 · Lender, Servicer, Government - $95.00 · Event Speaker · Event VIP - Complimentary · Event Transfer / Credit</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://www.servicelink.com/" target="_blank" rel="noopener">www.servicelink.com</a><span class="pg-t">Tech-Enabled Mortgage Solutions | ServiceLink</span></div><p class="muted">Form present but rendered client-side; fields not readable from source.</p></div><p class="muted" style="margin:10px 0 0">Registration open; ticket tiers carry real prices. &middot; 107 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="fivestarmemberships.wildapricot.org">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">fivestarmemberships.wildapricot.org <span class="flag">no HubSpot</span></span>
+      <span class="cnum">3<small>forms</small></span>
+      <span class="cchange">Membership system &mdash; Wild Apricot</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://fivestarmemberships.wildapricot.org/" target="_blank" rel="noopener">fivestarmemberships.wildapricot.org</a><span class="pg-t">Five Star FORCE - Join us</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Wild Apricot &mdash; system of record, no HubSpot</span> </div><p class="fm-w">The join flow. Records reach HubSpot only via the custom edge-function sync, matched on email; no page view, session or source crosses.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Membership level <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">FORCE tiers (Pro / Elite / Premier, multiple billing terms)</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://fivestarmemberships.wildapricot.org/https/fivestarmemberships.wildapricot.org/directory" target="_blank" rel="noopener">fivestarmemberships.wildapricot.org/https/fivestarmemberships.wildapricot.org/directory</a><span class="pg-t">Five Star FORCE - Directory</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Wild Apricot &mdash; system of record, no HubSpot</span> </div><p class="fm-w">The join flow. Records reach HubSpot only via the custom edge-function sync, matched on email; no page view, session or source crosses.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Membership level <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">FORCE tiers (Pro / Elite / Premier, multiple billing terms)</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://fivestarmemberships.wildapricot.org/join-us" target="_blank" rel="noopener">fivestarmemberships.wildapricot.org/join-us</a><span class="pg-t">Five Star FORCE - Join us</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Wild Apricot &mdash; system of record, no HubSpot</span> </div><p class="fm-w">The join flow. Records reach HubSpot only via the custom edge-function sync, matched on email; no page view, session or source crosses.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Membership level <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">FORCE tiers (Pro / Elite / Premier, multiple billing terms)</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><p class="muted" style="margin:10px 0 0">The FORCE join flow. &middot; 8 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="legalleague100.wildapricot.org">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">legalleague100.wildapricot.org <span class="flag">not in the 19</span></span>
+      <span class="cnum">3<small>forms</small></span>
+      <span class="cchange"><strong>Second</strong> Wild Apricot instance</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://legalleague100.wildapricot.org/join-us-associate-member" target="_blank" rel="noopener">legalleague100.wildapricot.org/join-us-associate-member</a><span class="pg-t">The Legal League - Associate Member</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Wild Apricot &mdash; system of record, no HubSpot</span> </div><p class="fm-w">The join flow. Records reach HubSpot only via the custom edge-function sync, matched on email; no page view, session or source crosses.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Membership level <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Law Firm Member and Associate Member tiers</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.wildapricot.org/join-us-law-firm" target="_blank" rel="noopener">legalleague100.wildapricot.org/join-us-law-firm</a><span class="pg-t">The Legal League - Law Firm Member</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Wild Apricot &mdash; system of record, no HubSpot</span> </div><p class="fm-w">The join flow. Records reach HubSpot only via the custom edge-function sync, matched on email; no page view, session or source crosses.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Membership level <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Law Firm Member and Associate Member tiers</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><div class="pg"><div class="pg-h"><a href="https://legalleague100.wildapricot.org/directory" target="_blank" rel="noopener">legalleague100.wildapricot.org/directory</a><span class="pg-t">The Legal League - Directory</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Wild Apricot &mdash; system of record, no HubSpot</span> </div><p class="fm-w">The join flow. Records reach HubSpot only via the custom edge-function sync, matched on email; no page view, session or source crosses.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Password <span class="req">*</span></td><td>password</td><td>&mdash;</td><td class="mono sug"><em>new property</em></td></tr><tr><td>Membership level <span class="req">*</span></td><td>listradio</td><td><div class="fm-o">Law Firm Member and Associate Member tiers</div></td><td class="mono sug"><em>new enumeration property</em></td></tr></tbody></table></div></div></div><p class="muted" style="margin:10px 0 0">Not in the 19-property inventory. &middot; 4 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="directory.mortgagediversitycouncil.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">directory.mortgagediversitycouncil.com <span class="flag">not in the 19</span></span>
+      <span class="cnum">1<small>form</small></span>
+      <span class="cchange">AMDC directory</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<div class="pg"><div class="pg-h"><a href="https://directory.mortgagediversitycouncil.com/apply-now/" target="_blank" rel="noopener">directory.mortgagediversitycouncil.com/apply-now</a><span class="pg-t">Apply Now - AMDC Directory</span></div><div class="fm nohs"><div class="fm-h"><span class="fm-t">Ninja Forms &mdash; does not reach HubSpot</span> </div><p class="fm-w">Submits by email/WordPress only. Nothing creates or updates a CRM record.</p><div class="tablewrap"><table><thead><tr><th>Field</th><th>Type</th><th>Values</th><th>Suggested mapping</th></tr></thead><tbody><tr><td>Company Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.name</td></tr><tr><td>Company Address <span class="req">*</span></td><td>address</td><td>&mdash;</td><td class="mono ">Company.address</td></tr><tr><td>City <span class="req">*</span></td><td>city</td><td>&mdash;</td><td class="mono ">Company.city</td></tr><tr><td>ZIP/Post Code <span class="req">*</span></td><td>zip</td><td>&mdash;</td><td class="mono ">Company.zip</td></tr><tr><td>Company Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Company.domain + Contact.email</td></tr><tr><td>Company Phone <span class="req">*</span></td><td>phone</td><td>&mdash;</td><td class="mono ">Company.phone</td></tr><tr><td>Company Website</td><td>textbox</td><td>&mdash;</td><td class="mono ">Company.website</td></tr><tr><td>Areas of Service (Please Select All That Apply) <span class="req">*</span></td><td>listmultiselect</td><td><div class="fm-o">Agent/Broker · Appraisal/Valuation · Attorney - Foreclosure/Bankruptcy · Attorney - Other · Business Services · Component/Special Servicing · Consulting · Due Diligence · Flood Certification/Tracking · Insurance · Loss Mitigation · MSR Broker/Valuation · Print Vendor · Property Preservation · REO Asset Management · Sub-servicing · Tax Service · Technology · Title · Valuation · Other</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Does your company operate nationally? <span class="req">*</span></td><td>listcheckbox</td><td><div class="fm-o">Yes · No</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Company Bio (100 Word Minimum) <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Diversity Statement (100 Word Minimum) <span class="req">*</span></td><td>textarea</td><td>&mdash;</td><td class="mono sug"><em>new multi-line property, or a Note</em></td></tr><tr><td>Certifications (Please Select All That Apply)</td><td>listmultiselect</td><td><div class="fm-o">8(a) · HUBZone · LGBTE · MBE · WBE · WOSB</div></td><td class="mono sug"><em>new enumeration property</em></td></tr><tr><td>Upload Your Certifications</td><td>file_upload</td><td>&mdash;</td><td class="mono sug"><em>file &mdash; attach to the record</em></td></tr><tr><td>First Name <span class="req">*</span></td><td>textbox</td><td>&mdash;</td><td class="mono ">Contact.firstname</td></tr><tr><td>Last Name <span class="req">*</span></td><td>lastname</td><td>&mdash;</td><td class="mono ">Contact.lastname</td></tr><tr><td>Email <span class="req">*</span></td><td>email</td><td>&mdash;</td><td class="mono ">Contact.email</td></tr><tr><td>Phone <span class="req">*</span></td><td>phone</td><td>&mdash;</td><td class="mono ">Contact.phone</td></tr></tbody></table></div></div></div><p class="muted" style="margin:10px 0 0">Not in the inventory. &middot; 30 pages crawled.</p>
+    </div>
+  </div>
+  <div class="classrow" data-site="mpaccessshow.com">
+    <button class="classhead" type="button" aria-expanded="false">
+      <span class="cname">mpaccessshow.com <span class="flag">not in the 19</span></span>
+      <span class="cnum">0<small>forms</small></span>
+      <span class="cchange">Podcast &mdash; apex domain</span>
+      <span class="chev">&#9660;</span>
+    </button>
+    <div class="classbody" hidden>
+<p class="muted" style="padding:4px 2px">No capture form on any of the 10 pages crawled.</p><p class="muted" style="margin:10px 0 0">Not in the inventory. &middot; 10 pages crawled.</p>
+    </div>
+  </div>
+  </div>
+
+  <h3>Not reachable</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Host</th><th>Result</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr class="dark-row"><td><code>fivestargovernmentforum.com</code><br><span class="muted">apex, no www</span></td><td><span class="tag t-bad">TLS name mismatch &middot; then HTTP 401</span></td><td>Serves the host&rsquo;s default certificate for <code>app.getflywheel.com</code>, which covers none of this domain. <code>www.</code> works normally. Anyone typing the bare domain gets a browser security warning.</td></tr>
+      <tr class="dark-row"><td><code>podcast.mpaccessshow.com</code></td><td><span class="tag t-bad">DNS does not resolve</span></td><td>Listed in the estate inventory as the podcast property. The apex <code>mpaccessshow.com</code> resolves and serves 10 pages.</td></tr>
+      <tr><td><code>jobs.thefivestar.com</code></td><td><span class="tag t-warn">403 to non-browser clients</span></td><td>Third-party ATS, not owned. Unchanged since August.</td></tr>
+      <tr><td><code>fsireferrals.com</code> &middot; <code>dsnewsblackbook.com</code> &middot; <code>digital.dsnews.com</code></td><td><span class="tag t-bad">unreachable / 404</span></td><td>Already recorded as broken placements in August.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <p><strong>What the crawl found that the inventory did not.</strong> Three hosts carry live forms or content and appear in no version of the 19-property list: a <strong>second Wild Apricot instance</strong> at <code>legalleague100.wildapricot.org</code> taking Law Firm and Associate join submissions; the <strong>AMDC directory</strong> at <code>directory.mortgagediversitycouncil.com</code> with its own application form; and the podcast apex <code>mpaccessshow.com</code>.</p>
+    <p>The second Wild Apricot matters most. The audit has been treating Wild Apricot as one system of record, and the sync properties inside HubSpot name one instance. Legal League&rsquo;s members join through a different one.</p>
+  </div>
+
+  <p class="muted">Method: every URL in the page inventory fetched directly, plus link-crawls of the two Swoogo event sites, both Wild Apricot instances, the AMDC directory and the podcast apex. A page counts as having a form if it carries a non-search, non-login <code>&lt;form&gt;</code> element, a HubSpot / Typeform / Jotform / Mailchimp embed, or a form-bearing iframe. WooCommerce cart and password-reset forms are excluded.</p>
 </section>
 
 <!-- ============ ESTATE ============ -->
 <section class="view" id="v-estate">
-  <p class="eyebrow">Section 2</p>
+  <p class="eyebrow">Section 5</p>
   <h2>The digital estate</h2>
   <p class="lede">Nineteen properties across five roles. <span class="tag t-ok">HS</span> marks a property carrying HubSpot portal <code>8733520</code>.</p>
 
@@ -374,7 +1052,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ MATRIX ============ -->
 <section class="view" id="v-matrix">
-  <p class="eyebrow">Section 3</p>
+  <p class="eyebrow">Section 6</p>
   <h2>The instrumentation matrix</h2>
   <p class="lede">The single most useful view, and the reason this belongs in a hub rather than a document. Every commercially significant surface, against whether it can pass a visitor into the CRM.</p>
 
@@ -406,7 +1084,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ FUNNEL ============ -->
 <section class="view" id="v-funnel">
-  <p class="eyebrow">Section 4</p>
+  <p class="eyebrow">Section 7</p>
   <h2>The inbound funnel</h2>
   <p class="lede">Every route a visitor can take into the estate, and the three places they can convert. Reconstructed from the observable evidence — entry channels from tracking tags and outbound links, surfaces from page source, conversion points from the systems those surfaces hand off to.</p>
 
@@ -521,7 +1199,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ PLATFORMS ============ -->
 <section class="view" id="v-platforms">
-  <p class="eyebrow">Section 5</p>
+  <p class="eyebrow">Section 8</p>
   <h2>Platforms in play</h2>
   <p class="lede">Twelve systems, only one of which is HubSpot. Each is a candidate node in the relational map, and each boundary between them is a place records can diverge.</p>
 
@@ -552,7 +1230,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ SOCIAL ============ -->
 <section class="view" id="v-social">
-  <p class="eyebrow">Section 6</p>
+  <p class="eyebrow">Section 9</p>
   <h2>The social estate</h2>
   <p class="lede">Twelve owned channels. Note the architecture: MortgagePoint holds a full <em>company</em> page; every membership group that has a presence holds a <em>showcase</em> page beneath the institute.</p>
 
@@ -581,7 +1259,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ MEMBERS ============ -->
 <section class="view" id="v-members">
-  <p class="eyebrow">Section 7</p>
+  <p class="eyebrow">Section 10</p>
   <h2>People &amp; the member layer</h2>
   <p class="lede">Captured from LinkedIn on 10 August 2026 using aggregate company People tabs only — no individual profiles were walked, no connection requests or messages sent. Professional role data only.</p>
   <p class="muted"><strong>Individuals are identified by role, not by name.</strong> Every finding below concerns systems and records, not people, so the names add nothing to it. They are held in the private working file.</p>
@@ -662,7 +1340,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ TOPICS ============ -->
 <section class="view" id="v-topics">
-  <p class="eyebrow">Section 8</p>
+  <p class="eyebrow">Section 11</p>
   <h2>The topical map</h2>
   <p class="lede">Every subtopic found in the body text of 1,033 crawled pages, placed against the four communities. Select a subtopic for every page it appears on — <strong>select several to find the pages that carry all of them</strong>.</p>
   <p class="muted" style="margin-bottom:18px">Derived from <strong>page body text</strong>, not from the sites' own tags — a tag is a claim about topic, not evidence of it. Shared subtopics appear in every category they belong to, and again in the register below.</p>
@@ -716,7 +1394,7 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ MODEL ============ -->
 <section class="view" id="v-model">
-  <p class="eyebrow">Section 9 — the part that needs your argument</p>
+  <p class="eyebrow">Section 12 — the proposed model</p>
   <h2>The model, populated</h2>
   <p class="lede">Every class filled with the instances the analysis actually turned up. Populating it is the test: five things the abstract version got wrong only became visible once real instances went in. All five are now <strong>applied</strong>, so the model below is the current one rather than a proposal. What changed, and why, is at the bottom.</p>
   <p class="muted" style="margin:-6px 0 22px">Ten classes. <code>Status / role</code> was removed; <code>Person</code> and <code>Placement</code> were added. Revised 8 September 2026.</p>
@@ -897,9 +1575,9 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
 
 <!-- ============ DEFECTS ============ -->
 <section class="view" id="v-defects">
-  <p class="eyebrow">Section 10</p>
+  <p class="eyebrow">Section 13</p>
   <h2>Defects found</h2>
-  <p class="lede">Classified against the asset-layer taxonomy. Every one was detectable from outside the organization, which is the point worth holding on to.</p>
+  <p class="lede">Classified against the asset-layer and process-layer taxonomies. Seven were detectable from outside in August, four needed the portal, and four more came from a full crawl of every page on 8 September.</p>
   <p class="muted">These are <strong>externally observable symptoms</strong>, not diagnoses. Each states what was found and where; several may have an internal explanation — a deliberate decision, a migration in flight, a system doing the job another way. Treat the list as the agenda for a conversation, not a verdict.</p>
 
   <div class="tablewrap"><table>
@@ -912,38 +1590,68 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
       <tr><td><strong>NAP inconsistency</strong></td><td>Suite <strong>3000</strong> (FSI) vs Suite <strong>900W</strong> (MortgagePoint) at 1341 W Mockingbird Ln, Dallas</td></tr>
       <tr><td><strong>Redundant rendition</strong></td><td>Elementor <em>and</em> WPBakery <em>and</em> Slider Revolution running on one corporate site</td></tr>
       <tr><td><strong>Unowned asset</strong><br><span class="muted">No maintaining owner</span></td><td>4 GTM containers, 2 AdSense publisher IDs, no unified container</td></tr>
+      <tr><td colspan="2" style="background:var(--bg-2);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:650">Found in the portal, 8 September</td></tr>
+      <tr class="dark-row"><td><strong>Carrier confusion</strong><br><span class="muted">Relationship state modelled as a transaction</span></td><td>Event attendance carried on the deal object — <strong>3,693 deals</strong> with no pipeline, stage, owner or value, written by the Swoogo integration</td></tr>
+      <tr class="dark-row"><td><strong>Ghost stage</strong><br><span class="muted">Configured, unused by the process</span></td><td>Events uses 1 of 7 configured stages; Membership has never used Closed Lost; two pipelines carry a second stage generation holding almost no deals</td></tr>
+      <tr class="dark-row"><td><strong>Absorbing stage</strong><br><span class="muted">Records enter, none leave by the losing path</span></td><td>Membership: <strong>232 entries to New, zero losses ever recorded</strong>. The stage population is cumulative rather than current, so every duration measured from it is unbounded</td></tr>
+      <tr><td colspan="2" style="background:var(--bg-2);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:650">Found in the live crawl, 8 September</td></tr>
+      <tr class="dark-row"><td><strong>Broken placement</strong> <span class="tag t-neu">2nd instance</span><br><span class="muted">Placed, resolves to nothing</span></td><td><code>fivestargovernmentforum.com</code> (apex) serves a TLS certificate for <code>app.getflywheel.com</code> and then returns <strong>HTTP 401</strong>; only <code>www.</code> works. <code>podcast.mpaccessshow.com</code> <strong>no longer resolves in DNS</strong> &mdash; see <a href="#forms">Where the forms are</a></td></tr>
+      <tr class="dark-row"><td><strong>Dark placement</strong> <span class="tag t-neu">quantified</span><br><span class="muted">Live, carries no instrument</span></td><td><strong>32 of 63 capture forms</strong> submit somewhere HubSpot never sees &mdash; across Ninja Forms, two Wild Apricot instances, Swoogo, MemberPress and <strong>Zoho CRM</strong> &mdash; including new-member applications, membership-tier registration, and both conference registration flows</td></tr>
+      <tr class="dark-row"><td><strong>Redundant rendition</strong> <span class="tag t-neu">2nd instance</span><br><span class="muted">Many builds, one design</span></td><td><strong>29 of 63 forms are duplicates of 11 originals.</strong> Three identical 2022 event landers with no field recording the event; one contact form shared across two brands with no field recording the brand; <strong>two forms on one page</strong> at <code>/advertising-lander/</code>; and an ad lander split by network into two incompatible profession taxonomies. See <a href="#forms">By cluster</a></td></tr>
+      <tr class="dark-row"><td><strong>Redundant system</strong><br><span class="muted">Same job, many tools</span></td><td><strong>Six systems collect leads across the estate</strong>: HubSpot, Ninja Forms, Wild Apricot (&times;2), Swoogo, MemberPress and <strong>Zoho CRM</strong>. Legal League runs three of them on one site &mdash; its membership application posts to <code>crm.zoho.com/crm/WebToLeadForm</code>, its tier pages create WordPress accounts, and its members join through a second Wild Apricot</td></tr>
+      <tr class="dark-row"><td><strong>Unowned asset</strong> <span class="tag t-neu">2nd instance</span><br><span class="muted">Outside every inventory</span></td><td>A <strong>second Wild Apricot instance</strong> at <code>legalleague100.wildapricot.org</code> takes Law Firm and Associate join submissions; <code>directory.mortgagediversitycouncil.com</code> runs its own application form. Neither appears in the 19-property inventory. A public <code>/register/test-membership/</code> page is live on Legal League</td></tr>
+      <tr class="dark-row"><td><strong>Starved stage</strong><br><span class="muted">No placement serving it</span></td><td><code>propertypresforum.com</code> (PPEF) has <strong>no capture form on any of its 9 pages</strong> &mdash; a membership group with no way to enquire or join</td></tr>
+      <tr class="dark-row"><td><strong>Claim drift</strong> <span class="tag t-neu">2nd instance</span><br><span class="muted">One fact, three stored answers</span></td><td>Membership status modelled three times — nine per-group properties, a Wild Apricot status, and a legacy property past its own stated archival date. Active members read as <strong>1,763</strong> or <strong>2,293</strong></td></tr>
     </tbody>
   </table></div>
 
   <div class="callout">
-    <p><strong>What this proves about the method.</strong> The asset layer is auditable from outside the company. Every defect above was found without a login. The process and system layers are the ones that need to be let in — which makes this class of map a pre-access artefact, not a post-engagement one.</p>
+    <p><strong>What this proves about the method.</strong> The asset layer is auditable from outside the company — the first seven defects were found without a login, which makes this class of map a pre-access artefact rather than a post-engagement one.</p>
+    <p><strong>And what it does not.</strong> The last four needed the portal, and one of them — the absorbing stage — is a defect this taxonomy had no name for until this audit. The outside view is a real instrument, not a substitute for access.</p>
   </div>
 </section>
 
 <!-- ============ GAPS ============ -->
 <section class="view" id="v-gaps">
-  <p class="eyebrow">Section 11</p>
+  <p class="eyebrow">Section 14</p>
   <h2>What this draft does not cover</h2>
-  <p class="lede">Stated plainly rather than left for a reader to discover. Everything below is a known gap in draft 1, not an omission.</p>
+  <p class="lede">Stated plainly rather than left for a reader to discover. Everything below is a known gap, not an omission.</p>
 
+  <h3>Closed by the portal read</h3>
   <ul class="clean">
-    <li><strong>Membership tiers</strong> — the source IA carried "Founding Institutional Partner" and an unfinished list. Tiers are not externally visible; they live inside Wild Apricot.</li>
-    <li><strong>Communities</strong> — the four are listed on the site, but member-to-community assignment is not public. Only one community URL was verified.</li>
+    <li><strong>Membership tiers</strong> — now known. 33 tiers are enumerated in the CRM, synced from Wild Apricot.</li>
+    <li><strong>Does Wild Apricot reach HubSpot?</strong> — answered. Records do, by custom middleware matched on email; behaviour does not.</li>
+    <li><strong>Five Star Alliance</strong> — it is a <strong>group</strong>, not a tier. It carries a per-group status property of the same shape as the confirmed groups, under the internal name "FS Access".</li>
+    <li><strong>Five Star Global</strong> — the parent entity, holding Five Star Institute and AM&amp;AA. Previously evidenced only by one executive's job title.</li>
+  </ul>
+
+  <h3>Still open</h3>
+  <ul class="clean">
+    <li><strong>Communities</strong> — the four are listed on the site, but <strong>no community property exists in HubSpot at all</strong>, so member-to-community assignment is not recorded anywhere the audit could reach.</li>
     <li><strong>News &amp; Resources</strong> — not crawled.</li>
-    <li><strong>Webinars</strong> — referenced as a media type; no platform identified, and whether it integrates with HubSpot is unknown.</li>
-    <li><strong>Five Star Alliance</strong> — named as the membership entry point, but no site and no LinkedIn presence found. It may be a tier rather than a group.</li>
+    <li><strong>Webinars</strong> — referenced as a media type; no platform identified. A Zoom integration writes to contacts, which is a lead but not a confirmation.</li>
     <li><strong>Legal League Servicer Summit</strong> — unconfirmed as a current event.</li>
     <li><code>jobs.thefivestar.com</code> and <code>fsireferrals.com</code> — need browser verification; both refused non-browser clients.</li>
     <li>Follower counts for X, Facebook and YouTube were not captured.</li>
     <li><strong>Member coverage is capped.</strong> LinkedIn gates employee visibility behind Sales Navigator — 10 of 40 and 13 of 50 were visible. The people layer is a sample, not a roster.</li>
     <li><strong>On-page SEO characterises templates, not pages.</strong> One page per page type was checked, so site-wide issues generalise and per-article issues do not.</li>
+    <li><strong>Duplicate records were not measured.</strong> The query surface available to this audit has no text functions, so email-level duplication could not be counted. Two byte-identical event deals were found by inspection, which suggests it is worth measuring properly.</li>
+    <li><strong>Wild Apricot's own side was not read.</strong> HubSpot holds 4,754 member records. Whether that is the whole membership or a partial sync cannot be settled from HubSpot alone.</li>
   </ul>
 
-  <h3>The one read that would change the most</h3>
-  <p><strong>Wild Apricot's role and status model.</strong> It holds the membership tiers listed above, and it is the only remaining candidate for connecting a person to a membership group, a community or a media property — an edge that exists nowhere else observable. Everything else on this page is downstream of that.</p>
+  <h3>Closed to the audit inside the portal</h3>
+  <ul class="clean">
+    <li><strong>Workflows</strong> — not exposed by the connector at all. Every statement about automation on this page is inferred from its output. The largest single gap.</li>
+    <li><strong><code>p8733520_enrollments</code></strong> — the portal's only custom object, and on its name the likely home of membership or course records. Needs reauthorisation.</li>
+    <li><strong>Forms and marketing emails</strong> — 16,021 contacts originate from forms whose definitions cannot be read.</li>
+    <li><strong>Saved reports and dashboards</strong> — disabled for this portal, so what the organisation currently reports on is unknown. The gap between that and section 3 is likely the most useful unknown remaining.</li>
+  </ul>
+
+  <h3>The one change that would open the most</h3>
+  <p>Three of the four portal gaps close with <strong>one reauthorisation and one permission change</strong> on the connected HubSpot user — the enrollments object, forms, and marketing emails. Workflows and saved reports need a screen share instead. Nothing else on this list is blocked by anything as small.</p>
 
   <footer class="pagefoot">
-    Draft 1 · captured 10 August 2026 · built entirely from public evidence — no account, portal or system access was used.
+    Draft 2 · 8 September 2026. Sections 4–13 are the outside view captured 10–11 August, from public evidence only, with no account access. Sections 2–3 are a read-only pass over HubSpot portal 8733520 on 8 September; nothing was written to the portal.
   </footer>
 </section>
 
@@ -979,9 +1687,10 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
       row.querySelector('.classbody').hidden = !open;
     });
   });
-  var expand = document.getElementById('expand-all');
+  function wireExpand(btnId, scopeSel){
+  var expand = document.getElementById(btnId);
   if (expand) expand.addEventListener('click', function(){
-    var rows = Array.from(document.querySelectorAll('.classrow'));
+    var rows = Array.from(document.querySelectorAll(scopeSel + ' .classrow'));
     var anyClosed = rows.some(function(r){ return !r.classList.contains('open'); });
     rows.forEach(function(r){
       r.classList.toggle('open', anyClosed);
@@ -990,6 +1699,10 @@ footer.pagefoot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line
     });
     expand.textContent = anyClosed ? 'Collapse all' : 'Expand all';
   });
+  }
+  wireExpand('expand-all', '#v-model');
+  wireExpand('expand-forms', '#v-forms .fm-sites');
+  wireExpand('expand-clusters', '#v-forms .fm-clusters');
 })();
 </script>
 
