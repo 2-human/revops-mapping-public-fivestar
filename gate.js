@@ -4,7 +4,7 @@
  * key (not the password) is kept in sessionStorage for this tab only, so a reload does not ask again. */
 (function () {
   var FILES = ['pages', 'entities', 'topics', 'org', 'board', 'design'];
-  var APP = ['hub-core.js?v=2', 'views.js?v=3'];
+  var APP = ['hub-core.js?v=2', 'views.js?v=4'];
   var KEY = 'fs-gate-key';
   function load(src) { return new Promise(function (ok, no) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); }); }
   function run(text) { var s = document.createElement('script'); s.textContent = text; document.head.appendChild(s); }

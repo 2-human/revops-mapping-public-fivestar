@@ -384,3 +384,4 @@ td.sep { background:var(--bg-2); font-size:11.5px; text-transform:uppercase; let
 .oe { stroke:#a9b5c0; stroke-width:4; } .oe.parked { stroke-dasharray:18 14; opacity:.6; } .oh { stroke:transparent; stroke-width:34; }
 .drawer-body caption { caption-side:top; text-align:left; font-size:11.5px; font-weight:650; color:var(--ink-3); padding:7px 9px; } .drawer-body .clean { padding-left:18px; }
 @media (max-width:980px) { .orggrid { grid-template-columns:minmax(0,1fr); } .col-h { display:none; } .cell-t { display:block; } .orggrid > div:first-child { display:none; } .brand-h { justify-content:flex-start; padding:8px 12px; margin-top:6px; } }
+.diagram.sys .fl.dash { stroke-dasharray:5 4; }

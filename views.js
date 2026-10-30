@@ -103,6 +103,8 @@
   F.products.forEach(function (p) { PRODBY[p.sku] = p; });
   D.objects.forEach(function (o) { OBJ[o.id] = o; });
   F.boardRows.forEach(function (r) { ROWBY[r.id] = r; });
+  F.questions = F.questions.concat(D.extraQuestions);
+  F.questions.sort(function (a, b) { return a.n - b.n; });
   F.questions.forEach(function (q) { q.ans = D.answers[q.n] || { s: 'open' }; QBY[q.n] = q; });
   D.decisions.forEach(function (d) { DEC[d.n] = d; });
   D.corrections.forEach(function (c) { COR[c.id] = c; });
@@ -213,15 +215,20 @@
     function wrap(t, w) { var out = [], cur = ''; t.split(' ').forEach(function (x) { if ((cur + ' ' + x).length * 6.3 > w && cur) { out.push(cur); cur = x; } else cur = cur ? cur + ' ' + x : x; }); out.push(cur); return out; }
     var box = function (b) { return '<g class="sb ' + b[6] + '"><rect x="' + b[0] + '" y="' + b[1] + '" width="' + b[2] + '" height="' + b[3] + '" rx="8"/><text class="t" x="' + (b[0] + 12) + '" y="' + (b[1] + 24) + '">' + esc(b[4]) + '</text>' + wrap(b[5], b[2] - 24).map(function (l, i) { return '<text class="s" x="' + (b[0] + 12) + '" y="' + (b[1] + 44 + i * 16) + '">' + esc(l) + '</text>'; }).join('') + '</g>'; };
     var svg = '<div class="diagram sys"><svg viewBox="0 0 1200 460" role="img" aria-label="How the systems connect"><defs><marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#7d8c9b"/></marker></defs>' +
-      M.links.map(function (l) { return '<line x1="' + l[0] + '" y1="' + l[1] + '" x2="' + l[2] + '" y2="' + l[3] + '" class="fl" marker-end="url(#ar)"/>' + (l[4] ? '<text class="s" x="' + ((l[0] + l[2]) / 2) + '" y="' + (l[1] - 8) + '" text-anchor="middle">' + esc(l[4]) + '</text>' : ''); }).join('') + M.boxes.map(box).join('') + '</svg></div>';
+      M.links.map(function (l) { return '<line x1="' + l[0] + '" y1="' + l[1] + '" x2="' + l[2] + '" y2="' + l[3] + '" class="fl' + (l[5] ? ' ' + l[5] : '') + '" marker-end="url(#ar)"/>' + (l[4] ? '<text class="s" x="' + (l[6] != null ? l[6] : (l[0] + l[2]) / 2) + '" y="' + (l[7] != null ? l[7] : l[1] - 8) + '"' + (l[6] != null ? '' : ' text-anchor="middle"') + '>' + esc(l[4]) + '</text>' : ''); }).join('') + M.boxes.map(box).join('') + '</svg></div>';
     return page('systems', CALL) + svg + plain(['Kind of data', 'Record of truth', 'Role of HubSpot', 'Today', 'Note'], D.systems.map(function (s) { return cells(['<b>' + esc(s.data) + '</b>', esc(s.owner), esc(s.hubspot), esc(s.today), esc(s.note)]); }));
   });
 
   /* ─── sync ─── */
-  H.route('/sync', function () {
-    var st = function (s) { return chip(s, s === 'Client' ? 'ok' : s === 'Open' ? 'bad' : 'rec'); };
-    return page('sync', CALL) + '<h3>Keys and rules</h3>' + plain(['Rule', 'Design', 'Source'], D.syncRules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1]), st(r[2])]); })) +
-      '<h3>Field by field</h3>' + plain(['Field', 'Direction', 'Rule', 'Source'], D.syncFields.map(function (r) { return cells(['<b>' + esc(r.field) + '</b>', esc(r.dir), esc(r.rule), st(r.state)]); })) +
+  H.route('/sync', function (rest, q) {
+    var st = function (s) { return chip(s, s === 'Client' ? 'ok' : s === 'Open' ? 'bad' : 'rec'); }, cur = q.tab || D.syncTabs[0][0], top = page('sync', CALL) + tabs('/sync', D.syncTabs, cur);
+    var fields = function (list) { return plain(['Field', 'Direction', 'Rule', 'Source'], list.map(function (r) { return cells(['<b>' + esc(r.field) + '</b>', esc(r.dir), esc(r.rule), st(r.state)]); })); };
+    if (cur === D.syncTabs[1][0]) {
+      var Q = D.quickbooks;
+      return top + '<p>' + esc(Q.intro) + '</p><h3>Field by field</h3>' + fields(Q.fields) + '<h3>Rules</h3>' + plain(['Rule', 'Design'], Q.rules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) + '<h3>Still to find out</h3><p>' + esc(Q.open) + '</p>' + linkList(F.questions.filter(function (x) { return x.n >= 84; }).map(qLine)) + linkList([['decision:26', 'Decision 26: ' + DEC[26].title]]);
+    }
+    return top + '<h3>Keys and rules</h3>' + plain(['Rule', 'Design', 'Source'], D.syncRules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1]), st(r[2])]); })) +
+      '<h3>Field by field</h3>' + fields(D.syncFields) +
       '<h3>The flows to test in the sandbox</h3>' + plain(['Flow', 'What should happen'], D.syncFlows.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) +
       '<h3>Questions for the vendor</h3>' + ol(D.vendorQuestions);
   });
