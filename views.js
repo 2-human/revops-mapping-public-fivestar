@@ -1,7 +1,7 @@
 /* Hub screens. All text and numbers come from data/*.js (behind the gate); this file holds only layout, generic labels and the joins
  * between entities, so it is safe on the public mirror. Every entity exists once and opens in the drawer. */
 (function () {
-  var F = window.FS, H = window.Hub, C = H.chart, esc = H.esc, V = F.views, D = F.design;
+  var F = window.FS, H = window.Hub, C = H.chart, esc = H.esc, V = F.views, D = F.design, P = F.portal;
   var strip = function (h) { return String(h == null ? '' : h).replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&mdash;/g, '—').replace(/\s+/g, ' ').trim(); };
   var slug = function (s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); };
   var host = function (s) { return String(s).replace(/^www\./, ''); };
@@ -10,7 +10,7 @@
   CHANNELS.forEach(function (c) { CNAME[c[0]] = c[1]; });
   var STATUS = { live: ['Live', 'ok'], changing: ['Changing', 'warn'], retired: ['Retired', ''], confirm: ['To confirm', 'warn'] };
   var FILTERED = { '/programmes': 1, '/products': 1 };
-  var OUT = '<span class="chip out">Outside view</span>', PORTAL = '<span class="chip portal">Portal read</span>', CALL = '<span class="chip call">Call, 6 Oct</span>', STALE = '<span class="chip stale">Changed since</span>';
+  var OUT = '<span class="chip out">Outside view</span>', PORTAL = '<span class="chip portal">Portal read</span>', CALL = '<span class="chip call">Call, 6 Oct</span>', STALE = '<span class="chip stale">Changed since</span>', READ = '<span class="chip portal">' + esc(P.chip) + '</span>';
   var chip = function (t, c) { return '<span class="chip ' + (c || '') + '">' + esc(t) + '</span>'; };
   var ts = function (t) { return t ? '<span class="ts">' + esc(t) + '</span>' : ''; };
 
@@ -27,6 +27,8 @@
   var kv = function (rows) { return '<dl class="kv">' + rows.filter(function (r) { return r[1] != null && r[1] !== ''; }).map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>'; };
   var rowAttrs = function (ref) { return ref ? ' data-d="' + esc(ref) + '" tabindex="0"' : ''; };
   var note = function (t) { return '<div class="stalebar">' + STALE + '<span>' + esc(t) + '</span></div>'; };
+  var readNote = function (t) { return '<div class="stalebar">' + READ + '<span>' + esc(t) + '</span></div>'; };
+  var grid = function (b, ref) { return plain(b.head, b.rows.map(function (r, i) { return cells(r.map(function (c, j) { return j ? esc(c) : '<b>' + esc(c) + '</b>'; }), ref && ref(r, i)); })); };
   var plain = function (heads, rows, scope) { return '<div class="tablewrap"' + (scope ? ' data-scope="' + scope + '"' : '') + '><table><thead><tr>' + heads.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>' + rows.join('') + '</tbody></table></div>'; };
   var cells = function (r, ref) { return '<tr' + rowAttrs(ref) + '>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>'; };
   var ol = function (items) { return '<ol class="steps2">' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ol>'; };
@@ -98,7 +100,7 @@
   }
 
   /* ─── design joins ─── */
-  var PROG = {}, PRODBY = {}, OBJ = {}, ROWBY = {}, QBY = {}, DEC = {}, COR = {};
+  var PROG = {}, PRODBY = {}, OBJ = {}, ROWBY = {}, QBY = {}, DEC = {}, COR = {}, FIND = {};
   F.programmes.forEach(function (p) { PROG[p.id] = p; });
   F.products.forEach(function (p) { PRODBY[p.sku] = p; });
   D.objects.forEach(function (o) { OBJ[o.id] = o; });
@@ -108,11 +110,12 @@
   F.questions.forEach(function (q) { q.ans = D.answers[q.n] || { s: 'open' }; QBY[q.n] = q; });
   D.decisions.forEach(function (d) { DEC[d.n] = d; });
   D.corrections.forEach(function (c) { COR[c.id] = c; });
+  P.findings.forEach(function (x) { FIND[x.id] = x; });
   var inBrand = function (b) { return H.inGroup(b); };
   var QSTATUS = { answered: ['Answered', 'ok'], partly: ['Partly', 'warn'], overtaken: ['Overtaken', ''], open: ['Open', 'bad'] };
   var DSTATUS = { decided: ['Decided', 'ok'], recommended: ['Recommended', 'rec'], open: ['Open', 'bad'], overtaken: ['Overtaken', ''] };
   var COUNTS = {
-    corrections: D.corrections.length, programmes: F.programmes.length, products: F.products.length, objects: D.objects.length,
+    corrections: D.corrections.length, findings: P.findings.length, programmes: F.programmes.length, products: F.products.length, objects: D.objects.length,
     openDecisions: D.decisions.filter(function (d) { return d.status === 'open'; }).length,
     openQuestions: F.questions.filter(function (q) { return q.ans.s === 'open' || q.ans.s === 'partly'; }).length,
     requests: D.requests.filter(function (r) { return r.status !== 'Agreed'; }).length
@@ -134,7 +137,7 @@
     var stat = function (k, v, r, href) { return '<a class="tile" href="#' + href + '"><div class="k">' + esc(k) + '</div><div class="v">' + esc(v) + '</div><div class="r">' + esc(r) + '</div></a>'; };
     var next = D.phases.slice(0, 3).map(function (p) { return cells([esc(p.name), esc(p.when), esc(p.exit)]); });
     return '<section class="hero"><div class="hero-eye">' + esc(D.asOf) + ' · working draft</div><h1>' + esc(D.brief.title) + '</h1><p>' + esc(D.brief.lede) + '</p></section>' +
-      '<div class="tiles">' + stat('Decisions settled', dec + ' of ' + D.decisions.length, COUNTS.openDecisions + ' still open', '/decisions') + stat('Questions answered', String(ans), part + ' partly or overtaken, ' + F.questions.filter(function (q) { return q.ans.s === 'open'; }).length + ' open', '/questions') + stat('Programmes placed', String(F.programmes.length), 'by brand and channel', '/org') + stat('Requests outstanding', String(COUNTS.requests), 'from the call', '/requests') + '</div>' +
+      '<div class="tiles">' + stat('Decisions settled', dec + ' of ' + D.decisions.length, COUNTS.openDecisions + ' still open', '/decisions') + stat('Questions answered', String(ans), part + ' partly or overtaken, ' + F.questions.filter(function (q) { return q.ans.s === 'open'; }).length + ' open', '/questions') + stat('Portal findings', String(P.findings.length), 'from the ' + P.asOf + ' read', '/read') + stat('Requests outstanding', String(COUNTS.requests), 'from the call', '/requests') + '</div>' +
       '<h2>The design rules</h2><div class="rules">' + D.brief.rules.map(function (r, i) { return '<div class="rule"><b>' + (i + 1) + '</b><div><h3>' + esc(r[0]) + '</h3><p>' + esc(r[1]) + '</p></div></div>'; }).join('') + '</div>' +
       '<h2>What happens next</h2>' + plain(['Phase', 'When', 'Exit test'], next) +
       '<h2>Find your way</h2><div class="tiles">' + H.nav.slice(1).map(function (s) { return '<a class="tile" href="#' + s.items[0].route + '"><div class="k">' + esc(s.sec) + '</div><p>' + s.items.map(function (i) { return esc(i.label); }).join(' · ') + '</p></a>'; }).join('') + '</div>';
@@ -150,6 +153,32 @@
   H.drawer('correction', function (id) {
     var c = COR[id]; if (!c) return null;
     return { title: c.title, sub: chip(c.area) + CALL, tabs: [['c', 'Correction', kv([['We assumed', esc(c.was)], ['The client said', esc(c.said)], ['Recording', esc(c.ts)], ['Consequence', esc(c.then)]]) + '<p><a href="#' + esc(c.link) + '">Open the related screen</a></p>']] };
+  });
+
+  /* ─── what we read ─── */
+  var findingLine = function (x) { return ['reading:' + x.id, x.title, esc(x.area)]; };
+  var findingsFor = function (key, n) { return P.findings.filter(function (x) { return (x[key] || []).indexOf(+n) >= 0; }); };
+  H.route('/read', function (rest, q) {
+    var cur = q.tab || P.tabs[0][0], top = '<div class="pagehead"><h1>' + esc(P.copy[0]) + '</h1>' + READ + '</div><p class="lead">' + esc(P.copy[1]) + '</p>' + tabs('/read', P.tabs.map(function (t) { return t[0] === 'findings' ? [t[0], t[1], P.findings.length] : t; }), cur), body;
+    if (cur === 'changes') body = '<h3>Records</h3>' + grid(P.changes) + '<h3>Data health</h3>' + grid(P.changes.health);
+    else if (cur === 'deals') body = '<h3>Pipelines today</h3>' + grid(P.pipelines) + '<p class="note">' + esc(P.pipelines.sep) + '</p>' + C.bars('Closed won by close year', '', P.wonByYear.rows.map(function (r) { return { label: r[0], value: r[4] }; }), H.usd) + plain(P.wonByYear.head, P.wonByYear.rows.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1]), esc(r[2]), esc(r[3]), H.usd(r[4])]); })) + '<p class="note">' + esc(P.wonByYear.note) + '</p><h3>Brand by pipeline</h3>' + grid(P.brandByPipeline) + '<h3>How deals are created</h3>' + grid(P.dealSources) + '<p class="note">' + esc(P.dealSources.note) + '</p>';
+    else if (cur === 'built') body = '<h3>Built and in use</h3>' + plain(P.built.head, P.built.rows.map(function (r) { return cells(r.map(function (c, j) { return j ? esc(c) : '<code>' + esc(c) + '</code>'; })); })) + '<h3>Prepared and empty</h3>' + plain(P.built.empty.head, P.built.empty.rows.map(function (r) { return cells(r.map(function (c, j) { return j ? esc(c) : '<code>' + esc(c) + '</code>'; })); })) + '<p class="note">' + esc(P.built.empty.note) + '</p>';
+    else if (cur === 'members') body = '<h3>Keys</h3>' + grid(P.members.keys) + '<p class="note">' + esc(P.members.keys.note) + '</p><h3>Programmes</h3>' + grid(P.members.programmes) + '<h3>Status</h3>' + grid(P.members.status) + '<h3>Levels</h3>' + grid(P.members.levels) + '<p class="note">' + esc(P.members.levels.note) + '</p>';
+    else if (cur === 'audience') body = '<h3>Professions</h3><p class="note">' + esc(P.professions.note) + '</p><div class="tiles wide"><div class="tile slim"><h3>FSI</h3>' + plain(['Value', 'Contacts'], P.professions.fsi.map(function (r) { return cells([esc(r[0]), esc(r[1])]); })) + '</div><div class="tile slim"><h3>AM&amp;AA</h3>' + plain(['Value', 'Contacts'], P.professions.amaa.map(function (r) { return cells([esc(r[0]), esc(r[1])]); })) + '</div></div><h3>Lists</h3>' + grid(P.lists) + '<p class="note">' + esc(P.lists.note) + '</p>' + readNote(P.lists.caution) + '<h4 class="subhead">Lists closest to the matrix</h4>' + ul(P.lists.series) + '<h3>Marketing events</h3>' + grid(P.events) + '<p class="note">' + esc(P.events.dates) + '</p>';
+    else if (cur === 'reports') body = '<p>' + esc(P.reports.intro) + '</p>' + grid(P.reports) + '<h3>Campaigns</h3><p>' + esc(P.reports.campaigns) + '</p>';
+    else if (cur === 'access') body = plain(P.access.head, P.access.rows.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', chip(r[1], r[1] === 'Open' ? 'ok' : 'bad'), esc(r[2])]); })) + '<h3>How this was read</h3>' + ul(P.access.method);
+    else {
+      var areas = []; P.findings.forEach(function (x) { if (areas.indexOf(x.area) < 0) areas.push(x.area); });
+      body = '<div class="tiles">' + P.stats.map(function (s) { return '<div class="tile"><div class="k">' + esc(s[1]) + '</div><div class="v">' + esc(s[0]) + '</div><div class="r">' + esc(s[2]) + '</div></div>'; }).join('') + '</div>' + areas.map(function (a) {
+        return '<h3>' + esc(a) + '</h3>' + plain(['Topic', 'The design said', 'The portal shows', 'Design consequence'], P.findings.filter(function (x) { return x.area === a; }).map(function (x) { return cells(['<b>' + esc(x.title) + '</b>', esc(x.was), esc(x.read), esc(x.then)], 'reading:' + x.id); }));
+      }).join('');
+    }
+    return top + body;
+  });
+  H.drawer('reading', function (id) {
+    var x = FIND[id]; if (!x) return null;
+    var decs = (x.dec || []).map(function (n) { return DEC[n]; }), qs = (x.qs || []).map(function (n) { return QBY[n]; });
+    return { title: x.title, sub: chip(x.area) + READ, tabs: [['r', 'Finding', kv([['The design said', esc(x.was)], ['The portal shows', esc(x.read)], ['Consequence', esc(x.then)]]) + '<p><a href="#' + esc(x.link) + '">Open the related screen</a></p>' + (decs.length ? '<h3>Decisions</h3>' + linkList(decs.map(function (d) { return ['decision:' + d.n, d.title]; })) : '') + (qs.length ? '<h3>Questions</h3>' + linkList(qs.map(qLine)) : '')]] };
   });
 
   /* ─── brand × channel ─── */
@@ -190,15 +219,15 @@
 
   /* ─── personas ─── */
   H.route('/personas', function () {
-    var P = D.personas, cell = function (r, c) { return P.cells.filter(function (x) { return x[0] === r && x[1] === c; }).map(function (x) { return esc(x[2]) + ts(x[3]); }).join('<br>'); };
-    return page('personas', CALL) + plain(['Profession'].concat(P.cols), P.rows.map(function (r) { return cells(['<b>' + esc(r) + '</b>'].concat(P.cols.map(function (c) { return cell(r, c) || '<span class="unk">Not seen</span>'; }))); })) + ul(P.notes) + '<p><a href="#/requests">Access to the full matrix is on Requests</a></p>';
+    var Z = D.personas, cell = function (r, c) { return Z.cells.filter(function (x) { return x[0] === r && x[1] === c; }).map(function (x) { return esc(x[2]) + ts(x[3]); }).join('<br>'); };
+    return page('personas', CALL + READ) + plain(['Profession'].concat(Z.cols), Z.rows.map(function (r) { return cells(['<b>' + esc(r) + '</b>'].concat(Z.cols.map(function (c) { return cell(r, c) || '<span class="unk">Not seen</span>'; }))); })) + ul(Z.notes) + '<h3>What HubSpot holds for these rows</h3>' + grid(F.portal.personaMatch) + '<p class="note">' + esc(F.portal.personaMatch.note) + '</p><p><a href="#/read?tab=audience">Every profession value</a> · <a href="#/requests">Access to the full matrix is on Requests</a></p>';
   });
 
   /* ─── products ─── */
   H.route('/products', function (rest, q) {
     var rows = F.products.filter(function (p) { return (!p.brand || inBrand(p.brand)) && (!q.ch || p.channel === q.ch); }), fams = [];
     rows.forEach(function (p) { if (fams.indexOf(p.family) < 0) fams.push(p.family); });
-    return page('products', CALL) + '<div class="tiles wide">' + D.productRules.map(function (r) { return '<div class="tile"><h3>' + esc(r[0]) + '</h3><p>' + esc(r[1]) + '</p></div>'; }).join('') + '</div>' + chTabs('/products', q.ch) + search('prod', 'Search the products') +
+    return page('products', CALL) + readNote(FIND.catalogue.read + ' ' + FIND['line-items'].read) + '<div class="tiles wide">' + D.productRules.map(function (r) { return '<div class="tile"><h3>' + esc(r[0]) + '</h3><p>' + esc(r[1]) + '</p></div>'; }).join('') + '</div>' + chTabs('/products', q.ch) + search('prod', 'Search the products') +
       '<div data-scope="prod">' + fams.map(function (f) {
         var ps = rows.filter(function (p) { return p.family === f; });
         return '<h3>' + esc(f) + ' · ' + esc(ps[0].familyName) + ' <span class="cnt">' + ps.length + '</span></h3>' + plain(['SKU', 'Product', 'Brand', 'Channel', 'List price'], ps.map(function (p) { return cells(['<code>' + esc(p.sku) + '</code>', esc(p.name), esc(BNAME[p.brand]), esc(CNAME[p.channel]), esc(p.price)], 'product:' + p.sku); }));
@@ -224,10 +253,10 @@
     var st = function (s) { return chip(s, s === 'Client' ? 'ok' : s === 'Open' ? 'bad' : 'rec'); }, cur = q.tab || D.syncTabs[0][0], top = page('sync', CALL) + tabs('/sync', D.syncTabs, cur);
     var fields = function (list) { return plain(['Field', 'Direction', 'Rule', 'Source'], list.map(function (r) { return cells(['<b>' + esc(r.field) + '</b>', esc(r.dir), esc(r.rule), st(r.state)]); })); };
     if (cur === D.syncTabs[1][0]) {
-      var Q = D.quickbooks;
-      return top + '<p>' + esc(Q.intro) + '</p><h3>Field by field</h3>' + fields(Q.fields) + '<h3>Rules</h3>' + plain(['Rule', 'Design'], Q.rules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) + '<h3>Still to find out</h3><p>' + esc(Q.open) + '</p>' + linkList(F.questions.filter(function (x) { return x.n >= 84; }).map(qLine)) + linkList([['decision:26', 'Decision 26: ' + DEC[26].title]]);
+      var Q = D.finance;
+      return top + '<p>' + esc(Q.intro) + '</p><h3>Field by field</h3>' + fields(Q.fields) + '<h3>Rules</h3>' + plain(['Rule', 'Design'], Q.rules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) + '<h3>Still to find out</h3><p>' + esc(Q.open) + '</p>' + linkList(DEC[26].qs.map(function (n) { return qLine(QBY[n]); })) + linkList([['decision:26', 'Decision 26: ' + DEC[26].title]]);
     }
-    return top + '<h3>Keys and rules</h3>' + plain(['Rule', 'Design', 'Source'], D.syncRules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1]), st(r[2])]); })) +
+    return top + readNote(FIND['rem-ids'].read) + '<h3>Keys and rules</h3>' + plain(['Rule', 'Design', 'Source'], D.syncRules.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1]), st(r[2])]); })) +
       '<h3>Field by field</h3>' + fields(D.syncFields) +
       '<h3>The flows to test in the sandbox</h3>' + plain(['Flow', 'What should happen'], D.syncFlows.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) +
       '<h3>Questions for the vendor</h3>' + ol(D.vendorQuestions);
@@ -257,17 +286,16 @@
 
   /* ─── units, pipelines ─── */
   H.route('/units', function () {
-    return page('units', CALL) + '<div class="tiles wide">' + D.units.map(function (u) { return '<div class="tile"><h3>' + esc(u.name) + '</h3><p>' + esc(u.detail) + '</p><p>' + esc(u.holds) + '</p></div>'; }).join('') + '</div>' + ul(D.unitNotes) + '<h3>Teams</h3>' + plain(['Team', 'Does'], D.teams.map(function (t) { return cells(['<b>' + esc(t[0]) + '</b>', esc(t[1])]); }));
+    return page('units', CALL) + '<div class="tiles wide">' + D.units.map(function (u) { return '<div class="tile"><h3>' + esc(u.name) + '</h3><p>' + esc(u.detail) + '</p><p>' + esc(u.holds) + '</p></div>'; }).join('') + '</div>' + ul(D.unitNotes) + '<h3>Brand on deals today</h3>' + grid(P.brandByPipeline) + readNote(FIND['brand-gaps'].read) + '<h3>Teams</h3>' + plain(['Team', 'Does'], D.teams.map(function (t) { return cells(['<b>' + esc(t[0]) + '</b>', esc(t[1])]); }));
   });
   H.route('/pipelines', function () {
-    var v = V.portal;
-    return page('pipelines', CALL) + plain(['Pipeline', 'Brand', 'Entry', 'Stages'], D.pipelines.map(function (p) { return cells(['<b>' + esc(p.name) + '</b>', esc(p.brand), esc(p.entry), esc(p.stages)]); })) + ul(D.pipelineNotes) + '<h3>The pipelines at the portal read</h3>' + note(D.stale.hubspot) + blockHtml(v.blocks[9]) + blockHtml(v.blocks[10]);
+    return page('pipelines', CALL + READ) + plain(['Pipeline', 'Brand', 'Entry', 'Stages'], D.pipelines.map(function (p) { return cells(['<b>' + esc(p.name) + '</b>', esc(p.brand), esc(p.entry), esc(p.stages)]); })) + ul(D.pipelineNotes) + '<h3>The pipelines today</h3>' + grid(P.pipelines) + '<p class="note">' + esc(P.pipelines.sep) + '</p>' + linkList([['reading:membership-pipeline', FIND['membership-pipeline'].title], ['reading:line-items', FIND['line-items'].title]]) + '<p><a href="#/read?tab=deals">Deal detail</a> · <a href="#/hubspot?tab=pipelines">The September pipelines</a></p>';
   });
 
   /* ─── segments, sites, migration, licence ─── */
   H.route('/segments', function () {
     var S = D.segments;
-    return page('segments', CALL) + '<h3>Sends</h3>' + plain(['', 'Volume'], S.sends.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) + '<h3>Rules</h3>' + ul(S.rules) +
+    return page('segments', CALL) + '<h3>Sends</h3>' + plain(['', 'Volume'], S.sends.map(function (r) { return cells(['<b>' + esc(r[0]) + '</b>', esc(r[1])]); })) + '<h3>Rules</h3>' + ul(S.rules) + readNote(FIND.lists.read) +
       '<h3>Properties</h3>' + plain(['Property', 'On', 'Meaning'], S.properties.map(function (r) { return cells(['<code>' + esc(r[0]) + '</code>', esc(r[1]), esc(r[2])]); })) + '<h3>To retire</h3><p>' + esc(S.retire) + '</p>';
   });
   H.route('/sites', function () {
@@ -291,7 +319,7 @@
   H.drawer('decision', function (n) {
     var d = DEC[n]; if (!d) return null;
     var s = DSTATUS[d.status], qs = (d.qs || []).map(function (x) { return QBY[x]; });
-    return { title: d.title, sub: chip('Decision ' + d.n) + chip(s[0], s[1]), tabs: [['a', 'Where it stands', '<p class="cmap-text">' + esc(d.now) + '</p>' + (d.ts ? '<p class="note">Recording: ' + esc(d.ts) + '</p>' : '') + (qs.length ? '<h3>Questions</h3>' + linkList(qs.map(qLine)) : '')]] };
+    return { title: d.title, sub: chip('Decision ' + d.n) + chip(s[0], s[1]), tabs: [['a', 'Where it stands', '<p class="cmap-text">' + esc(d.now) + '</p>' + (d.ts ? '<p class="note">Recording: ' + esc(d.ts) + '</p>' : '') + (qs.length ? '<h3>Questions</h3>' + linkList(qs.map(qLine)) : '') + (findingsFor('dec', n).length ? '<h3>From the portal</h3>' + linkList(findingsFor('dec', n).map(findingLine)) : '')]] };
   });
   H.route('/questions', function (rest, q) {
     var cur = q.tab || 'questions';
@@ -302,13 +330,13 @@
     var qp = function (s, p) { var u = []; if (s) u.push('s=' + s); if (p) u.push('p=' + p); return '#/questions' + (u.length ? '?' + u.join('&') : ''); };
     return top + '<nav class="pills">' + [['', 'All']].concat(Object.keys(QSTATUS).map(function (k) { return [k, QSTATUS[k][0]]; })).map(function (s) { return '<a href="' + qp(s[0], q.p) + '"' + ((q.s || '') === s[0] ? ' aria-current="true"' : '') + '>' + s[1] + ' <span class="cnt">' + (s[0] ? F.questions.filter(function (x) { return x.ans.s === s[0]; }).length : F.questions.length) + '</span></a>'; }).join('') + '<span class="pilldiv"></span>' + [['', 'Any priority'], ['A', 'A'], ['B', 'B'], ['C', 'C']].map(function (p) { return '<a href="' + qp(q.s, p[0]) + '"' + ((q.p || '') === p[0] ? ' aria-current="true"' : '') + '>' + p[1] + '</a>'; }).join('') + '</nav>' + search('qs', 'Search the questions') +
       '<div data-scope="qs">' + secs.map(function (s) {
-        return '<h3>' + esc(s) + '</h3>' + plain(['#', 'Pri', 'Question', 'Status', 'From the call'], list.filter(function (x) { return x.sec === s; }).map(function (x) { var st = QSTATUS[x.ans.s]; return cells(['Q' + x.n, esc(x.pri), x.text, chip(st[0], st[1]), esc(x.ans.a || '') + ts(x.ans.ts)], 'question:' + x.n); }));
+        return '<h3>' + esc(s) + '</h3>' + plain(['#', 'Pri', 'Question', 'Status', 'What we know'], list.filter(function (x) { return x.sec === s; }).map(function (x) { var st = QSTATUS[x.ans.s]; return cells(['Q' + x.n, esc(x.pri), x.text, chip(st[0], st[1]), esc(x.ans.a || '') + ts(x.ans.ts) + (x.ans.read ? (x.ans.a ? '<br>' : '') + esc(x.ans.read) : '')], 'question:' + x.n); }));
       }).join('') + '</div>';
   });
   H.drawer('question', function (n) {
     var x = QBY[n]; if (!x) return null;
     var st = QSTATUS[x.ans.s], rows = x.rows.map(function (id) { return ROWBY[id]; }).filter(Boolean), decs = D.decisions.filter(function (d) { return (d.qs || []).indexOf(+n) >= 0; });
-    var t = [['q', 'Question', '<p class="cmap-text">' + x.text + '</p>' + (x.ans.a ? '<h3>From the call</h3><p>' + esc(x.ans.a) + '</p><p class="note">Recording: ' + esc(x.ans.ts) + '</p>' : '') + kv([['Priority', esc(x.pri)], ['Topic', esc(x.sec)], ['Source', esc(x.src)]]) + (decs.length ? '<h3>Decisions</h3>' + linkList(decs.map(function (d) { return ['decision:' + d.n, d.title]; })) : '')]];
+    var t = [['q', 'Question', '<p class="cmap-text">' + x.text + '</p>' + (x.ans.a ? '<h3>From the call</h3><p>' + esc(x.ans.a) + '</p><p class="note">Recording: ' + esc(x.ans.ts) + '</p>' : '') + (x.ans.read ? '<h3>From the portal, ' + esc(P.asOf) + '</h3><p>' + esc(x.ans.read) + '</p>' : '') + kv([['Priority', esc(x.pri)], ['Topic', esc(x.sec)], ['Source', esc(x.src)]]) + (decs.length ? '<h3>Decisions</h3>' + linkList(decs.map(function (d) { return ['decision:' + d.n, d.title]; })) : '') + (findingsFor('qs', n).length ? '<h3>Portal findings</h3>' + linkList(findingsFor('qs', n).map(findingLine)) : '')]];
     if (rows.length) t.push(['ev', 'Board evidence', linkList(rows.map(function (r) { return ['row:' + r.id, strip(r.title), esc(r.kind)]; }))]);
     return { title: 'Question ' + n, sub: chip(st[0], st[1]) + chip('Priority ' + x.pri), tabs: t };
   });
@@ -332,7 +360,7 @@
     else if (cur === 'limits') body = '<p class="lead">' + g.lede + '</p>' + range(g, 0, 8);
     else if (cur === 'method') body = '<div class="standing">' + F.standing + '</div>' + blockHtml(g.blocks[8]);
     else body = range(v, p[0], p[0] + 1) + extra + range(v, p[0] + 1, p[1]);
-    return head(v, PORTAL + STALE) + note(D.stale.hubspot) + blockHtml(v.blocks[0]) +
+    return head(v, PORTAL + STALE) + note(D.stale.hubspot) + '<p><a href="#/read">Open the 30 October read</a></p>' + blockHtml(v.blocks[0]) +
       tabs('/hubspot', [['headline', 'Headline'], ['boundary', 'Boundary questions'], ['findings', 'Findings'], ['pipelines', 'Pipelines'], ['health', 'Data health'], ['closed', 'What could not be read'], ['limits', 'Limitations'], ['method', 'How this was made']], cur) + body;
   });
 
