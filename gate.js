@@ -1,50 +1,84 @@
-/* Hub password gate. Locally the plaintext data files exist: load them and start the hub. On the public mirror only
- * data/bundle.enc is published (tools/fivestar-hub/encrypt-bundle.py, run in CI with FIVESTAR_HUB_GATE_PASSWORD): ask for the
- * password, decrypt in the browser (PBKDF2-SHA256 → AES-256-GCM, then gunzip), run the data scripts, start the hub. The derived
- * key (not the password) is kept in sessionStorage for this tab only, so a reload does not ask again. */
+/* Personal sign-in gate for the hub (library/features/auth-gate/key-gated-bundle.md and email-link-sign-in.md,
+ * feature_version 1.2.1).
+ *
+ * gate.config.json holds the one ordered file list (data, then views.js) and every public word. Locally gate-mode.js says
+ * HUB_GATED = false: the plaintext files sit beside the page, so they load and the hub starts with no sign-in. On the
+ * public mirror (tools/fivestar-hub/publish.sh sets it true) only data/bundle.enc is published: the visitor signs in by
+ * email link, the page reads the hub's keys from Firestore (only accounts with a role may), tries them newest first
+ * (AES-256-GCM, then gunzip), runs the files in order and the last one starts the hub. Nothing that opens the hub is kept
+ * in the browser, so a removed account stops opening it. Fires `auth-granted` and `auth-denied` on window. */
 (function () {
-  var FILES = ['pages', 'entities', 'topics', 'org', 'board', 'design', 'portal'];
-  var APP = ['hub-core.js?v=2', 'views.js?v=5'];
-  var KEY = 'fs-gate-key';
-  function load(src) { return new Promise(function (ok, no) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); }); }
-  function run(text) { var s = document.createElement('script'); s.textContent = text; document.head.appendChild(s); }
-  function boot() { return APP.reduce(function (p, src) { return p.then(function () { return load(src); }); }, Promise.resolve()); }
+  var $ = function (id) { return document.getElementById(id); };
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
-  var enc = function (u) { var s = ''; u.forEach(function (b) { s += String.fromCharCode(b); }); return btoa(s); };
+  var emit = function (name, detail) { try { window.dispatchEvent(new CustomEvent(name, { detail: detail })); } catch (e) {} };
+  var L = {}, FILES = [];
 
-  function unlockWith(key, bundle) {
-    return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(bundle.iv) }, key, b64(bundle.ct))
+  function load(src) {
+    return new Promise(function (ok, no) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = function () { no(new Error('could not load ' + src)); }; document.head.appendChild(s); });
+  }
+  /* an inline script's own error goes to window, not to the caller */
+  function run(text, name) {
+    var failed = null, watch = function (e) { failed = e.error || new Error(e.message); };
+    window.addEventListener('error', watch);
+    var s = document.createElement('script'); s.textContent = text + '\n//# sourceURL=' + encodeURI(name); document.head.appendChild(s);
+    window.removeEventListener('error', watch);
+    if (failed) throw failed;
+  }
+  function unlock(raw, bundle) {
+    return crypto.subtle.importKey('raw', b64(raw), 'AES-GCM', false, ['decrypt'])
+      .then(function (key) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(bundle.iv) }, key, b64(bundle.ct)); })
       .then(function (gz) { return new Response(new Blob([gz]).stream().pipeThrough(new DecompressionStream('gzip'))).text(); })
-      .then(function (json) {
-        var files = JSON.parse(json);
-        FILES.forEach(function (f) { if (files[f + '.js']) run(files[f + '.js']); });
-        return boot();
-      });
+      .then(JSON.parse);
   }
-  function derive(password, bundle) {
-    return crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey'])
-      .then(function (base) { return crypto.subtle.deriveKey({ name: 'PBKDF2', hash: 'SHA-256', salt: b64(bundle.salt), iterations: bundle.iter }, base, { name: 'AES-GCM', length: 256 }, true, ['decrypt']); });
+  /* the newest key first; an older one still opens a bundle published moments before */
+  function tryKeys(keys, bundle) { return keys.reduce(function (p, k) { return p.catch(function () { return unlock(k, bundle); }); }, Promise.reject(new Error('no key'))); }
+  function start(files) {
+    FILES.forEach(function (f) { if (files[f] == null) throw new Error('bundle has no ' + f); });
+    FILES.forEach(function (f) { run(files[f], f); });
   }
+
   function gate() {
-    var g = document.getElementById('gate'), form = document.getElementById('gate-form'), msg = document.getElementById('gate-msg'), pw = document.getElementById('gate-pw');
-    fetch('data/bundle.enc', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('no bundle'); return r.json(); }).then(function (bundle) {
-      var saved = null; try { saved = sessionStorage.getItem(KEY); } catch (e) {}
-      var tryKey = saved ? crypto.subtle.importKey('raw', b64(saved), 'AES-GCM', true, ['decrypt']).then(function (k) { return unlockWith(k, bundle); }) : Promise.reject();
-      tryKey.catch(function () {
-        try { sessionStorage.removeItem(KEY); } catch (e) {}
-        g.hidden = false; pw.focus();
-        form.onsubmit = function (e) {
-          e.preventDefault(); msg.textContent = 'Unlocking…'; form.querySelector('button').disabled = true;
-          derive(pw.value, bundle).then(function (k) {
-            return unlockWith(k, bundle).then(function () { return crypto.subtle.exportKey('raw', k); }).then(function (raw) { try { sessionStorage.setItem(KEY, enc(new Uint8Array(raw))); } catch (x) {} g.hidden = true; });
-          }).catch(function () { msg.textContent = 'That password did not open the hub.'; form.querySelector('button').disabled = false; pw.select(); });
-        };
+    var g = $('gate'), form = $('gate-form'), input = $('gate-email'), msg = $('gate-msg'), out = $('gate-out'), btn = $('gate-send'), A = window.HubAnswers;
+    $('gate-title').textContent = L.gateTitle || ''; $('gate-prompt').textContent = L.gatePrompt || ''; $('gate-label').textContent = L.gateEmail || '';
+    btn.textContent = L.gateSend || ''; out.textContent = L.gateSignOut || '';
+    var show = function (text, signedIn) {
+      g.hidden = false; form.hidden = false; msg.textContent = text || '';
+      [$('gate-prompt'), $('gate-label'), input, btn].forEach(function (e) { e.hidden = !!signedIn; });
+      out.hidden = !signedIn; btn.disabled = false;
+      if (!signedIn) input.focus();
+    };
+    out.onclick = function () { A.signOut(); };
+    form.onsubmit = function (e) {
+      e.preventDefault(); var v = input.value.trim(); if (!v) return;
+      btn.disabled = true; msg.textContent = L.gateSending || '';
+      A.signIn(v).then(function () { msg.textContent = L.gateSent || ''; }, function (x) {
+        btn.disabled = false; msg.textContent = x && x.code === 'auth/admin-restricted-operation' ? L.gateNotListed : L.gateSendFailed;
       });
-    }).catch(function () { g.hidden = false; msg.textContent = 'The hub data is not available.'; form.hidden = true; });
+    };
+    return fetch('data/bundle.enc', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('no bundle'); return r.json(); }).then(function (bundle) {
+      return A.init().then(function () {
+        if (A.signInError) { emit('auth-denied', { reason: 'sign-in-failed' }); return show(L.gateLinkFailed); }
+        if (!A.user) return show('');
+        if (!A.canAnswer()) { emit('auth-denied', { reason: 'not-allowlisted', email: A.user.email }); return show(String(L.gateNoAccess || '').replace('{email}', A.user.email), true); }
+        g.hidden = true;
+        return A.gateKeys().then(function (keys) { return tryKeys(keys, bundle); }).then(start).then(function () {
+          emit('auth-granted', { email: A.user.email, surface: 'fivestar' });
+        }, function (e) { console.error('[gate]', e); show(L.gateOpenFailed, true); });
+      });
+    }).catch(function (e) {
+      console.error('[gate]', e); g.hidden = false; form.hidden = false;
+      [$('gate-prompt'), $('gate-label'), input, btn, out].forEach(function (x) { x.hidden = true; });
+      $('gate-title').textContent = L.gateTitle || ''; msg.textContent = L.gateUnavailable || '';
+    });
   }
-  /* plaintext data present (local): load it all and start; otherwise the gate */
-  var t = '?t=' + Date.now();
-  load('data/pages.js' + t).then(function () {
-    return Promise.all(FILES.slice(1).map(function (f) { return load('data/' + f + '.js' + t); }));
-  }).then(boot, gate);
+
+  /* the file list and words, the mode flag, the public web config, the store (sign-in, keys, answers, comments), the
+   * chassis and the account and answer layer; then the files, from the network locally or from the bundle */
+  fetch('gate.config.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (c) {
+    FILES = c.files || []; L = window.HUB_LABELS = c.labels || {};
+    return ['gate-mode.js?v=f45846317d', 'firebase-config.js?v=2d9c421767', 'answers.js?v=8ebc6b9fce', 'hub-core.js?v=8036067eb6', 'feedback.js?v=8a843fc493'].reduce(function (p, f) { return p.then(function () { return load(f); }); }, Promise.resolve());
+  }).then(function () {
+    if (window.HUB_GATED) return gate();
+    return FILES.reduce(function (p, f) { return p.then(function () { return load(f); }); }, Promise.resolve());
+  }).catch(function (e) { console.error('[gate]', e); });
 })();

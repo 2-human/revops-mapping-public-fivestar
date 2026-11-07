@@ -1,4 +1,4 @@
-/* review-bootstrap.js: inert-by-default loader for the review widget. No ?review=1: only a floating entry button.
+/* review-bootstrap.js: inert-by-default loader for the Feedback Drawer (review-widget 1.5.0), loaded by feedback.js once the hub is up. No ?review=1: only a floating entry button.
  * ?review=1: sets data-review-mode=on and loads review-mode.css + review-mode.js. */
 (function () {
   /* Resolve the widget assets next to this script (2026-09-24), so pages in
@@ -34,6 +34,6 @@
    * 10-minute cache and browsers hold them far longer, so reviewers were seeing
    * a stale widget for hours after a fix shipped. The page itself stays cached. */
   var v = '?v=' + Date.now();
-  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'review-mode.css' + v; document.head.appendChild(css);
-  var js = document.createElement('script'); js.src = base + 'review-mode.js' + v; document.body.appendChild(js);
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'review-mode.css?v=f8f33729d5' + v; document.head.appendChild(css);
+  var js = document.createElement('script'); js.src = base + 'review-mode.js?v=b1ff6aa2be' + v; document.body.appendChild(js);
 })();

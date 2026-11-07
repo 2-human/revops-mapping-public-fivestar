@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Five Star · CRM Design Hub</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>★</text></svg>">
-<link rel="stylesheet" href="app.css?v=4">
+<link rel="stylesheet" href="app.css?v=1deb995603">
 </head>
 <body data-group="all">
 <header class="app-bar">
@@ -20,6 +20,7 @@
   <nav class="app-nav" id="app-nav" aria-label="Hub navigation">
     <input class="app-filter" id="app-filter" type="search" placeholder="Filter the menu" aria-label="Filter the menu">
     <div id="app-tree" class="tree"></div>
+    <div class="acct-line" id="acct-line"></div>
   </nav>
   <main class="app-main" id="app-main" tabindex="-1"></main>
 </div>
@@ -32,17 +33,16 @@
 </aside>
 <div id="chart-tip" class="chart-tip" hidden></div>
 <div class="gate" id="gate" hidden>
-  <form class="gate-card" id="gate-form" autocomplete="off">
-    <h1>CRM Design Hub</h1>
-    <p>Five Star · enter the hub password.</p>
-    <label for="gate-pw">Password</label>
-    <input id="gate-pw" type="password" required autocomplete="current-password">
-    <button class="btn" type="submit">Open the hub</button>
+  <form class="gate-card" id="gate-form" autocomplete="on">
+    <h1 id="gate-title"></h1>
+    <p id="gate-prompt"></p>
+    <label for="gate-email" id="gate-label"></label>
+    <input id="gate-email" type="email" required autocomplete="email">
+    <button class="btn" id="gate-send" type="submit"></button>
     <p class="gate-msg" id="gate-msg" role="status" aria-live="polite"></p>
+    <button class="linkbtn" id="gate-out" type="button" hidden></button>
   </form>
 </div>
-<script src="gate.js?v=4"></script>
-<script src="review.config.js?v=1"></script>
-<script src="review-bootstrap.js?v=1"></script>
+<script src="gate.js?v=2c737d9d0c"></script>
 </body>
 </html>
