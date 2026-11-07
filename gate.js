@@ -1,17 +1,23 @@
 /* Personal sign-in gate for the hub (library/features/auth-gate/key-gated-bundle.md and email-link-sign-in.md,
- * feature_version 1.2.1).
+ * feature_version 1.2.1), on the chassis' gated page (chassis/index.gated.html, unedited; this file is its `gate.js`).
  *
- * gate.config.json holds the one ordered file list (data, then views.js) and every public word. Locally gate-mode.js says
- * HUB_GATED = false: the plaintext files sit beside the page, so they load and the hub starts with no sign-in. On the
- * public mirror (tools/fivestar-hub/publish.sh sets it true) only data/bundle.enc is published: the visitor signs in by
- * email link, the page reads the hub's keys from Firestore (only accounts with a role may), tries them newest first
- * (AES-256-GCM, then gunzip), runs the files in order and the last one starts the hub. Nothing that opens the hub is kept
- * in the browser, so a removed account stops opening it. Fires `auth-granted` and `auth-denied` on window. */
+ * The one ordered file list is hub.config.js: `data`, then `views`. Locally gate-mode.js says HUB_GATED = false: the
+ * plaintext files sit beside the page, so the chassis boots as usual and nobody signs in. On the public mirror
+ * (tools/fivestar-hub/publish.sh sets it true) only data/bundle.enc is published: the visitor signs in by email link, the
+ * page reads the hub's keys from Firestore (only accounts with a role may), tries them newest first (AES-256-GCM, then
+ * gunzip), and the chassis boots with Hub.loadData running the decrypted files instead of fetching them. Nothing that opens
+ * the hub is kept in the browser, so a removed account stops opening it. Every word here is in hub.config.js `labels`
+ * (gate*). Fires `auth-granted` and `auth-denied` on window. */
 (function () {
+  var C = window.HUB_CONFIG || {}, L = C.labels || {};
+  var bare = function (f) { return String(f).replace(/\?.*$/, ''); };
+  var DATA = (C.data || []).map(bare), VIEWS = (C.views || []).map(bare);
   var $ = function (id) { return document.getElementById(id); };
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   var emit = function (name, detail) { try { window.dispatchEvent(new CustomEvent(name, { detail: detail })); } catch (e) {} };
-  var L = {}, FILES = [];
+
+  /* this hub's look, also on the gate card */
+  var skin = document.createElement('link'); skin.rel = 'stylesheet'; skin.href = 'skin.css?v=a709257323'; document.head.appendChild(skin);
 
   function load(src) {
     return new Promise(function (ok, no) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = function () { no(new Error('could not load ' + src)); }; document.head.appendChild(s); });
@@ -32,13 +38,21 @@
   }
   /* the newest key first; an older one still opens a bundle published moments before */
   function tryKeys(keys, bundle) { return keys.reduce(function (p, k) { return p.catch(function () { return unlock(k, bundle); }); }, Promise.reject(new Error('no key'))); }
+  /* the chassis boots as usual, with the data and views coming from the decrypted files instead of the network */
   function start(files) {
-    FILES.forEach(function (f) { if (files[f] == null) throw new Error('bundle has no ' + f); });
-    FILES.forEach(function (f) { run(files[f], f); });
+    DATA.concat(VIEWS).forEach(function (f) { if (files[f] == null) throw new Error('bundle has no ' + f); });
+    Hub.loadData = function () { DATA.concat(VIEWS).forEach(function (f) { run(files[f], f); }); return Promise.resolve(); };
+    C.views = [];
+    return Hub.boot();
   }
 
   function gate() {
-    var g = $('gate'), form = $('gate-form'), input = $('gate-email'), msg = $('gate-msg'), out = $('gate-out'), btn = $('gate-send'), A = window.HubAnswers;
+    var g = $('gate'), form = $('gate-form'), input = $('gate-pw'), msg = $('gate-msg'), out = $('gate-retry'), btn = form.querySelector('button[type=submit]'), A = window.HubAnswers;
+    /* the hub's own colours on the gate card, as the chassis sets them at boot */
+    if (!C.tokensDark && C.theme !== 'auto' && C.theme !== 'dark') document.documentElement.setAttribute('data-theme', 'light');
+    if (Hub.applyTokens) Hub.applyTokens(C.tokens || {});
+    document.title = C.title || '';
+    input.type = 'email'; input.setAttribute('autocomplete', 'email');
     $('gate-title').textContent = L.gateTitle || ''; $('gate-prompt').textContent = L.gatePrompt || ''; $('gate-label').textContent = L.gateEmail || '';
     btn.textContent = L.gateSend || ''; out.textContent = L.gateSignOut || '';
     var show = function (text, signedIn) {
@@ -62,7 +76,7 @@
         if (!A.canAnswer()) { emit('auth-denied', { reason: 'not-allowlisted', email: A.user.email }); return show(String(L.gateNoAccess || '').replace('{email}', A.user.email), true); }
         g.hidden = true;
         return A.gateKeys().then(function (keys) { return tryKeys(keys, bundle); }).then(start).then(function () {
-          emit('auth-granted', { email: A.user.email, surface: 'fivestar' });
+          emit('auth-granted', { email: A.user.email, surface: C.id });
         }, function (e) { console.error('[gate]', e); show(L.gateOpenFailed, true); });
       });
     }).catch(function (e) {
@@ -72,13 +86,8 @@
     });
   }
 
-  /* the file list and words, the mode flag, the public web config, the store (sign-in, keys, answers, comments), the
-   * chassis and the account and answer layer; then the files, from the network locally or from the bundle */
-  fetch('gate.config.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (c) {
-    FILES = c.files || []; L = window.HUB_LABELS = c.labels || {};
-    return ['gate-mode.js?v=f45846317d', 'firebase-config.js?v=2d9c421767', 'answers.js?v=8ebc6b9fce', 'hub-core.js?v=8036067eb6', 'feedback.js?v=8a843fc493'].reduce(function (p, f) { return p.then(function () { return load(f); }); }, Promise.resolve());
-  }).then(function () {
-    if (window.HUB_GATED) return gate();
-    return FILES.reduce(function (p, f) { return p.then(function () { return load(f); }); }, Promise.resolve());
-  }).catch(function (e) { console.error('[gate]', e); });
+  /* the mode flag, the public web config, the store (sign-in, keys, answers, comments), the chassis; then either boot */
+  ['gate-mode.js?v=f45846317d', 'firebase-config.js?v=2d9c421767', 'answers.js?v=404beed415', 'chassis/hub-core.js?v=679b0255c7'].reduce(function (p, f) { return p.then(function () { return load(f); }); }, Promise.resolve())
+    .then(function () { return window.HUB_GATED ? gate() : Hub.boot(); })
+    .catch(function (e) { console.error('[gate]', e); });
 })();

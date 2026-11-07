@@ -15,7 +15,7 @@
   var ROOT = 'hubs/fivestar', KEY = 'fs_hub_answers', MAILKEY = 'fs_signin_email', HASHKEY = 'fs_signin_hash', FILEDB = 'fs_hub_files';
   var SDK = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-';
   var cache = null, listeners = [], DB = null, F = null, AU = null, SDKS = null, settle, INIT = null;
-  var words = function (k) { var L = window.HUB_LABELS || {}; return L[k] || k; };
+  var words = function (k) { var L = (window.HUB_CONFIG || {}).labels || {}; return L[k] || k; };
   var notify = function () { listeners.forEach(function (f) { try { f(); } catch (e) { console.error('[answers]', e); } }); };
   var local = function () { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } };
   var write = function (o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} notify(); };

@@ -34,6 +34,6 @@
    * 10-minute cache and browsers hold them far longer, so reviewers were seeing
    * a stale widget for hours after a fix shipped. The page itself stays cached. */
   var v = '?v=' + Date.now();
-  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'review-mode.css?v=f8f33729d5' + v; document.head.appendChild(css);
-  var js = document.createElement('script'); js.src = base + 'review-mode.js?v=b1ff6aa2be' + v; document.body.appendChild(js);
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'review-mode.css' + v; document.head.appendChild(css);
+  var js = document.createElement('script'); js.src = base + 'review-mode.js' + v; document.body.appendChild(js);
 })();
